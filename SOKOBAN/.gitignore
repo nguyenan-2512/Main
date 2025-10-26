@@ -1,0 +1,28 @@
+# Visual Studio
+.vs/
+*.vcxproj.user
+*.suo
+*.user
+*.cache
+*.log
+*.pdb
+*.obj
+*.exe
+*.dll
+*.idb
+*.ipch
+*.sdf
+*.opensdf
+*.tlog
+*.db
+*.db-wal
+*.db-shm
+*.vsidx
+
+# Build folders
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
