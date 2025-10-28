@@ -6,11 +6,11 @@
 #                       #
 #                       #
 #                       #
-#        OOOOXOOOO      #
-#        O   $   O      #
-#        O   @   O      #
-#        O       O      #
-#        OOOOOOOOO      #
+#        OOOOOOO      #
+#        O  @  O      #
+#       1O  1  O      #
+#        O     O      #
+#        OOOOOOO      #
 #                       #
 #                       #
 #                       #

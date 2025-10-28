@@ -64,6 +64,9 @@ Map::Map(const std::string& filename, int tileSize)
     if (!obstacleTexture.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\bay.png")) {
         std::cerr << "Failed to load obstacle texture!" << std::endl;
     }
+    if (!teleportActiveTexture.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\teleport_active.jpg")) {
+        std::cerr << "Failed to load teleport active texture!" << std::endl;
+    }
 
     // Đọc file map
     std::ifstream file(filename);
@@ -161,6 +164,22 @@ Map::Map(const std::string& filename, int tileSize)
                 buttons.back().setUnpressedTexture(buttonUnpressedTexture);
                 buttons.back().setPressedTexture(buttonPressedTexture);
             }
+            else if (isdigit(c)) {
+                int id = c - '0';
+
+                Floor floor(x, y, tileSize);
+                floor.setTexture(floorTexture);
+                floors.push_back(floor);
+
+                Teleport teleport(x, y, tileSize, id);
+                teleport.setTexture(teleportActiveTexture);
+                teleports.push_back(teleport);
+
+                teleportNetwork.addTeleport(Point(x, y), id);
+
+                std::cout << ">>Teleport added at (" << x << "," << y
+                    << ") with ID=" << id << std::endl;
+            }
         }
         y++;
     }
@@ -205,17 +224,18 @@ Map::~Map() {
 
 
 void Map::draw(sf::RenderWindow& window) {
-    for (auto& floor : floors) floor.draw(window);
-    for (auto& water : waters) water.draw(window);
-    for (auto& sand : sands) sand.draw(window);
-    for (auto& bridgeT : bridgeTs) bridgeT.draw(window);
-    for (auto& goal : goals) goal.draw(window);
-    for (auto& button : buttons) button.draw(window);
-    for (auto& trap : traps) trap.draw(window);
-    for (auto& obstacle : obstacles) obstacle.draw(window);
-    for (auto& wall : walls) wall.draw(window);
-    for (auto& box : boxes) box.draw(window);
-    for (auto& ironBox : ironBoxes) ironBox.draw(window);
+    for (int i = 0; i < floors.getSize(); i++) floors[i].draw(window);
+    for (int i = 0; i < waters.getSize(); i++) waters[i].draw(window);
+    for (int i = 0; i < sands.getSize(); i++) sands[i].draw(window);
+    for (int i = 0; i < bridgeTs.getSize(); i++) bridgeTs[i].draw(window);
+    for (int i = 0; i < goals.getSize(); i++) goals[i].draw(window);
+    for (int i = 0; i < teleports.getSize(); i++) teleports[i].draw(window);
+    for (int i = 0; i < buttons.getSize(); i++) buttons[i].draw(window);
+    for (int i = 0; i < traps.getSize(); i++) traps[i].draw(window);
+    for (int i = 0; i < obstacles.getSize(); i++) obstacles[i].draw(window);
+    for (int i = 0; i < walls.getSize(); i++) walls[i].draw(window);
+    for (int i = 0; i < boxes.getSize(); i++) boxes[i].draw(window);
+    for (int i = 0; i < ironBoxes.getSize(); i++) ironBoxes[i].draw(window);
 
     if (player) player->draw(window);
 }
@@ -277,6 +297,75 @@ void Map::checkButtonStates() {
         }
     }
 }
+
+bool Map::isTeleport(int x, int y) const {
+    return std::any_of(teleports.begin(), teleports.end(),
+        [x, y](const Teleport& teleport) {
+            return teleport.getX() == x && teleport.getY() == y;
+        });
+}
+
+Teleport* Map::getTeleportAt(int x, int y) {
+    for (auto& teleport : teleports) {
+        if (teleport.getX() == x && teleport.getY() == y) {
+            return &teleport;
+        }
+    }
+    return nullptr;
+}
+
+bool Map::tryTeleport() {
+    if (!player || isGameOver) return false;
+
+    int px = player->getX();
+    int py = player->getY();
+
+    // Kiểm tra xem player có đứng trên teleport không
+    if (!isTeleport(px, py)) {
+        std::cout << "Khong co cong teleport tai vi tri nay!" << std::endl;
+        return false;
+    }
+
+    // Lấy điểm đến từ teleport network
+    Point currentPos(px, py);
+    Point destination = teleportNetwork.getDestination(currentPos);
+
+    // Kiểm tra xem có teleport được không (destination khác current position)
+    if (destination == currentPos) {
+        std::cout << "Khong the teleport!" << std::endl;
+        return false;
+    }
+
+    int destX = destination.getX();
+    int destY = destination.getY();
+
+    // Kiểm tra điểm đến có hợp lệ không (không có vật cản)
+    if (isWall(destX, destY) || isObstacle(destX, destY) ||
+        isBox(destX, destY) || isIronBox(destX, destY) || isWater(destX, destY)) {
+        std::cout << "Diem den bi chan, khong the teleport!" << std::endl;
+        return false;
+    }
+
+    // Kiểm tra trap tại điểm đến
+    Trap* trap = getTrapAt(destX, destY);
+    if (trap && trap->getIsActive()) {
+        std::cout << "Ban da teleport vao bay! Game Over!" << std::endl;
+        isGameOver = true;
+        return false;
+    }
+
+    // Lưu trạng thái trước khi teleport (để có thể undo)
+    saveState();
+
+    // Thực hiện teleport
+    player->setPosition(destX, destY, 0, 0);
+
+    std::cout << "Teleport thanh cong tu (" << px << "," << py
+        << ") den (" << destX << "," << destY << ")!" << std::endl;
+
+    return true;
+}
+
 
 bool Map::isWall(int x, int y) const {
     return std::any_of(walls.begin(), walls.end(),
@@ -458,7 +547,7 @@ void Map::saveState() {
 
 MoveState Map::getCurrentState() const {
     Point playerPos = player->getPosition();
-    std::vector<Point> boxPos;
+    DynamicArray<Point> boxPos;
 
     for (const auto& box : boxes) {
         boxPos.push_back(box.getPosition());

@@ -26,6 +26,7 @@
     <ClInclude Include="Floor.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Guide.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="IronBox.h" />
     <ClInclude Include="MoveState.h" />
@@ -51,6 +52,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Goal.cpp" />
+    <ClCompile Include="Guide.cpp" />
     <ClCompile Include="IronBox.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />

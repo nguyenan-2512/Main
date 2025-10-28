@@ -1,16 +1,24 @@
 ﻿#pragma once
 #include <SFML/Graphics.hpp>
-#include "DynamicArray.h"  // Thay thế <vector>
+#include "DynamicArray.h"
+#include "Guide.h"
 
 enum class MenuState {
     MENU,
     SELECTION_MAP,
+    GUIDE,
     PLAYING,
     EXIT
 };
 
 class Menu {
 private:
+private:
+    Guide guide; 
+
+    sf::CircleShape backButton;  // nút back
+    bool backClicked;            // trạng thái click
+
     sf::Texture backgroundTexture;
     sf::Sprite backgroundSprite;
     sf::Font font;
@@ -46,6 +54,11 @@ private:
     void setupButtons();
     void setupTexts();
     bool isMouseOverButton(const sf::RectangleShape& button, sf::Vector2i mousePos);
+    bool isMouseOverCircle(const sf::CircleShape& button, sf::Vector2i mousePos);
+
     void setupMapItems(sf::RenderWindow& window);
     void drawSelectionMap(sf::RenderWindow& window);
+    bool isBackClicked() const { return backClicked; }
+    void resetBack() { backClicked = false; }
+
 };

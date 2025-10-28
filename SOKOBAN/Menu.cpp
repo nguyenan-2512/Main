@@ -35,6 +35,12 @@ bool Menu::loadResources() {
 }
 
 void Menu::setupButtons() {
+    backButton.setRadius(50.f);
+    backButton.setOrigin(50.f, 50.f);
+    backButton.setPosition(88.f, 711.f);
+    backButton.setFillColor(sf::Color(0, 0, 0, 0));
+    backButton.setOutlineThickness(0.f);
+    backClicked = false;
     // Setup Play button
     playButton.setSize(sf::Vector2f(270, 90));
     playButton.setPosition(275, 300);
@@ -74,7 +80,9 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
                 setupMapItems(window);
             }
             else if (isMouseOverButton(guideButton, mousePos)) {
-                std::cout << "Guide button clicked - chua co chuc nang" << std::endl;
+                currentState = MenuState::GUIDE;
+                guide.reset();
+                guide.loadResources();
             }
             else if (isMouseOverButton(exitButton, mousePos)) {
                 currentState = MenuState::EXIT;
@@ -134,6 +142,12 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
             }
             else {
                 exitButton.setFillColor(sf::Color(0, 0, 0, 0));
+            }  
+            if (isMouseOverCircle(backButton, mousePos)) {
+                backButton.setFillColor(sf::Color(255, 255, 255, 60));  // sáng nhẹ như play/guide
+            }
+            else {
+                backButton.setFillColor(sf::Color(0, 0, 0, 0));         // bình thường trong suốt
             }
         }
     }
@@ -145,6 +159,15 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
             if (event.type == sf::Event::MouseButtonPressed) {
                 sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                 std::cout << "CLICKED: X=" << mousePos.x << ", Y=" << mousePos.y << std::endl;
+            }
+
+            // --- CLICK NÚT BACK ---
+            float dx = mousePos.x - backButton.getPosition().x;
+            float dy = mousePos.y - backButton.getPosition().y;
+            if (dx * dx + dy * dy <= backButton.getRadius() * backButton.getRadius()) {
+                std::cout << "Back to main menu\n";
+                currentState = MenuState::MENU;
+                return; // Dừng luôn, không kiểm tra map nữa
             }
 
             // Thay .size() bằng .getSize()
@@ -219,6 +242,13 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
             }
         }
     }
+    else if (currentState == MenuState::GUIDE) {
+        if (guide.shouldReturnToMenu()) {
+            guide.resetBackFlag();
+            setState(MenuState::MENU); // ← quay về menu chính
+        }
+        guide.handleEvent(event, window);
+    }
 }
 
 void Menu::update() {
@@ -251,6 +281,9 @@ void Menu::draw(sf::RenderWindow& window) {
     else if (currentState == MenuState::SELECTION_MAP) {
         drawSelectionMap(window);
     }
+    else if (currentState == MenuState::GUIDE) {
+        guide.draw(window);
+    }
 }
 
 MenuState Menu::getState() const {
@@ -273,6 +306,13 @@ int Menu::getSelectedMap() const {
 bool Menu::isMouseOverButton(const sf::RectangleShape& button, sf::Vector2i mousePos) {
     sf::FloatRect buttonBounds = button.getGlobalBounds();
     return buttonBounds.contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+}
+
+bool Menu::isMouseOverCircle(const sf::CircleShape& button, sf::Vector2i mousePos) {
+    sf::Vector2f pos = button.getPosition();
+    float dx = mousePos.x - pos.x;
+    float dy = mousePos.y - pos.y;
+    return (dx * dx + dy * dy <= button.getRadius() * button.getRadius());
 }
 
 void Menu::setupMapItems(sf::RenderWindow& window) {
@@ -318,7 +358,8 @@ void Menu::setupMapItems(sf::RenderWindow& window) {
 void Menu::drawSelectionMap(sf::RenderWindow& window) {
     window.draw(selectMapBackgroundSprite);
 
-    // Vẽ highlight - Thay .size() bằng .getSize()
+
+
     if (highlightedMapIndex >= 0 && highlightedMapIndex < mapButtons.getSize()) {
         sf::Vector2f btnPos = mapButtons[highlightedMapIndex].getPosition();
         float radius = 55.f;
@@ -347,7 +388,7 @@ void Menu::drawSelectionMap(sf::RenderWindow& window) {
     // Hiển thị hướng dẫn
     sf::Text note;
     note.setFont(font);
-    note.setString("Dung phim mui ten hoac click chuot de chon | Enter de xac nhan | ESC de quay lai");
+    note.setString("");
     note.setCharacterSize(16);
     note.setFillColor(sf::Color::White);
     note.setStyle(sf::Text::Bold);
@@ -357,4 +398,6 @@ void Menu::drawSelectionMap(sf::RenderWindow& window) {
     sf::FloatRect noteBounds = note.getLocalBounds();
     note.setPosition(400.f - noteBounds.width / 2.f, 550.f);
     window.draw(note);
+    window.draw(backButton);
+
 }
