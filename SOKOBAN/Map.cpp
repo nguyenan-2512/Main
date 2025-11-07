@@ -1,7 +1,7 @@
 ﻿#include "Map.h"
 #include <fstream>
 #include <iostream>
-#include <algorithm> // for std::any_of
+#include <algorithm> 
 
 Map::Map(const std::string& filename, int tileSize)
     : tileSize(tileSize), player(nullptr), isGameOver(false) {
@@ -23,7 +23,7 @@ Map::Map(const std::string& filename, int tileSize)
 
     if (!ironBoxTexture.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\thungsat.png")) {
         std::cerr << "Failed to load iron box texture! Using normal box texture." << std::endl;
-        ironBoxTexture = boxTexture; // Tạm dùng box texture nếu chưa có
+        ironBoxTexture = boxTexture; 
     }
 
     if (!waterTexture.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\nuoc222.png")) {
@@ -36,7 +36,6 @@ Map::Map(const std::string& filename, int tileSize)
         std::cerr << "Failed to load cat texture!" << std::endl;
     }
 
-    // Trap
     if (!trapActiveTexture.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\bay.png")) {
         std::cerr << "Failed to load bay texture!" << std::endl;
     }
@@ -44,7 +43,6 @@ Map::Map(const std::string& filename, int tileSize)
         std::cerr << "Failed to load ko bay texture!" << std::endl;
     }
 
-    // Button
     if (!buttonUnpressedTexture.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\konutbam1.png")) {
         std::cerr << "Failed to load khong nut bam texture!" << std::endl;
     }
@@ -110,7 +108,7 @@ Map::Map(const std::string& filename, int tileSize)
                 boxes.back().setNormalTexture(boxTexture);
                 boxes.back().setGoalTexture(boxOnGoalTexture);
             }
-            else if (c == 'I') { // Thùng sắt -ký tự 'I' (Iron)
+            else if (c == 'I') { 
                 floors.emplace_back(x, y, tileSize);
                 floors.back().setTexture(floorTexture);
                 ironBoxes.emplace_back(x, y, tileSize);
@@ -185,18 +183,13 @@ Map::Map(const std::string& filename, int tileSize)
     }
     file.close();
 
-    // LOGIC MỚI: Liên kết button với NHIỀU trap
-    // Quy tắc: Nếu có N button và M trap
-    // - Button 1 điều khiển M trap đầu tiên
-    // - Button 2 điều khiển M trap tiếp theo
-    // - ...
 
     int numButtons = buttons.size();
     int numTraps = traps.size();
 
     if (numButtons > 0 && numTraps > 0) {
-        int trapsPerButton = numTraps / numButtons; // Số trap mỗi button điều khiển
-        int remainder = numTraps % numButtons;      // Trap dư
+        int trapsPerButton = numTraps / numButtons; 
+        int remainder = numTraps % numButtons;      
 
         int trapIndex = 0;
         for (int i = 0; i < numButtons; i++) {
@@ -245,17 +238,21 @@ Player* Map::getPlayer() {
 }
 
 bool Map::isTrap(int x, int y) const {
-    return std::any_of(traps.begin(), traps.end(),
-        [x, y](const Trap& trap) {
-            return trap.getX() == x && trap.getY() == y;
-        });
+    for (const Trap& trap : traps) {
+        if (trap.getX() == x && trap.getY() == y) {
+            return true;
+        }
+    }
+    return false;
 }
 
 bool Map::isButton(int x, int y) const {
-    return std::any_of(buttons.begin(), buttons.end(),
-        [x, y](const Button& button) {
-            return button.getX() == x && button.getY() == y;
-        });
+    for (const Button& button : buttons) {
+        if (button.getX() == x && button.getY() == y) {
+            return true; 
+        }
+    }
+    return false; 
 }
 
 Trap* Map::getTrapAt(int x, int y) {
@@ -299,10 +296,12 @@ void Map::checkButtonStates() {
 }
 
 bool Map::isTeleport(int x, int y) const {
-    return std::any_of(teleports.begin(), teleports.end(),
-        [x, y](const Teleport& teleport) {
-            return teleport.getX() == x && teleport.getY() == y;
-        });
+    for (const Teleport& tp : teleports) {
+        if (tp.getX() == x && tp.getY() == y) {
+            return true;
+        }
+    }
+    return false;
 }
 
 Teleport* Map::getTeleportAt(int x, int y) {
@@ -320,17 +319,14 @@ bool Map::tryTeleport() {
     int px = player->getX();
     int py = player->getY();
 
-    // Kiểm tra xem player có đứng trên teleport không
     if (!isTeleport(px, py)) {
         std::cout << "Khong co cong teleport tai vi tri nay!" << std::endl;
         return false;
     }
 
-    // Lấy điểm đến từ teleport network
     Point currentPos(px, py);
     Point destination = teleportNetwork.getDestination(currentPos);
 
-    // Kiểm tra xem có teleport được không (destination khác current position)
     if (destination == currentPos) {
         std::cout << "Khong the teleport!" << std::endl;
         return false;
@@ -538,8 +534,6 @@ bool Map::checkWin() const {
 }
 
 
-
-
 void Map::saveState() {
     MoveState state = getCurrentState();
     moveHistory.push(state);
@@ -563,7 +557,7 @@ void Map::restoreState(const MoveState& state) {
         boxes[i].setPosition(state.boxPositions[i].getX(), state.boxPositions[i].getY());
     }
 
-    updateBoxStates();  // Cập nhật trạng thái sau khi restore
+    updateBoxStates();  
 }
 
 void Map::undo() {

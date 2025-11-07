@@ -13,16 +13,15 @@ enum class MenuState {
 
 class Menu {
 private:
-private:
     Guide guide; 
 
-    sf::CircleShape backButton;  // nút back
-    bool backClicked;            // trạng thái click
+    sf::CircleShape backButton; 
+    bool backClicked;            
 
     sf::Texture backgroundTexture;
     sf::Sprite backgroundSprite;
     sf::Font font;
-    DynamicArray<sf::Text> menuItems;  // Đã đổi từ std::vector
+    DynamicArray<sf::Text> menuItems;  
     sf::RectangleShape playButton;
     sf::RectangleShape guideButton;
     sf::RectangleShape exitButton;
@@ -33,8 +32,8 @@ private:
 
     sf::Texture selectMapBackgroundTexture;
     sf::Sprite selectMapBackgroundSprite;
-    DynamicArray<sf::RectangleShape> mapButtons;  // Đã đổi từ std::vector
-    DynamicArray<sf::Text> mapItems;              // Đã đổi từ std::vector
+    DynamicArray<sf::RectangleShape> mapButtons;  
+    DynamicArray<sf::Text> mapItems;              
     int selectedMap = -1;
     int highlightedMapIndex = 0;
 

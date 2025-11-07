@@ -22,16 +22,16 @@ private:
     sf::Sound moveSound;
     sf::SoundBuffer winSoundBuffer;
     sf::Sound winSound;
-    sf::SoundBuffer gameOverSoundBuffer; // Game Over sound
+    sf::SoundBuffer gameOverSoundBuffer; 
     sf::Sound gameOverSound;
 
     sf::Texture winTexture;
     sf::Sprite winSprite;
-    sf::Texture gameOverTexture; // Game Over texture
+    sf::Texture gameOverTexture; 
     sf::Sprite gameOverSprite;
 
     bool showWinMessage;
-    bool showGameOverMessage; // Game Over message flag
+    bool showGameOverMessage; 
 
     sf::Clock deltaClock;
 

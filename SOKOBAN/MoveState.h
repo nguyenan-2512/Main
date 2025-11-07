@@ -3,9 +3,10 @@
 #include "DynamicArray.h"  // Thay thế <vector>
 
 // Struct luu trang thai mot nuoc di de phuc vu Undo
-struct MoveState {
+class MoveState {
+public:
     Point playerPosition;
-    DynamicArray<Point> boxPositions;  // Đã đổi từ std::vector
+    DynamicArray<Point> boxPositions; 
 
     MoveState() {}
 

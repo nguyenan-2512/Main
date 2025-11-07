@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "GameObject.h"
 #include "DynamicArray.h"  
+#include "Pair.h"
 
 class Button : public GameObject {
 private:

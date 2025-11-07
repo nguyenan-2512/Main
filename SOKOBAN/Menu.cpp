@@ -21,9 +21,7 @@ bool Menu::loadResources() {
         std::cerr << "Failed to load select map background!" << std::endl;
     }
     selectMapBackgroundSprite.setTexture(selectMapBackgroundTexture);
-    selectMapBackgroundTexture.setSmooth(true);
 
-    // Load font
     if (!font.loadFromFile("C:\\Windows\\Fonts\\arial.ttf")) {
         std::cerr << "Failed to load font, using default font" << std::endl;
     }
@@ -89,7 +87,6 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
             }
         }
 
-        // Handle keyboard input
         if (event.type == sf::Event::KeyPressed) {
             switch (event.key.code) {
             case sf::Keyboard::Up:
@@ -116,7 +113,6 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
             }
         }
 
-        // Handle mouse hover effects
         if (event.type == sf::Event::MouseMoved) {
             sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
@@ -144,16 +140,16 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
                 exitButton.setFillColor(sf::Color(0, 0, 0, 0));
             }  
             if (isMouseOverCircle(backButton, mousePos)) {
-                backButton.setFillColor(sf::Color(255, 255, 255, 60));  // sáng nhẹ như play/guide
+                backButton.setFillColor(sf::Color(255, 255, 255, 60)); 
             }
             else {
-                backButton.setFillColor(sf::Color(0, 0, 0, 0));         // bình thường trong suốt
+                backButton.setFillColor(sf::Color(0, 0, 0, 0));       
             }
         }
     }
 
     else if (currentState == MenuState::SELECTION_MAP) {
-        // Xử lý click chuột
+
         if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
             sf::Vector2i mousePos = sf::Mouse::getPosition(window);
             if (event.type == sf::Event::MouseButtonPressed) {
@@ -161,16 +157,13 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
                 std::cout << "CLICKED: X=" << mousePos.x << ", Y=" << mousePos.y << std::endl;
             }
 
-            // --- CLICK NÚT BACK ---
             float dx = mousePos.x - backButton.getPosition().x;
             float dy = mousePos.y - backButton.getPosition().y;
             if (dx * dx + dy * dy <= backButton.getRadius() * backButton.getRadius()) {
                 std::cout << "Back to main menu\n";
                 currentState = MenuState::MENU;
-                return; // Dừng luôn, không kiểm tra map nữa
+                return; 
             }
-
-            // Thay .size() bằng .getSize()
             for (int i = 0; i < mapButtons.getSize(); ++i) {
                 if (isMouseOverButton(mapButtons[i], mousePos)) {
                     selectedMap = i;
@@ -181,7 +174,6 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
             }
         }
 
-        // Xử lý phím điều hướng
         if (event.type == sf::Event::KeyPressed) {
             const int numMaps = 10;
 
@@ -230,7 +222,6 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
             }
         }
 
-        // Xử lý hover chuột - Thay .size() bằng .getSize()
         if (event.type == sf::Event::MouseMoved) {
             sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
@@ -245,7 +236,7 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
     else if (currentState == MenuState::GUIDE) {
         if (guide.shouldReturnToMenu()) {
             guide.resetBackFlag();
-            setState(MenuState::MENU); // ← quay về menu chính
+            setState(MenuState::MENU); 
         }
         guide.handleEvent(event, window);
     }

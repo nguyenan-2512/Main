@@ -15,10 +15,6 @@ showGameOverMessage(false) {
 
     sf::Vector2u textureSize = backgroundTexture.getSize();
     sf::Vector2u windowSize = window.getSize();
-    backgroundSprite.setScale(
-        float(windowSize.x) / textureSize.x,
-        float(windowSize.y) / textureSize.y
-    );
 
     if (!backgroundMusic.openFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\hi.ogg")) {
         cerr << "Failed to load background music!" << endl;
@@ -42,13 +38,6 @@ showGameOverMessage(false) {
 
     if (!winTexture.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\win.png")) {
         cerr << "Failed to load win message texture!" << endl;
-        winTexture.create(800, 600);
-        sf::Uint8* pixels = new sf::Uint8[800 * 600 * 4];
-        for (int i = 0; i < 800 * 600 * 4; i += 4) {
-            pixels[i] = 50; pixels[i + 1] = 80; pixels[i + 2] = 120; pixels[i + 3] = 255;
-        }
-        winTexture.update(pixels);
-        delete[] pixels;
     }
     winSprite.setTexture(winTexture);
     winSprite.setPosition(0, 0);
@@ -56,13 +45,6 @@ showGameOverMessage(false) {
     // Load Game Over texture
     if (!gameOverTexture.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\gameover.png")) {
         cerr << "Failed to load game over texture! Creating default..." << endl;
-        gameOverTexture.create(800, 600);
-        sf::Uint8* pixels = new sf::Uint8[800 * 600 * 4];
-        for (int i = 0; i < 800 * 600 * 4; i += 4) {
-            pixels[i] = 120; pixels[i + 1] = 50; pixels[i + 2] = 50; pixels[i + 3] = 255;
-        }
-        gameOverTexture.update(pixels);
-        delete[] pixels;
     }
     gameOverSprite.setTexture(gameOverTexture);
     gameOverSprite.setPosition(0, 0);
@@ -122,12 +104,11 @@ void Game::handleEvents() {
                             cout << "Undo! Con lai " << currentMap->getMoveCount() << " nuoc di." << endl;
                         }
                     }
-                    // ✨ THÊM PHÍM T ĐỂ TELEPORT
                     else if (event.key.code == sf::Keyboard::T) {
                         if (currentMap) {
                             bool teleported = currentMap->tryTeleport();
                             if (teleported) {
-                                playMoveSound(); // Phát âm thanh khi teleport
+                                playMoveSound(); 
                             }
                         }
                     }
@@ -214,7 +195,6 @@ void Game::render() {
         if (currentMap) {
             currentMap->draw(window);
 
-            // HIỂN THỊ GAME OVER
             if (showGameOverMessage) {
                 sf::RectangleShape overlay(sf::Vector2f(800, 600));
                 overlay.setFillColor(sf::Color(0, 0, 0, 180));
@@ -234,7 +214,6 @@ void Game::render() {
                 }
             }
 
-            // HIỂN THỊ WIN
             if (showWinMessage) {
                 sf::RectangleShape overlay(sf::Vector2f(800, 600));
                 overlay.setFillColor(sf::Color(0, 0, 0, 150));

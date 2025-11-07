@@ -1,8 +1,8 @@
 ﻿#pragma once
 #include <SFML/Graphics.hpp>
-#include "DynamicArray.h"  // Thay <vector>
+#include "DynamicArray.h"  
 #include <string>
-#include <stack>
+#include "Stack.h"
 #include "Wall.h"
 #include "Floor.h"
 #include "Player.h"
@@ -24,7 +24,6 @@ private:
     int tileSize;
     Player* player;
 
-    // Thay tất cả std::vector bằng DynamicArray
     DynamicArray<Wall> walls;
     DynamicArray<Floor> floors;
     DynamicArray<Box> boxes;
@@ -57,7 +56,7 @@ private:
     sf::Texture buttonPressedTexture;
     sf::Texture teleportActiveTexture;
 
-    std::stack<MoveState> moveHistory;
+    Stack<MoveState> moveHistory;
 
     void updateBoxStates();
     void checkButtonStates();

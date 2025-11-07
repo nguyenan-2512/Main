@@ -1,12 +1,12 @@
 ﻿#pragma once
-#include <utility>  // để dùng std::forward
+#include <utility>  
 
 template<typename T>
 class DynamicArray {
 private:
     T* data;
     int capacity;
-    int count;  // ✅ đổi tên từ "size" để không trùng với hàm size()
+    int count; 
 
     void resize() {
         capacity = (capacity == 0) ? 1 : capacity * 2;
@@ -19,15 +19,12 @@ private:
     }
 
 public:
-    // ✅ Constructor mặc định
     DynamicArray() : data(nullptr), capacity(0), count(0) {}
 
-    // ✅ Destructor
     ~DynamicArray() {
         delete[] data;
     }
 
-    // ✅ Copy constructor
     DynamicArray(const DynamicArray& other)
         : capacity(other.capacity), count(other.count) {
         data = new T[capacity];
@@ -36,7 +33,6 @@ public:
         }
     }
 
-    // ✅ Assignment operator
     DynamicArray& operator=(const DynamicArray& other) {
         if (this != &other) {
             delete[] data;
@@ -50,20 +46,17 @@ public:
         return *this;
     }
 
-    // ✅ emplace_back (chuyển tiếp tham số linh hoạt)
     template<typename... Args>
     void emplace_back(Args&&... args) {
         if (count >= capacity) resize();
         data[count++] = T(std::forward<Args>(args)...);
     }
 
-    // ✅ push_back (thêm phần tử theo kiểu copy)
     void push_back(const T& value) {
         if (count >= capacity) resize();
         data[count++] = value;
     }
 
-    // ✅ Truy cập phần tử cuối cùng
     T& back() {
         return data[count - 1];
     }
@@ -71,7 +64,6 @@ public:
         return data[count - 1];
     }
 
-    // ✅ Truy cập theo chỉ số
     T& operator[](int index) {
         return data[index];
     }
@@ -79,8 +71,7 @@ public:
         return data[index];
     }
 
-    // ✅ Hàm trả kích thước
-    int size() const {   // giờ không trùng biến nữa
+    int size() const {  
         return count;
     }
 
@@ -95,7 +86,6 @@ public:
         count = 0;
     }
 
-    // ✅ Hỗ trợ iterator (cho range-based for)
     T* begin() { return data; }
     T* end() { return data + count; }
     const T* begin() const { return data; }

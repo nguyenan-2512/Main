@@ -33,9 +33,11 @@
     <ClInclude Include="Goal.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Pair.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Sand.h" />
+    <ClInclude Include="Stack.h" />
     <ClInclude Include="Teleport.h" />
     <ClInclude Include="TeleportNetwork.h" />
     <ClInclude Include="Trap.h" />

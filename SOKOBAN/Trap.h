@@ -3,9 +3,9 @@
 
 class Trap : public GameObject {
 private:
-    bool isActive;  // Bẫy có đang hoạt động không
-    const sf::Texture* activeTexture;   // Hình bẫy hoạt động
-    const sf::Texture* inactiveTexture; // Hình bẫy tắt
+    bool isActive; 
+    const sf::Texture* activeTexture;   
+    const sf::Texture* inactiveTexture; 
 
 public:
 	Trap();

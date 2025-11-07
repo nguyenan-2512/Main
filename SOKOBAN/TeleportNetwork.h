@@ -1,14 +1,23 @@
 ﻿#pragma once
 #include "Point.h"
 #include "DynamicArray.h"  
-#include "HashTable.h"     
+#include "HashTable.h"   
 
-//// Hash function cho Point để dùng trong unordered_map
-//struct PointHash {
-//    std::size_t operator()(const Point& p) const {
-//        return std::hash<int>()(p.getX()) ^ (std::hash<int>()(p.getY()) << 1);
-//    }
-//};
+// Hàm băm cho Point
+struct PointHash {
+    size_t operator()(const Point& p) const {
+        int x = p.getX();
+        int y = p.getY();
+        return (x * 73856093) ^ (y * 19349663);
+    }
+};
+
+// Hàm băm cho int
+struct IntHash {
+    size_t operator()(int key) const {
+        return key * 2654435761 % 4294967296;
+    }
+};
 
 class TeleportNetwork {
 private:
@@ -25,7 +34,7 @@ public:
     void addTeleport(const Point& location, int teleportID);
 
     // Lấy điểm đến khi đi vào cổng
-    Point getDestination(const Point& from);
+   Point getDestination(const Point& from);
 
     // Kiểm tra xem vị trí có phải cổng teleport không
     bool isTeleport(const Point& location) const;

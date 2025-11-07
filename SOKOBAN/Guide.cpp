@@ -82,12 +82,10 @@ void Guide::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
 
         if (isMouseOverButton(prevButton, mousePos)) {
             if (currentPage == 0) {
-                // 🔹 Nếu đang ở trang đầu → quay lại menu
                 backToMenu = true;
                 std::cout << "Guide: Quay lai menu\n";
             }
             else {
-                // 🔹 Nếu không phải trang đầu → lùi slide
                 currentPage--;
             }
         }

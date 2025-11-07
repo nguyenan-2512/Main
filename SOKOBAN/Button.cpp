@@ -5,15 +5,12 @@ Button::Button()
     isPressed(false),
     unpressedTexture(nullptr),
     pressedTexture(nullptr) {
-    // linkedTraps vector tự động khởi tạo rỗng
 }
 Button::Button(int x, int y, int tileSize)
     : GameObject(x, y, tileSize),
     isPressed(false),
     unpressedTexture(nullptr),
-    pressedTexture(nullptr) {
-    // linkedTraps vector tự động khởi tạo rỗng
-}
+    pressedTexture(nullptr) {}
 
 void Button::draw(sf::RenderWindow& window) {
     window.draw(sprite);

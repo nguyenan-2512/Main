@@ -3,13 +3,13 @@
 
 Trap::Trap()
     : GameObject(0, 0, 0),
-    isActive(true),  // Mặc định bẫy hoạt động
+    isActive(true), 
     activeTexture(nullptr),
     inactiveTexture(nullptr) {
 }
 Trap::Trap(int x, int y, int tileSize)
     : GameObject(x, y, tileSize),
-    isActive(true),  // Mặc định bẫy hoạt động
+    isActive(true),
     activeTexture(nullptr),
     inactiveTexture(nullptr) {
 }
