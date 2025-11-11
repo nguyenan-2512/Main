@@ -69,9 +69,11 @@ void Menu::setupTexts() {
 }
 
 void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
+
     if (currentState == MenuState::MENU) {
         if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+            // Sử dụng trực tiếp từ event (đã được scale)
+            sf::Vector2i mousePos(event.mouseButton.x, event.mouseButton.y);
 
             if (isMouseOverButton(playButton, mousePos)) {
                 currentState = MenuState::SELECTION_MAP;
@@ -101,7 +103,9 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
                     setupMapItems(window);
                 }
                 else if (selectedItem == 1) {
-                    std::cout << "Guide - chua co chuc nang" << std::endl;
+                    currentState = MenuState::GUIDE;
+                    guide.reset();
+                    guide.loadResources();
                 }
                 else {
                     currentState = MenuState::EXIT;
@@ -114,7 +118,7 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
         }
 
         if (event.type == sf::Event::MouseMoved) {
-            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+            sf::Vector2i mousePos(event.mouseMove.x, event.mouseMove.y);
 
             if (isMouseOverButton(playButton, mousePos)) {
                 selectedItem = 0;
@@ -138,32 +142,28 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
             }
             else {
                 exitButton.setFillColor(sf::Color(0, 0, 0, 0));
-            }  
+            }
+
             if (isMouseOverCircle(backButton, mousePos)) {
-                backButton.setFillColor(sf::Color(255, 255, 255, 60)); 
+                backButton.setFillColor(sf::Color(255, 255, 255, 60));
             }
             else {
-                backButton.setFillColor(sf::Color(0, 0, 0, 0));       
+                backButton.setFillColor(sf::Color(0, 0, 0, 0));
             }
         }
     }
-
     else if (currentState == MenuState::SELECTION_MAP) {
-
         if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-            if (event.type == sf::Event::MouseButtonPressed) {
-                sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-                std::cout << "CLICKED: X=" << mousePos.x << ", Y=" << mousePos.y << std::endl;
-            }
+            sf::Vector2i mousePos(event.mouseButton.x, event.mouseButton.y);
 
             float dx = mousePos.x - backButton.getPosition().x;
             float dy = mousePos.y - backButton.getPosition().y;
             if (dx * dx + dy * dy <= backButton.getRadius() * backButton.getRadius()) {
                 std::cout << "Back to main menu\n";
                 currentState = MenuState::MENU;
-                return; 
+                return;
             }
+
             for (int i = 0; i < mapButtons.getSize(); ++i) {
                 if (isMouseOverButton(mapButtons[i], mousePos)) {
                     selectedMap = i;
@@ -223,7 +223,7 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
         }
 
         if (event.type == sf::Event::MouseMoved) {
-            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+            sf::Vector2i mousePos(event.mouseMove.x, event.mouseMove.y);
 
             for (int i = 0; i < mapButtons.getSize(); ++i) {
                 if (isMouseOverButton(mapButtons[i], mousePos)) {
@@ -236,7 +236,7 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
     else if (currentState == MenuState::GUIDE) {
         if (guide.shouldReturnToMenu()) {
             guide.resetBackFlag();
-            setState(MenuState::MENU); 
+            setState(MenuState::MENU);
         }
         guide.handleEvent(event, window);
     }

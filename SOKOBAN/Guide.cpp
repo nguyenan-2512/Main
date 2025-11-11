@@ -78,7 +78,8 @@ void Guide::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
     if (event.type == sf::Event::MouseButtonPressed &&
         event.mouseButton.button == sf::Mouse::Left) {
 
-        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        // Sử dụng tọa độ đã được scale từ event
+        sf::Vector2i mousePos(event.mouseButton.x, event.mouseButton.y);
 
         if (isMouseOverButton(prevButton, mousePos)) {
             if (currentPage == 0) {
@@ -96,35 +97,35 @@ void Guide::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
     }
 
     if (event.type == sf::Event::MouseMoved) {
-        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        sf::Vector2i mousePos(event.mouseMove.x, event.mouseMove.y);
 
         // === HOVER NÚT TRÁI ===
         if (isMouseOverButton(prevButton, mousePos)) {
             if (currentPage == 0) {
-                prevButton.setOutlineColor(sf::Color(255, 120, 120, 255)); // đỏ sáng khi hover
+                prevButton.setOutlineColor(sf::Color(255, 120, 120, 255));
                 prevButton.setFillColor(sf::Color(255, 0, 0, 160));
             }
-            else
-                prevButton.setOutlineColor(sf::Color(255, 255, 0, 255));   // vàng sáng khi hover
+            else {
+                prevButton.setOutlineColor(sf::Color(255, 255, 0, 255));
+            }
         }
         else {
-            // không hover: nếu trang đầu thì đỏ nhạt (Back), else vàng nhạt
             if (currentPage == 0) {
                 prevButton.setOutlineColor(sf::Color(255, 255, 0, 80));
-                prevButton.setFillColor(sf::Color(255, 255, 0, 80));  // đỏ nhạt
+                prevButton.setFillColor(sf::Color(255, 255, 0, 80));
             }
-            else
-                prevButton.setOutlineColor(sf::Color(255, 255, 0, 80));   // vàng nhạt
+            else {
+                prevButton.setOutlineColor(sf::Color(255, 255, 0, 80));
+            }
         }
 
-
         // Hover nút PHẢI
-        if (isMouseOverButton(nextButton, mousePos))
+        if (isMouseOverButton(nextButton, mousePos)) {
             nextButton.setOutlineColor(sf::Color(255, 255, 0, 255));
-        else
+        }
+        else {
             nextButton.setOutlineColor(sf::Color(255, 255, 0, 0));
-
-
+        }
     }
 }
 
