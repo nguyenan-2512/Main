@@ -1,36 +1,49 @@
+﻿// BFSState.h
 #pragma once
 #include "Point.h"
 #include "DynamicArray.h"
+#include <cstddef>
 
-// Tr?ng th�i c?a game trong BFS
+// Struct lưu trạng thái cho BFS solver
 class BFSState {
 public:
-    Point playerPos;                    // V? tr� ng??i ch?i
-    DynamicArray<Point> boxPositions;   // V? tr� c�c h?p
-    DynamicArray<int> path;             // ???ng ?i (0=Up, 1=Down, 2=Left, 3=Right)
-    int depth;                          // ?? s�u (s? b??c ?i)
+    Point playerPos;                    // Vị trí player
+    DynamicArray<Point> boxPositions;   // Vị trí các boxes
+    DynamicArray<int> path;             // Đường đi (0=Up, 1=Down, 2=Left, 3=Right)
+    int depth;                          // Độ sâu (số bước đi)
 
-    BFSState() : depth(0) {}
+    BFSState() : playerPos(0, 0), depth(0) {}
 
-    BFSState(const Point& player, const DynamicArray<Point>& boxes, int d = 0)
-        : playerPos(player), boxPositions(boxes), depth(d) {
+    BFSState(const Point& playerPosition, const DynamicArray<Point>& boxes, int d = 0)
+        : playerPos(playerPosition), boxPositions(boxes), depth(d) {
     }
 
-    // So s�nh hai tr?ng th�i
+    // Operator == để so sánh 2 trạng thái
     bool operator==(const BFSState& other) const {
-        if (playerPos != other.playerPos) return false;
-        if (boxPositions.size() != other.boxPositions.size()) return false;
+        // Kiểm tra vị trí player
+        if (playerPos != other.playerPos) {
+            return false;
+        }
 
-        for (int i = 0; i < boxPositions.size(); ++i) {
+        // Kiểm tra số lượng boxes
+        if (boxPositions.size() != other.boxPositions.size()) {
+            return false;
+        }
+
+        // Kiểm tra vị trí từng box (không cần quan tâm thứ tự)
+        for (int i = 0; i < boxPositions.size(); i++) {
             bool found = false;
-            for (int j = 0; j < other.boxPositions.size(); ++j) {
+            for (int j = 0; j < other.boxPositions.size(); j++) {
                 if (boxPositions[i] == other.boxPositions[j]) {
                     found = true;
                     break;
                 }
             }
-            if (!found) return false;
+            if (!found) {
+                return false;
+            }
         }
+
         return true;
     }
 
@@ -44,12 +57,14 @@ struct BFSStateHash {
     std::size_t operator()(const BFSState& state) const {
         std::size_t hash = 0;
 
-        // Hash v? tr� player
-        hash ^= PointHash()(state.playerPos);
+        // Hash vị trí player
+        PointHash pointHash;
+        hash = pointHash(state.playerPos);
 
-        // Hash v? tr� c�c h?p
-        for (int i = 0; i < state.boxPositions.size(); ++i) {
-            hash ^= (PointHash()(state.boxPositions[i]) << (i % 16));
+        // Hash các vị trí boxes (sử dụng XOR để không phụ thuộc thứ tự)
+        for (int i = 0; i < state.boxPositions.size(); i++) {
+            std::size_t boxHash = pointHash(state.boxPositions[i]);
+            hash ^= (boxHash << (i % 16)); // Shift để tạo sự khác biệt
         }
 
         return hash;
