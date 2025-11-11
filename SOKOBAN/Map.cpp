@@ -1,7 +1,17 @@
 ﻿#include "Map.h"
 #include <fstream>
 #include <iostream>
-#include <algorithm> 
+#include <algorithm>
+#include <chrono>
+
+// Debug mode
+#define DEBUG_BFS 1  // Set = 0 để tắt debug
+
+#if DEBUG_BFS
+#define DEBUG_PRINT(x) std::cout << x << std::endl
+#else
+#define DEBUG_PRINT(x)
+#endif
 
 Map::Map(const std::string& filename, int tileSize)
     : tileSize(tileSize), player(nullptr), isGameOver(false), m_isAutoSolving(false), currentSolutionStep(0) {
@@ -20,10 +30,9 @@ Map::Map(const std::string& filename, int tileSize)
         std::cerr << "Failed to load box texture!" << std::endl;
     }
 
-
     if (!ironBoxTexture.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\thungsat.png")) {
         std::cerr << "Failed to load iron box texture! Using normal box texture." << std::endl;
-        ironBoxTexture = boxTexture; 
+        ironBoxTexture = boxTexture;
     }
 
     if (!waterTexture.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\nuoc222.png")) {
@@ -108,7 +117,7 @@ Map::Map(const std::string& filename, int tileSize)
                 boxes.back().setNormalTexture(boxTexture);
                 boxes.back().setGoalTexture(boxOnGoalTexture);
             }
-            else if (c == 'I') { 
+            else if (c == 'I') {
                 floors.emplace_back(x, y, tileSize);
                 floors.back().setTexture(floorTexture);
                 ironBoxes.emplace_back(x, y, tileSize);
@@ -183,13 +192,12 @@ Map::Map(const std::string& filename, int tileSize)
     }
     file.close();
 
-
     int numButtons = buttons.size();
     int numTraps = traps.size();
 
     if (numButtons > 0 && numTraps > 0) {
-        int trapsPerButton = numTraps / numButtons; 
-        int remainder = numTraps % numButtons;      
+        int trapsPerButton = numTraps / numButtons;
+        int remainder = numTraps % numButtons;
 
         int trapIndex = 0;
         for (int i = 0; i < numButtons; i++) {
@@ -211,10 +219,6 @@ Map::Map(const std::string& filename, int tileSize)
 Map::~Map() {
     delete player;
 }
-
-
-
-
 
 void Map::draw(sf::RenderWindow& window) {
     for (int i = 0; i < floors.getSize(); i++) floors[i].draw(window);
@@ -249,10 +253,10 @@ bool Map::isTrap(int x, int y) const {
 bool Map::isButton(int x, int y) const {
     for (const Button& button : buttons) {
         if (button.getX() == x && button.getY() == y) {
-            return true; 
+            return true;
         }
     }
-    return false; 
+    return false;
 }
 
 Trap* Map::getTrapAt(int x, int y) {
@@ -335,14 +339,12 @@ bool Map::tryTeleport() {
     int destX = destination.getX();
     int destY = destination.getY();
 
-    // Kiểm tra điểm đến có hợp lệ không (không có vật cản)
     if (isWall(destX, destY) || isObstacle(destX, destY) ||
         isBox(destX, destY) || isIronBox(destX, destY) || isWater(destX, destY)) {
         std::cout << "Diem den bi chan, khong the teleport!" << std::endl;
         return false;
     }
 
-    // Kiểm tra trap tại điểm đến
     Trap* trap = getTrapAt(destX, destY);
     if (trap && trap->getIsActive()) {
         std::cout << "Ban da teleport vao bay! Game Over!" << std::endl;
@@ -350,10 +352,8 @@ bool Map::tryTeleport() {
         return false;
     }
 
-    // Lưu trạng thái trước khi teleport (để có thể undo)
     saveState();
 
-    // Thực hiện teleport
     player->setPosition(destX, destY, 0, 0);
 
     std::cout << "Teleport thanh cong tu (" << px << "," << py
@@ -361,7 +361,6 @@ bool Map::tryTeleport() {
 
     return true;
 }
-
 
 bool Map::isWall(int x, int y) const {
     return std::any_of(walls.begin(), walls.end(),
@@ -533,7 +532,6 @@ bool Map::checkWin() const {
     return boxes.size() > 0 && boxes.size() == goals.size();
 }
 
-
 void Map::saveState() {
     MoveState state = getCurrentState();
     moveHistory.push(state);
@@ -557,7 +555,7 @@ void Map::restoreState(const MoveState& state) {
         boxes[i].setPosition(state.boxPositions[i].getX(), state.boxPositions[i].getY());
     }
 
-    updateBoxStates();  
+    updateBoxStates();
 }
 
 void Map::undo() {
@@ -577,139 +575,262 @@ void Map::undo() {
 int Map::getMoveCount() const {
     return (int)moveHistory.size();
 }
-// ==================== BFS SOLVER ====================
 
-// Tạo trạng thái hiện tại cho BFS
+// ==================== ENHANCED BFS SOLVER ====================
+
+void Map::printBFSState(const BFSState& state) const {
+    std::cout << "Player: (" << state.playerPos.getX() << "," << state.playerPos.getY() << ")" << std::endl;
+    std::cout << "Boxes: ";
+    for (int i = 0; i < state.boxPositions.size(); i++) {
+        std::cout << "(" << state.boxPositions[i].getX() << "," << state.boxPositions[i].getY() << ") ";
+    }
+    std::cout << std::endl;
+    std::cout << "Iron Boxes: ";
+    for (int i = 0; i < state.ironBoxPositions.size(); i++) {
+        std::cout << "(" << state.ironBoxPositions[i].getX() << "," << state.ironBoxPositions[i].getY() << ") ";
+    }
+    std::cout << std::endl;
+}
+
 BFSState Map::createCurrentBFSState() const {
     Point playerPos = player->getPosition();
     DynamicArray<Point> boxPos;
+    DynamicArray<Point> ironPos;
 
     for (int i = 0; i < boxes.size(); i++) {
         boxPos.push_back(boxes[i].getPosition());
     }
 
-    return BFSState(playerPos, boxPos, 0);
+    for (int i = 0; i < ironBoxes.size(); i++) {
+        ironPos.push_back(ironBoxes[i].getPosition());
+    }
+
+    return BFSState(playerPos, boxPos, ironPos, 0);
 }
 
-// Kiểm tra vị trí có hợp lệ trong BFS không
-bool Map::isValidBFSMove(const Point& pos, const DynamicArray<Point>& boxes) const {
-    int x = pos.getX();
-    int y = pos.getY();
-
-    // Kiểm tra tường, nước, obstacle
-    if (isWall(x, y) || isWater(x, y) || isObstacle(x, y)) {
-        return false;
-    }
-
-    // Kiểm tra bẫy (traps)
-    Trap* trap = const_cast<Map*>(this)->getTrapAt(x, y);
-    if (trap && trap->getIsActive()) {
-        return false;
-    }
-
-    // Kiểm tra có box tại vị trí này không
+bool Map::isButtonPressedInState(const Point& buttonPos,
+    const DynamicArray<Point>& boxes,
+    const DynamicArray<Point>& ironBoxes) const {
     for (int i = 0; i < boxes.size(); i++) {
-        if (boxes[i] == pos) {
-            return false;
-        }
+        if (boxes[i] == buttonPos) return true;
     }
 
-    // Kiểm tra iron box
     for (int i = 0; i < ironBoxes.size(); i++) {
-        Point ironPos(ironBoxes[i].getX(), ironBoxes[i].getY());
-        if (ironPos == pos) {
-            return false;
+        if (ironBoxes[i] == buttonPos) return true;
+    }
+
+    return false;
+}
+
+bool Map::isTrapActiveInState(const Point& trapPos,
+    const DynamicArray<Point>& boxes,
+    const DynamicArray<Point>& ironBoxes) const {
+    for (int i = 0; i < buttons.size(); i++) {
+        const auto& linkedTraps = buttons[i].getLinkedTraps();
+
+        for (int j = 0; j < linkedTraps.size(); j++) {
+            if (linkedTraps[j].first == trapPos.getX() &&
+                linkedTraps[j].second == trapPos.getY()) {
+
+                Point buttonPos(buttons[i].getX(), buttons[i].getY());
+                bool buttonPressed = isButtonPressedInState(buttonPos, boxes, ironBoxes);
+
+                return !buttonPressed;
+            }
         }
     }
 
     return true;
 }
 
-// Kiểm tra deadlock đơn giản
-bool Map::isDeadlock(const Point& boxPos, const DynamicArray<Point>& boxes) const {
+bool Map::hasBoxAt(const Point& pos,
+    const DynamicArray<Point>& boxes,
+    const DynamicArray<Point>& ironBoxes) const {
+    for (int i = 0; i < boxes.size(); i++) {
+        if (boxes[i] == pos) return true;
+    }
+    for (int i = 0; i < ironBoxes.size(); i++) {
+        if (ironBoxes[i] == pos) return true;
+    }
+    return false;
+}
+
+bool Map::isValidBFSMove(const Point& pos,
+    const DynamicArray<Point>& boxes,
+    const DynamicArray<Point>& ironBoxes) const {
+    int x = pos.getX();
+    int y = pos.getY();
+
+    if (isWall(x, y) || isWater(x, y) || isObstacle(x, y)) {
+        return false;
+    }
+
+    if (isTrap(x, y)) {
+        Point trapPos(x, y);
+        if (isTrapActiveInState(trapPos, boxes, ironBoxes)) {
+            return false;
+        }
+    }
+
+    if (hasBoxAt(pos, boxes, ironBoxes)) {
+        return false;
+    }
+
+    return true;
+}
+
+bool Map::isDeadlock(const Point& boxPos,
+    const DynamicArray<Point>& boxes,
+    const DynamicArray<Point>& ironBoxes) const {
     int x = boxPos.getX();
     int y = boxPos.getY();
 
-    // Nếu hộp đã ở goal thì không phải deadlock
     if (isGoal(x, y)) {
         return false;
     }
 
-    // Kiểm tra góc: nếu hộp bị kẹt ở góc mà không phải goal
+    if (isButton(x, y)) {
+        return false;
+    }
+
     bool leftBlocked = isWall(x - 1, y) || isObstacle(x - 1, y);
     bool rightBlocked = isWall(x + 1, y) || isObstacle(x + 1, y);
     bool upBlocked = isWall(x, y - 1) || isObstacle(x, y - 1);
     bool downBlocked = isWall(x, y + 1) || isObstacle(x, y + 1);
 
-    // Deadlock nếu bị kẹt ở góc
     if ((leftBlocked && upBlocked) || (rightBlocked && upBlocked) ||
         (leftBlocked && downBlocked) || (rightBlocked && downBlocked)) {
         return true;
     }
 
-    // Kiểm tra deadlock dọc tường
-    if ((leftBlocked || rightBlocked) && !isGoal(x, y)) {
-        // Kiểm tra trên/dưới có goal không
-        bool hasGoalAbove = false;
-        bool hasGoalBelow = false;
+    if (boxes.size() >= 4) {
+        Point adjacent[3] = {
+            Point(x + 1, y),
+            Point(x, y + 1),
+            Point(x + 1, y + 1)
+        };
 
-        for (int i = 1; i < 20; i++) {
-            if (isWall(x, y - i) || isObstacle(x, y - i)) break;
-            if (isGoal(x, y - i)) {
-                hasGoalAbove = true;
-                break;
+        int adjacentBoxCount = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < boxes.size(); j++) {
+                if (boxes[j] == adjacent[i]) {
+                    adjacentBoxCount++;
+                    break;
+                }
             }
         }
 
-        for (int i = 1; i < 20; i++) {
-            if (isWall(x, y + i) || isObstacle(x, y + i)) break;
-            if (isGoal(x, y + i)) {
-                hasGoalBelow = true;
-                break;
+        if (adjacentBoxCount == 3) {
+            bool hasGoalIn2x2 = isGoal(x, y) ||
+                isGoal(x + 1, y) ||
+                isGoal(x, y + 1) ||
+                isGoal(x + 1, y + 1);
+            if (!hasGoalIn2x2) {
+                return true;
             }
-        }
-
-        if (!hasGoalAbove && !hasGoalBelow) {
-            return true;
         }
     }
 
     return false;
 }
 
-// BFS Solver chính
-bool Map::solveBFS(int maxDepth) {
-    std::cout << "\n=== Bat dau BFS Solver ===" << std::endl;
-    std::cout << "Max depth: " << maxDepth << std::endl;
+bool Map::tryTeleportInBFS(Point& playerPos) const {
+    if (!isTeleport(playerPos.getX(), playerPos.getY())) {
+        return false;
+    }
 
-    // Reset solution
+    Point destination = const_cast<Map*>(this)->teleportNetwork.getDestination(playerPos);
+
+    if (destination == playerPos) {
+        return false;
+    }
+
+    playerPos = destination;
+    return true;
+}
+
+bool Map::solveBFS(int maxDepth) {
+    std::cout << "\n╔════════════════════════════════════════╗" << std::endl;
+    std::cout << "║     ENHANCED BFS SOLVER v2.0          ║" << std::endl;
+    std::cout << "╚════════════════════════════════════════╝" << std::endl;
+
     currentSolution.clear();
     currentSolutionStep = 0;
 
-    // Tạo trạng thái ban đầu
     BFSState initialState = createCurrentBFSState();
-    std::cout << "Player bat dau tai: (" << initialState.playerPos.getX()
-        << "," << initialState.playerPos.getY() << ")" << std::endl;
-    std::cout << "So luong box: " << initialState.boxPositions.size() << std::endl;
-    std::cout << "So luong goal: " << goals.size() << std::endl;
 
-    // Queue cho BFS
+    std::cout << "\n📍 INITIAL STATE:" << std::endl;
+    std::cout << "   Player: (" << initialState.playerPos.getX()
+        << "," << initialState.playerPos.getY() << ")" << std::endl;
+    std::cout << "   Normal Boxes: " << initialState.boxPositions.size() << std::endl;
+    for (int i = 0; i < initialState.boxPositions.size(); i++) {
+        std::cout << "      Box " << (i + 1) << ": ("
+            << initialState.boxPositions[i].getX() << ","
+            << initialState.boxPositions[i].getY() << ")" << std::endl;
+    }
+    std::cout << "   Iron Boxes: " << initialState.ironBoxPositions.size() << std::endl;
+    for (int i = 0; i < initialState.ironBoxPositions.size(); i++) {
+        std::cout << "      IronBox " << (i + 1) << ": ("
+            << initialState.ironBoxPositions[i].getX() << ","
+            << initialState.ironBoxPositions[i].getY() << ")" << std::endl;
+    }
+    std::cout << "   Goals: " << goals.size() << std::endl;
+    for (int i = 0; i < goals.size(); i++) {
+        std::cout << "      Goal " << (i + 1) << ": ("
+            << goals[i].getX() << "," << goals[i].getY() << ")" << std::endl;
+    }
+
+    std::cout << "\n🔘 BUTTON-TRAP CONNECTIONS:" << std::endl;
+    for (int i = 0; i < buttons.size(); i++) {
+        std::cout << "   Button " << (i + 1) << " at ("
+            << buttons[i].getX() << "," << buttons[i].getY() << ")" << std::endl;
+        const auto& traps = buttons[i].getLinkedTraps();
+        std::cout << "      Controls " << traps.size() << " trap(s):" << std::endl;
+        for (int j = 0; j < traps.size(); j++) {
+            std::cout << "         Trap at (" << traps[j].first
+                << "," << traps[j].second << ")" << std::endl;
+        }
+    }
+
+    std::cout << "\n🌀 TELEPORT NETWORK:" << std::endl;
+    for (int i = 0; i < teleports.size(); i++) {
+        std::cout << "   Portal [ID=" << teleports[i].getTeleportID()
+            << "] at (" << teleports[i].getX()
+            << "," << teleports[i].getY() << ")" << std::endl;
+    }
+
+    std::cout << "\n⚠️  INITIAL TRAP STATES:" << std::endl;
+    for (int i = 0; i < traps.size(); i++) {
+        Point trapPos(traps[i].getX(), traps[i].getY());
+        bool active = isTrapActiveInState(trapPos,
+            initialState.boxPositions,
+            initialState.ironBoxPositions);
+        std::cout << "   Trap at (" << traps[i].getX() << ","
+            << traps[i].getY() << "): "
+            << (active ? "🔴 ACTIVE" : "🟢 INACTIVE") << std::endl;
+    }
+
     Queue<BFSState> queue;
     queue.push(initialState);
 
-    // HashTable để lưu các trạng thái đã visit
-    HashTable<BFSState, bool, BFSStateHash> visited(10000);
+    HashTable<BFSState, bool, BFSStateHash> visited(20000);
     visited.insert(initialState, true);
 
-    // Các hướng di chuyển: Up, Down, Left, Right
     int dx[] = { 0, 0, -1, 1 };
     int dy[] = { -1, 1, 0, 0 };
-    const char* dirNames[] = { "UP", "DOWN", "LEFT", "RIGHT" };
+    const char* dirNames[] = { "⬆️ UP", "⬇️ DOWN", "⬅️ LEFT", "➡️ RIGHT", "🌀 TELEPORT" };
 
     int statesExplored = 0;
     int maxQueueSize = 0;
+    const int MAX_STATES = 500000;
 
-    while (!queue.empty() && statesExplored < 100000) {
+    std::cout << "\n🔍 STARTING SEARCH..." << std::endl;
+    std::cout << "   Max Depth: " << maxDepth << std::endl;
+    std::cout << "   Max States: " << MAX_STATES << std::endl;
+
+    auto startTime = std::chrono::steady_clock::now();
+
+    while (!queue.empty() && statesExplored < MAX_STATES) {
         if (queue.size() > maxQueueSize) {
             maxQueueSize = queue.size();
         }
@@ -718,13 +839,14 @@ bool Map::solveBFS(int maxDepth) {
         queue.pop();
         statesExplored++;
 
-        if (statesExplored % 1000 == 0) {
-            std::cout << "Explored: " << statesExplored
-                << ", Queue: " << queue.size()
-                << ", Depth: " << current.depth << std::endl;
+        if (statesExplored % 10000 == 0) {
+            auto now = std::chrono::steady_clock::now();
+            auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(now - startTime).count();
+            std::cout << "   [" << elapsed << "s] Explored: " << statesExplored
+                << " | Queue: " << queue.size()
+                << " | Depth: " << current.depth << std::endl;
         }
 
-        // Kiểm tra xem đã giải xong chưa
         int boxesOnGoals = 0;
         for (int i = 0; i < current.boxPositions.size(); i++) {
             if (isGoal(current.boxPositions[i].getX(), current.boxPositions[i].getY())) {
@@ -734,15 +856,24 @@ bool Map::solveBFS(int maxDepth) {
 
         if (boxesOnGoals == current.boxPositions.size() &&
             current.boxPositions.size() == goals.size()) {
-            std::cout << "\n*** TIM THAY SOLUTION! ***" << std::endl;
-            std::cout << "So buoc: " << current.path.size() << std::endl;
-            std::cout << "States explored: " << statesExplored << std::endl;
-            std::cout << "Max queue size: " << maxQueueSize << std::endl;
 
-            // In đường đi
-            std::cout << "Duong di: ";
+            auto endTime = std::chrono::steady_clock::now();
+            auto totalTime = std::chrono::duration_cast<std::chrono::seconds>(endTime - startTime).count();
+
+            std::cout << "\n╔════════════════════════════════════════╗" << std::endl;
+            std::cout << "║          ✨ SOLUTION FOUND! ✨         ║" << std::endl;
+            std::cout << "╚════════════════════════════════════════╝" << std::endl;
+            std::cout << "📊 Statistics:" << std::endl;
+            std::cout << "   Solution Length: " << current.path.size() << " steps" << std::endl;
+            std::cout << "   States Explored: " << statesExplored << std::endl;
+            std::cout << "   Max Queue Size: " << maxQueueSize << std::endl;
+            std::cout << "   Time Elapsed: " << totalTime << " seconds" << std::endl;
+
+            std::cout << "\n🎯 Solution Path:" << std::endl;
+            std::cout << "   ";
             for (int i = 0; i < current.path.size(); i++) {
                 std::cout << dirNames[current.path[i]] << " ";
+                if ((i + 1) % 10 == 0) std::cout << "\n   ";
             }
             std::cout << std::endl;
 
@@ -750,21 +881,41 @@ bool Map::solveBFS(int maxDepth) {
             return true;
         }
 
-        // Nếu vượt quá độ sâu cho phép
         if (current.depth >= maxDepth) {
             continue;
         }
 
-        // Thử 4 hướng di chuyển
+        // Try teleport
+        if (isTeleport(current.playerPos.getX(), current.playerPos.getY())) {
+            Point newPlayerPos = current.playerPos;
+            if (tryTeleportInBFS(newPlayerPos)) {
+                if (isValidBFSMove(newPlayerPos, current.boxPositions, current.ironBoxPositions)) {
+                    BFSState newState(newPlayerPos, current.boxPositions,
+                        current.ironBoxPositions, current.depth + 1);
+                    newState.path = current.path;
+                    newState.path.push_back(4);
+
+                    if (!visited.contains(newState)) {
+                        visited.insert(newState, true);
+                        queue.push(newState);
+
+                        DEBUG_PRINT("   🌀 Teleport: (" << current.playerPos.getX()
+                            << "," << current.playerPos.getY() << ") → ("
+                            << newPlayerPos.getX() << "," << newPlayerPos.getY() << ")");
+                    }
+                }
+            }
+        }
+
+        // Try 4 directions
         for (int dir = 0; dir < 4; dir++) {
             int newPlayerX = current.playerPos.getX() + dx[dir];
             int newPlayerY = current.playerPos.getY() + dy[dir];
             Point newPlayerPos(newPlayerX, newPlayerY);
 
-            // Tạo bản sao boxes để kiểm tra
             DynamicArray<Point> newBoxes = current.boxPositions;
+            DynamicArray<Point> newIronBoxes = current.ironBoxPositions;
 
-            // Kiểm tra xem có box tại vị trí player sẽ đến không
             int boxIndex = -1;
             for (int i = 0; i < newBoxes.size(); i++) {
                 if (newBoxes[i] == newPlayerPos) {
@@ -773,38 +924,61 @@ bool Map::solveBFS(int maxDepth) {
                 }
             }
 
+            int ironBoxIndex = -1;
+            for (int i = 0; i < newIronBoxes.size(); i++) {
+                if (newIronBoxes[i] == newPlayerPos) {
+                    ironBoxIndex = i;
+                    break;
+                }
+            }
+
             if (boxIndex != -1) {
-                // Có box tại vị trí này -> cần đẩy box
                 int newBoxX = newPlayerPos.getX() + dx[dir];
                 int newBoxY = newPlayerPos.getY() + dy[dir];
                 Point newBoxPos(newBoxX, newBoxY);
 
-                // Kiểm tra vị trí mới của box có hợp lệ không
-                if (!isValidBFSMove(newBoxPos, newBoxes)) {
+                if (!isValidBFSMove(newBoxPos, newBoxes, newIronBoxes)) {
                     continue;
                 }
 
-                // Cập nhật vị trí box
                 newBoxes[boxIndex] = newBoxPos;
 
-                // Kiểm tra deadlock
-                if (isDeadlock(newBoxPos, newBoxes)) {
+                if (isDeadlock(newBoxPos, newBoxes, newIronBoxes)) {
+                    DEBUG_PRINT("   ❌ Deadlock detected for box at ("
+                        << newBoxX << "," << newBoxY << ")");
                     continue;
+                }
+            }
+            else if (ironBoxIndex != -1) {
+                int newIronX = newPlayerPos.getX() + dx[dir];
+                int newIronY = newPlayerPos.getY() + dy[dir];
+                Point newIronPos(newIronX, newIronY);
+
+                if (!isValidBFSMove(newIronPos, newBoxes, newIronBoxes)) {
+                    continue;
+                }
+
+                if (isGoal(newIronX, newIronY)) {
+                    continue;
+                }
+
+                newIronBoxes[ironBoxIndex] = newIronPos;
+
+                if (isButton(newIronX, newIronY)) {
+                    DEBUG_PRINT("   🔘 Iron box pushed onto button at ("
+                        << newIronX << "," << newIronY << ")");
                 }
             }
             else {
-                // Không có box -> player di chuyển tự do
-                if (!isValidBFSMove(newPlayerPos, newBoxes)) {
+                if (!isValidBFSMove(newPlayerPos, newBoxes, newIronBoxes)) {
                     continue;
                 }
             }
 
-            // Tạo trạng thái mới
-            BFSState newState(newPlayerPos, newBoxes, current.depth + 1);
+            BFSState newState(newPlayerPos, newBoxes, newIronBoxes, current.depth + 1);
             newState.path = current.path;
             newState.path.push_back(dir);
 
-            // Kiểm tra trạng thái mới đã visit chưa
             if (!visited.contains(newState)) {
                 visited.insert(newState, true);
                 queue.push(newState);
@@ -812,31 +986,53 @@ bool Map::solveBFS(int maxDepth) {
         }
     }
 
-    std::cout << "\nKHONG TIM THAY SOLUTION!" << std::endl;
-    std::cout << "States explored: " << statesExplored << std::endl;
-    std::cout << "Max queue size: " << maxQueueSize << std::endl;
+    auto endTime = std::chrono::steady_clock::now();
+    auto totalTime = std::chrono::duration_cast<std::chrono::seconds>(endTime - startTime).count();
+
+    std::cout << "\n╔════════════════════════════════════════╗" << std::endl;
+    std::cout << "║       ❌ NO SOLUTION FOUND ❌          ║" << std::endl;
+    std::cout << "╚════════════════════════════════════════╝" << std::endl;
+    std::cout << "📊 Statistics:" << std::endl;
+    std::cout << "   States Explored: " << statesExplored << std::endl;
+    std::cout << "   Max Queue Size: " << maxQueueSize << std::endl;
+    std::cout << "   Time Elapsed: " << totalTime << " seconds" << std::endl;
+
+    if (statesExplored >= MAX_STATES) {
+        std::cout << "\n⚠️  Reached state limit!" << std::endl;
+        std::cout << "   Try: Increase MAX_STATES or maxDepth" << std::endl;
+    }
 
     return false;
 }
 
-// Thực hiện bước tiếp theo trong solution
 bool Map::executeNextSolutionStep() {
     if (currentSolutionStep >= currentSolution.size()) {
         stopAutoSolve();
         return false;
     }
 
-    int dir = currentSolution[currentSolutionStep];
-    int dx[] = { 0, 0, -1, 1 };
-    int dy[] = { -1, 1, 0, 0 };
+    int action = currentSolution[currentSolutionStep];
 
-    bool moved = tryMovePlayer(dx[dir], dy[dir]);
-
-    if (moved) {
-        currentSolutionStep++;
+    if (action == 4) {
+        bool teleported = tryTeleport();
+        if (teleported) {
+            currentSolutionStep++;
+            return true;
+        }
+        return false;
     }
+    else {
+        int dx[] = { 0, 0, -1, 1 };
+        int dy[] = { -1, 1, 0, 0 };
 
-    return moved;
+        bool moved = tryMovePlayer(dx[action], dy[action]);
+
+        if (moved) {
+            currentSolutionStep++;
+        }
+
+        return moved;
+    }
 }
 
 void Map::startAutoSolve() {

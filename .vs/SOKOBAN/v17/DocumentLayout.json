@@ -7,32 +7,68 @@
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Map.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Map.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Map.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\BFSState.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\BFSState.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\map6.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\map6.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\map7.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\map7.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\map1.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\map1.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Goal.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Goal.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Map.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Map.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\BridgeT.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\BridgeT.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Animation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Animation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\GameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\GameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\map6.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\map6.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Goal.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Goal.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Queue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -63,28 +99,8 @@
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Pair.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\GameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\GameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\MoveState.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\MoveState.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Animation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Animation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Animation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -93,10 +109,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -139,10 +151,6 @@
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Trap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\BridgeT.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\BridgeT.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Box.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Box.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -153,10 +161,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Floor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Floor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Box.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -178,7 +182,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 12,
               "Title": "Player.cpp",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Player.cpp",
               "RelativeDocumentMoniker": "SOKOBAN\\Player.cpp",
@@ -187,11 +191,12 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-10-30T15:57:47.664Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 9,
               "Title": "Animation.cpp",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Animation.cpp",
               "RelativeDocumentMoniker": "SOKOBAN\\Animation.cpp",
@@ -200,33 +205,36 @@
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-11-06T14:33:56.908Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Game.cpp",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Game.cpp",
               "RelativeDocumentMoniker": "SOKOBAN\\Game.cpp",
               "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Game.cpp",
               "RelativeToolTip": "SOKOBAN\\Game.cpp",
-              "ViewState": "AgIAAK4AAAAAAAAAAAAUwMgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAUwMgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-10-30T15:25:27.109Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 6,
               "Title": "Game.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Game.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Game.h",
               "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Game.h",
               "RelativeToolTip": "SOKOBAN\\Game.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAABEAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-11-06T15:34:44.513Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -236,7 +244,7 @@
               "RelativeDocumentMoniker": "SOKOBAN\\Map.cpp",
               "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Map.cpp",
               "RelativeToolTip": "SOKOBAN\\Map.cpp",
-              "ViewState": "AgIAAEkDAAAAAAAAAAAAAFEDAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAADAAAAAAAAAADwvxIDAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-11-06T15:50:41.879Z",
               "IsPinned": true,
@@ -244,13 +252,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Map.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Map.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Map.h",
               "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Map.h",
               "RelativeToolTip": "SOKOBAN\\Map.h",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAAHQAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAuwIcAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-10-30T15:02:22.672Z",
               "IsPinned": true,
@@ -258,15 +266,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "map6.txt",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\map6.txt",
-              "RelativeDocumentMoniker": "SOKOBAN\\map6.txt",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\map6.txt",
-              "RelativeToolTip": "SOKOBAN\\map6.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "map7.txt",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\map7.txt",
+              "RelativeDocumentMoniker": "SOKOBAN\\map7.txt",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\map7.txt",
+              "RelativeToolTip": "SOKOBAN\\map7.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-11-11T02:23:03.815Z",
+              "WhenOpened": "2025-11-11T06:13:38.121Z",
               "EditorCaption": ""
             },
             {
@@ -278,98 +286,106 @@
               "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "map1.txt",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\map1.txt",
-              "RelativeDocumentMoniker": "SOKOBAN\\map1.txt",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\map1.txt",
-              "RelativeToolTip": "SOKOBAN\\map1.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-11-06T15:18:20.611Z",
+              "DocumentIndex": 5,
+              "Title": "Stack.h",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Stack.h",
+              "RelativeDocumentMoniker": "SOKOBAN\\Stack.h",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Stack.h",
+              "RelativeToolTip": "SOKOBAN\\Stack.h",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-11-03T08:28:59.787Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 11,
+              "Title": "main.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\main.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\main.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\main.cpp",
+              "RelativeToolTip": "SOKOBAN\\main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-30T15:25:37.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "BFSState.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\BFSState.h",
               "RelativeDocumentMoniker": "SOKOBAN\\BFSState.h",
               "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\BFSState.h",
               "RelativeToolTip": "SOKOBAN\\BFSState.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-11-10T23:53:55.718Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Queue.h",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Queue.h",
-              "RelativeDocumentMoniker": "SOKOBAN\\Queue.h",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Queue.h",
-              "RelativeToolTip": "SOKOBAN\\Queue.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGYAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-10T23:53:28.553Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "TeleportNetwork.h",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\TeleportNetwork.h",
-              "RelativeDocumentMoniker": "SOKOBAN\\TeleportNetwork.h",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\TeleportNetwork.h",
-              "RelativeToolTip": "SOKOBAN\\TeleportNetwork.h",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAB4AAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-07T07:32:59.382Z"
+              "DocumentIndex": 3,
+              "Title": "map1.txt",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\map1.txt",
+              "RelativeDocumentMoniker": "SOKOBAN\\map1.txt",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\map1.txt",
+              "RelativeToolTip": "SOKOBAN\\map1.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-11-06T15:18:20.611Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
+              "Title": "map6.txt",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\map6.txt",
+              "RelativeDocumentMoniker": "SOKOBAN\\map6.txt",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\map6.txt",
+              "RelativeToolTip": "SOKOBAN\\map6.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-11-11T02:23:03.815Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Menu.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Menu.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Menu.h",
               "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Menu.h",
               "RelativeToolTip": "SOKOBAN\\Menu.h",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAACsAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAAACsAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-06T15:35:33.72Z"
+              "WhenOpened": "2025-11-06T15:35:33.72Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "Button.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Button.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\Button.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Button.cpp",
-              "RelativeToolTip": "SOKOBAN\\Button.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "BridgeT.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\BridgeT.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\BridgeT.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\BridgeT.cpp",
+              "RelativeToolTip": "SOKOBAN\\BridgeT.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-06T14:52:24.577Z"
+              "WhenOpened": "2025-10-30T15:02:30.078Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Goal.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Goal.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\Goal.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Goal.cpp",
-              "RelativeToolTip": "SOKOBAN\\Goal.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-30T15:59:29.027Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 25,
               "Title": "Animation.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Animation.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Animation.h",
@@ -381,19 +397,79 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Stack.h",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Stack.h",
-              "RelativeDocumentMoniker": "SOKOBAN\\Stack.h",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Stack.h",
-              "RelativeToolTip": "SOKOBAN\\Stack.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-03T08:28:59.787Z"
+              "DocumentIndex": 16,
+              "Title": "Goal.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Goal.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\Goal.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Goal.cpp",
+              "RelativeToolTip": "SOKOBAN\\Goal.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-30T15:59:29.027Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 13,
+              "Title": "Menu.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Menu.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\Menu.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Menu.cpp",
+              "RelativeToolTip": "SOKOBAN\\Menu.cpp",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAABwAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-30T15:14:02.789Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "GameObject.h",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\GameObject.h",
+              "RelativeDocumentMoniker": "SOKOBAN\\GameObject.h",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\GameObject.h",
+              "RelativeToolTip": "SOKOBAN\\GameObject.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-11-03T08:20:22.723Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Button.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Button.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\Button.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Button.cpp",
+              "RelativeToolTip": "SOKOBAN\\Button.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-06T14:52:24.577Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "TeleportNetwork.h",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\TeleportNetwork.h",
+              "RelativeDocumentMoniker": "SOKOBAN\\TeleportNetwork.h",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\TeleportNetwork.h",
+              "RelativeToolTip": "SOKOBAN\\TeleportNetwork.h",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAB4AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-11-07T07:32:59.382Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Queue.h",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Queue.h",
+              "RelativeDocumentMoniker": "SOKOBAN\\Queue.h",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Queue.h",
+              "RelativeToolTip": "SOKOBAN\\Queue.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGYAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-11-10T23:53:28.553Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
               "Title": "Player.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Player.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Player.h",
@@ -405,7 +481,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 20,
               "Title": "HashTable.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\HashTable.h",
               "RelativeDocumentMoniker": "SOKOBAN\\HashTable.h",
@@ -417,7 +493,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 19,
               "Title": "Point.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Point.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Point.h",
@@ -429,7 +505,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 23,
               "Title": "Pair.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Pair.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Pair.h",
@@ -440,12 +516,8 @@
               "WhenOpened": "2025-11-07T04:50:42.242Z"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 38,
               "Title": "IronBox.cpp",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\IronBox.cpp",
               "RelativeDocumentMoniker": "SOKOBAN\\IronBox.cpp",
@@ -457,7 +529,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 29,
               "Title": "GameObject.cpp",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\GameObject.cpp",
               "RelativeDocumentMoniker": "SOKOBAN\\GameObject.cpp",
@@ -469,7 +541,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 37,
               "Title": "Box.cpp",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Box.cpp",
               "RelativeDocumentMoniker": "SOKOBAN\\Box.cpp",
@@ -481,7 +553,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 34,
               "Title": "Button.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Button.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Button.h",
@@ -493,7 +565,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 39,
               "Title": "Floor.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Floor.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Floor.h",
@@ -505,7 +577,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 22,
               "Title": "DynamicArray.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\DynamicArray.h",
               "RelativeDocumentMoniker": "SOKOBAN\\DynamicArray.h",
@@ -517,19 +589,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "GameObject.h",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\GameObject.h",
-              "RelativeDocumentMoniker": "SOKOBAN\\GameObject.h",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\GameObject.h",
-              "RelativeToolTip": "SOKOBAN\\GameObject.h",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-03T08:20:22.723Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "Box.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Box.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Box.h",
@@ -541,19 +601,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "main.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\main.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\main.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\main.cpp",
-              "RelativeToolTip": "SOKOBAN\\main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-30T15:25:37.525Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 21,
               "Title": "IronBox.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\IronBox.h",
               "RelativeDocumentMoniker": "SOKOBAN\\IronBox.h",
@@ -565,7 +613,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 28,
               "Title": "Goal.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Goal.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Goal.h",
@@ -577,7 +625,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 32,
               "Title": "Guide.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Guide.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Guide.h",
@@ -589,19 +637,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Menu.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Menu.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\Menu.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Menu.cpp",
-              "RelativeToolTip": "SOKOBAN\\Menu.cpp",
-              "ViewState": "AgIAAIkBAAAAAAAAAAAAAB8BAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-30T15:14:02.789Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 30,
               "Title": "Guide.cpp",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Guide.cpp",
               "RelativeDocumentMoniker": "SOKOBAN\\Guide.cpp",
@@ -613,7 +649,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 35,
               "Title": "BridgeT.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\BridgeT.h",
               "RelativeDocumentMoniker": "SOKOBAN\\BridgeT.h",
@@ -625,19 +661,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "BridgeT.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\BridgeT.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\BridgeT.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\BridgeT.cpp",
-              "RelativeToolTip": "SOKOBAN\\BridgeT.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-30T15:02:30.078Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "Obstacle.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Obstacle.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Obstacle.h",
@@ -649,7 +673,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 24,
               "Title": "MoveState.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\MoveState.h",
               "RelativeDocumentMoniker": "SOKOBAN\\MoveState.h",
@@ -661,7 +685,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 36,
               "Title": "Trap.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Trap.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Trap.h",
@@ -673,7 +697,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "Wall.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Wall.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Wall.h",
@@ -685,7 +709,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 33,
               "Title": "Trap.cpp",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Trap.cpp",
               "RelativeDocumentMoniker": "SOKOBAN\\Trap.cpp",

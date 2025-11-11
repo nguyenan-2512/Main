@@ -69,9 +69,34 @@ private:
     void checkButtonStates();
 
     // THÊM: Helper functions cho BFS
-    bool isValidBFSMove(const Point& pos, const DynamicArray<Point>& boxes) const;
-    bool isDeadlock(const Point& boxPos, const DynamicArray<Point>& boxes) const;
+    bool isValidBFSMove(const Point& pos,
+        const DynamicArray<Point>& boxes,
+        const DynamicArray<Point>& ironBoxes) const;
+
+    bool isDeadlock(const Point& boxPos,
+        const DynamicArray<Point>& boxes,
+        const DynamicArray<Point>& ironBoxes) const;
+
     BFSState createCurrentBFSState() const;
+
+    // Kiểm tra button có được nhấn không trong một state cụ thể
+    bool isButtonPressedInState(const Point& buttonPos,
+        const DynamicArray<Point>& boxes,
+        const DynamicArray<Point>& ironBoxes) const;
+
+    // Kiểm tra trap có active không trong một state cụ thể
+    bool isTrapActiveInState(const Point& trapPos,
+        const DynamicArray<Point>& boxes,
+        const DynamicArray<Point>& ironBoxes) const;
+
+    // Thử teleport trong BFS
+    bool tryTeleportInBFS(Point& playerPos) const;
+
+    bool hasBoxAt(const Point& pos,
+        const DynamicArray<Point>& boxes,
+        const DynamicArray<Point>& ironBoxes) const;
+
+    void printBFSState(const BFSState& state) const;
 public:
     Map(const std::string& filename, int tileSize);
     ~Map();
