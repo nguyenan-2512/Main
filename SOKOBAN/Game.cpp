@@ -129,7 +129,7 @@ void Game::handleEvents() {
                         else if (event.key.code == sf::Keyboard::H) {  // Phím H để hint (BFS)
                             if (currentMap && !currentMap->getIsAutoSolving()) {
                                 std::cout << "\nDang tim kiem solution voi BFS..." << std::endl;
-                                if (currentMap->solveBFS(50)) {  // Max depth = 50
+                                if (currentMap->solveBFS(200)) {  // Max depth = 50
                                     currentMap->startAutoSolve();
                                 }
                                 else {

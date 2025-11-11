@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿// Map.h - Phiên bản hoàn chỉnh
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "DynamicArray.h"  
 #include <string>
@@ -60,43 +61,55 @@ private:
 
     Stack<MoveState> moveHistory;
 
-    // THÊM: BFS solving
-    DynamicArray<int> currentSolution;  // Lưu solution hiện tại
-    int currentSolutionStep;            // Bước hiện tại trong solution
-    bool m_isAutoSolving;                 // Đang tự động giải không
+    // BFS solving variables
+    DynamicArray<int> currentSolution;
+    int currentSolutionStep;
+    bool m_isAutoSolving;
 
     void updateBoxStates();
     void checkButtonStates();
 
-    // THÊM: Helper functions cho BFS
+    // ========== BFS Helper Functions ==========
+
+    // Kiểm tra vị trí có hợp lệ trong BFS không
     bool isValidBFSMove(const Point& pos,
         const DynamicArray<Point>& boxes,
         const DynamicArray<Point>& ironBoxes) const;
 
+    // Kiểm tra deadlock cho normal box
     bool isDeadlock(const Point& boxPos,
         const DynamicArray<Point>& boxes,
         const DynamicArray<Point>& ironBoxes) const;
 
+    // THÊM: Kiểm tra deadlock cho iron box (QUAN TRỌNG)
+    bool isIronBoxDeadlock(const Point& ironBoxPos,
+        const DynamicArray<Point>& boxes,
+        const DynamicArray<Point>& ironBoxes) const;
+
+    // Tạo BFS state từ trạng thái hiện tại
     BFSState createCurrentBFSState() const;
 
-    // Kiểm tra button có được nhấn không trong một state cụ thể
+    // Kiểm tra button có được nhấn không trong state cụ thể
     bool isButtonPressedInState(const Point& buttonPos,
         const DynamicArray<Point>& boxes,
         const DynamicArray<Point>& ironBoxes) const;
 
-    // Kiểm tra trap có active không trong một state cụ thể
+    // Kiểm tra trap có active không trong state cụ thể
     bool isTrapActiveInState(const Point& trapPos,
+        const DynamicArray<Point>& boxes,
+        const DynamicArray<Point>& ironBoxes) const;
+
+    // Kiểm tra có box tại vị trí không
+    bool hasBoxAt(const Point& pos,
         const DynamicArray<Point>& boxes,
         const DynamicArray<Point>& ironBoxes) const;
 
     // Thử teleport trong BFS
     bool tryTeleportInBFS(Point& playerPos) const;
 
-    bool hasBoxAt(const Point& pos,
-        const DynamicArray<Point>& boxes,
-        const DynamicArray<Point>& ironBoxes) const;
+    // THÊM: Đánh giá state (để ưu tiên các state tốt hơn)
+    int evaluateState(const BFSState& state) const;
 
-    void printBFSState(const BFSState& state) const;
 public:
     Map(const std::string& filename, int tileSize);
     ~Map();
@@ -136,7 +149,7 @@ public:
     void undo();
     int getMoveCount() const;
 
-    // THÊM: BFS solving functions
+    // BFS solving functions
     bool solveBFS(int maxDepth = 100);
     bool executeNextSolutionStep();
     void startAutoSolve();
