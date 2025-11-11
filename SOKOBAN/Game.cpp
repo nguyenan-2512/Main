@@ -126,6 +126,23 @@ void Game::handleEvents() {
                         else if (event.key.code == sf::Keyboard::Right || event.key.code == sf::Keyboard::D) {
                             moved = currentMap->tryMovePlayer(1, 0);
                         }
+                        else if (event.key.code == sf::Keyboard::H) {  // Phím H để hint (BFS)
+                            if (currentMap && !currentMap->getIsAutoSolving()) {
+                                std::cout << "\nDang tim kiem solution voi BFS..." << std::endl;
+                                if (currentMap->solveBFS(50)) {  // Max depth = 50
+                                    currentMap->startAutoSolve();
+                                }
+                                else {
+                                    std::cout << "Khong tim thay solution!" << std::endl;
+                                }
+                            }
+                        }
+                        else if (event.key.code == sf::Keyboard::J) {  // Phím J để stop auto-solve
+                            if (currentMap) {
+                                currentMap->stopAutoSolve();
+                                std::cout << "Da dung auto-solve" << std::endl;
+                            }
+                        }
 
                         if (moved) {
                             playMoveSound();
@@ -180,6 +197,14 @@ void Game::update() {
             winSound.play();
             backgroundMusic.stop();
             cout << "Chuc mung! Ban da chien thang!" << endl;
+        }
+
+        if (currentMap && currentMap->getIsAutoSolving()) {
+            static sf::Clock autoSolveClock;
+            if (autoSolveClock.getElapsedTime().asSeconds() >= 0.3f) {  // 0.3 giây mỗi bước
+                currentMap->executeNextSolutionStep();
+                autoSolveClock.restart();
+            }
         }
     }
 }

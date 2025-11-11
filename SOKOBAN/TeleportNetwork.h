@@ -3,21 +3,6 @@
 #include "DynamicArray.h"  
 #include "HashTable.h"   
 
-// Hàm băm cho Point
-struct PointHash {
-    size_t operator()(const Point& p) const {
-        int x = p.getX();
-        int y = p.getY();
-        return (x * 73856093) ^ (y * 19349663);
-    }
-};
-
-// Hàm băm cho int
-struct IntHash {
-    size_t operator()(int key) const {
-        return key * 2654435761 % 4294967296;
-    }
-};
 
 class TeleportNetwork {
 private:

@@ -4,7 +4,7 @@
 #include <algorithm> 
 
 Map::Map(const std::string& filename, int tileSize)
-    : tileSize(tileSize), player(nullptr), isGameOver(false) {
+    : tileSize(tileSize), player(nullptr), isGameOver(false), m_isAutoSolving(false), currentSolutionStep(0) {
 
     // Load tất cả textures
     if (!wallTexture.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\da1.png")) {
@@ -576,4 +576,213 @@ void Map::undo() {
 
 int Map::getMoveCount() const {
     return (int)moveHistory.size();
+}
+// ==================== BFS SOLVER ====================
+
+// Tạo trạng thái hiện tại cho BFS
+BFSState Map::createCurrentBFSState() const {
+    Point playerPos = player->getPosition();
+    DynamicArray<Point> boxPos;
+
+    for (const auto& box : boxes) {
+        boxPos.push_back(box.getPosition());
+    }
+
+    return BFSState(playerPos, boxPos);
+}
+
+// Kiểm tra vị trí có hợp lệ trong BFS không
+bool Map::isValidBFSMove(const Point& pos, const DynamicArray<Point>& boxes) const {
+    int x = pos.getX();
+    int y = pos.getY();
+
+    // Kiểm tra tường, nước, obstacle
+    if (isWall(x, y) || isWater(x, y) || isObstacle(x, y)) {
+        return false;
+    }
+
+    // Kiểm tra bẫy
+    Trap* trap = const_cast<Map*>(this)->getTrapAt(x, y);
+    if (trap && trap->getIsActive()) {
+        return false;
+    }
+
+    // Kiểm tra hộp
+    for (const auto& box : boxes) {
+        if (box == pos) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// Kiểm tra deadlock đơn giản
+bool Map::isDeadlock(const Point& boxPos, const DynamicArray<Point>& boxes) const {
+    int x = boxPos.getX();
+    int y = boxPos.getY();
+
+    // Nếu hộp đã ở goal thì không phải deadlock
+    if (isGoal(x, y)) {
+        return false;
+    }
+
+    // Kiểm tra góc: nếu hộp bị kẹt ở góc mà không phải goal
+    bool leftBlocked = isWall(x - 1, y) || isObstacle(x - 1, y);
+    bool rightBlocked = isWall(x + 1, y) || isObstacle(x + 1, y);
+    bool upBlocked = isWall(x, y - 1) || isObstacle(x, y - 1);
+    bool downBlocked = isWall(x, y + 1) || isObstacle(x, y + 1);
+
+    // Góc trái-trên
+    if (leftBlocked && upBlocked) return true;
+    // Góc phải-trên
+    if (rightBlocked && upBlocked) return true;
+    // Góc trái-dưới
+    if (leftBlocked && downBlocked) return true;
+    // Góc phải-dưới
+    if (rightBlocked && downBlocked) return true;
+
+    return false;
+}
+
+// BFS Solver chính
+bool Map::solveBFS(int maxDepth) {
+    std::cout << "\n=== Bat dau BFS Solver ===" << std::endl;
+
+    // Reset solution
+    currentSolution.clear();
+    currentSolutionStep = 0;
+
+    // Tạo trạng thái ban đầu
+    BFSState initialState = createCurrentBFSState();
+
+    // Queue cho BFS
+    Queue<BFSState> queue;
+    queue.push(initialState);
+
+    // HashTable để lưu các trạng thái đã visit
+    HashTable<BFSState, bool, BFSStateHash> visited;
+    visited.insert(initialState, true);
+
+    // Các hướng di chuyển: Up, Down, Left, Right
+    int dx[] = { 0, 0, -1, 1 };
+    int dy[] = { -1, 1, 0, 0 };
+
+    int statesExplored = 0;
+
+    while (!queue.empty() && statesExplored < 100000) {
+        BFSState current = queue.front();
+        queue.pop();
+        statesExplored++;
+
+        // Kiểm tra xem đã giải xong chưa
+        bool allBoxesOnGoals = true;
+        for (const auto& box : current.boxPositions) {
+            if (!isGoal(box.getX(), box.getY())) {
+                allBoxesOnGoals = false;
+                break;
+            }
+        }
+
+        if (allBoxesOnGoals) {
+            std::cout << "Tim thay solution voi " << current.path.size()
+                << " buoc!" << std::endl;
+            std::cout << "Da explore " << statesExplored << " trang thai" << std::endl;
+
+            currentSolution = current.path;
+            return true;
+        }
+
+        // Nếu vượt quá độ sâu cho phép
+        if (current.depth >= maxDepth) {
+            continue;
+        }
+
+        // Thử 4 hướng di chuyển
+        for (int dir = 0; dir < 4; dir++) {
+            int newPlayerX = current.playerPos.getX() + dx[dir];
+            int newPlayerY = current.playerPos.getY() + dy[dir];
+            Point newPlayerPos(newPlayerX, newPlayerY);
+
+            // Kiểm tra vị trí mới của player có hợp lệ không
+            if (!isValidBFSMove(newPlayerPos, current.boxPositions)) {
+                continue;
+            }
+
+            // Tạo trạng thái mới
+            BFSState newState(newPlayerPos, current.boxPositions, current.depth + 1);
+            newState.path = current.path;
+            newState.path.push_back(dir);
+
+            // Kiểm tra xem có đẩy hộp không
+            int boxIndex = -1;
+            for (int i = 0; i < current.boxPositions.size(); i++) {
+                if (current.boxPositions[i] == newPlayerPos) {
+                    boxIndex = i;
+                    break;
+                }
+            }
+
+            if (boxIndex != -1) {
+                // Đẩy hộp
+                int newBoxX = newPlayerPos.getX() + dx[dir];
+                int newBoxY = newPlayerPos.getY() + dy[dir];
+                Point newBoxPos(newBoxX, newBoxY);
+
+                // Kiểm tra vị trí mới của hộp có hợp lệ không
+                if (!isValidBFSMove(newBoxPos, current.boxPositions)) {
+                    continue;
+                }
+
+                // Cập nhật vị trí hộp
+                newState.boxPositions[boxIndex] = newBoxPos;
+
+                // Kiểm tra deadlock
+                if (isDeadlock(newBoxPos, newState.boxPositions)) {
+                    continue;
+                }
+            }
+
+            // Kiểm tra trạng thái mới đã visit chưa
+            bool alreadyVisited = visited.contains(newState);
+
+            if (!alreadyVisited) {
+                visited.insert(newState, true);
+                queue.push(newState);
+            }
+        }
+    }
+
+    std::cout << "Khong tim thay solution sau khi explore "
+        << statesExplored << " trang thai" << std::endl;
+    return false;
+}
+
+// Thực hiện bước tiếp theo trong solution
+bool Map::executeNextSolutionStep() {
+    if (currentSolutionStep >= currentSolution.size()) {
+        stopAutoSolve();
+        return false;
+    }
+
+    int dir = currentSolution[currentSolutionStep];
+    int dx[] = { 0, 0, -1, 1 };
+    int dy[] = { -1, 1, 0, 0 };
+
+    bool moved = tryMovePlayer(dx[dir], dy[dir]);
+
+    if (moved) {
+        currentSolutionStep++;
+    }
+
+    return moved;
+}
+
+void Map::startAutoSolve() {
+    m_isAutoSolving = true;
+    currentSolutionStep = 0;
+}
+
+void Map::stopAutoSolve() {
+    m_isAutoSolving = false;
 }

@@ -18,6 +18,8 @@
 #include "Teleport.h"
 #include "TeleportNetwork.h"
 #include "MoveState.h"
+#include "Queue.h"           
+#include "BFSState.h"  
 
 class Map {
 private:
@@ -58,9 +60,18 @@ private:
 
     Stack<MoveState> moveHistory;
 
+    // THÊM: BFS solving
+    DynamicArray<int> currentSolution;  // Lưu solution hiện tại
+    int currentSolutionStep;            // Bước hiện tại trong solution
+    bool m_isAutoSolving;                 // Đang tự động giải không
+
     void updateBoxStates();
     void checkButtonStates();
 
+    // THÊM: Helper functions cho BFS
+    bool isValidBFSMove(const Point& pos, const DynamicArray<Point>& boxes) const;
+    bool isDeadlock(const Point& boxPos, const DynamicArray<Point>& boxes) const;
+    BFSState createCurrentBFSState() const;
 public:
     Map(const std::string& filename, int tileSize);
     ~Map();
@@ -99,6 +110,13 @@ public:
     void restoreState(const MoveState& state);
     void undo();
     int getMoveCount() const;
+
+    // THÊM: BFS solving functions
+    bool solveBFS(int maxDepth = 100);
+    bool executeNextSolutionStep();
+    void startAutoSolve();
+    void stopAutoSolve();
+    bool getIsAutoSolving() const { return m_isAutoSolving; }
 
     bool isGameOver;
     void setGameOver(bool value) { isGameOver = value; }
