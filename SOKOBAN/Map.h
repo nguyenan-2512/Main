@@ -1,4 +1,4 @@
-﻿// Map.h - Phiên bản hoàn chỉnh
+﻿
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "DynamicArray.h"  
@@ -53,62 +53,48 @@ private:
     sf::Texture waterTexture;
     sf::Texture sandTexture;
     sf::Texture bridgeTTexture;
-    sf::Texture trapActiveTexture;
-    sf::Texture trapInactiveTexture;
-    sf::Texture buttonUnpressedTexture;
-    sf::Texture buttonPressedTexture;
-    sf::Texture teleportActiveTexture;
+    sf::Texture textureBayKichHoat;
+    sf::Texture textureBayKoKichHoat;
+    sf::Texture textureNutChuaNhan;
+    sf::Texture textureNutDaNhan;
+    sf::Texture textureDichChuyen;
 
-    Stack<MoveState> moveHistory;
+    Stack<MoveState> LichSuDiChuyen;
 
-    // BFS solving variables
-    DynamicArray<int> currentSolution;
-    int currentSolutionStep;
+    DynamicArray<int> LoiGiaiHienTai;
+    int LoiGiaiHienTaiStep;
     bool m_isAutoSolving;
 
-    void updateBoxStates();
-    void checkButtonStates();
+    void CapNhatThung();
+    void KiemTraNut();
 
-    // ========== BFS Helper Functions ==========
-
-    // Kiểm tra vị trí có hợp lệ trong BFS không
-    bool isValidBFSMove(const Point& pos,
+    bool LaBuocDiHopLeBFS(const Point& pos,
         const DynamicArray<Point>& boxes,
         const DynamicArray<Point>& ironBoxes) const;
 
-    // Kiểm tra deadlock cho normal box
     bool isDeadlock(const Point& boxPos,
         const DynamicArray<Point>& boxes,
         const DynamicArray<Point>& ironBoxes) const;
 
-    // THÊM: Kiểm tra deadlock cho iron box (QUAN TRỌNG)
     bool isIronBoxDeadlock(const Point& ironBoxPos,
         const DynamicArray<Point>& boxes,
         const DynamicArray<Point>& ironBoxes) const;
 
-    // Tạo BFS state từ trạng thái hiện tại
-    BFSState createCurrentBFSState() const;
+    BFSState TaoTrangThaiBFS() const;
 
-    // Kiểm tra button có được nhấn không trong state cụ thể
-    bool isButtonPressedInState(const Point& buttonPos,
+    bool NutBiNhanTrongBFS(const Point& buttonPos,
         const DynamicArray<Point>& boxes,
         const DynamicArray<Point>& ironBoxes) const;
 
-    // Kiểm tra trap có active không trong state cụ thể
-    bool isTrapActiveInState(const Point& trapPos,
+    bool BayKichHoatTrongBFS(const Point& trapPos,
         const DynamicArray<Point>& boxes,
         const DynamicArray<Point>& ironBoxes) const;
 
-    // Kiểm tra có box tại vị trí không
-    bool hasBoxAt(const Point& pos,
+    bool CoThungTai(const Point& pos,
         const DynamicArray<Point>& boxes,
         const DynamicArray<Point>& ironBoxes) const;
 
-    // Thử teleport trong BFS
-    bool tryTeleportInBFS(Point& playerPos) const;
-
-    // THÊM: Đánh giá state (để ưu tiên các state tốt hơn)
-    int evaluateState(const BFSState& state) const;
+    bool ThuDichChuyenInBFS(Point& playerPos) const;
 
 public:
     Map(const std::string& filename, int tileSize);
@@ -121,12 +107,12 @@ public:
 
     bool isTrap(int x, int y) const;
     bool isButton(int x, int y) const;
-    Trap* getTrapAt(int x, int y);
-    Button* getButtonAt(int x, int y);
+    Trap* TimBayTai(int x, int y);
+    Button* TimNutBamTai(int x, int y);
 
     bool isTeleport(int x, int y) const;
-    Teleport* getTeleportAt(int x, int y);
-    bool tryTeleport();
+    Teleport* TimDichChuyenTai(int x, int y);
+    bool ThuDichChuyen();
     TeleportNetwork& getTeleportNetwork() { return teleportNetwork; }
 
     bool isSand(int x, int y) const;
@@ -138,23 +124,23 @@ public:
     bool isGoal(int x, int y) const;
     bool isValidMove(int x, int y);
 
-    Box* getBoxAt(int x, int y);
-    IronBox* getIronBoxAt(int x, int y);
-    bool moveBox(Box* box, int dx, int dy);
-    bool moveIronBox(IronBox* ironBox, int dx, int dy);
+    Box* TimThungGoTai(int x, int y);
+    IronBox* TimThungSatTai(int x, int y);
+    bool DiChuyenThungGo(Box* box, int dx, int dy);
+    bool DiChuyenThungSat(IronBox* ironBox, int dx, int dy);
 
-    void saveState();
-    MoveState getCurrentState() const;
-    void restoreState(const MoveState& state);
-    void undo();
-    int getMoveCount() const;
+    void LuuTrangThai();
+    MoveState LayTrangThaiHienTai() const;
+    void PhucHoiTrangThai(const MoveState& state);
+    void LuiBuoc();
+    int LaySoBuoc() const;
 
     // BFS solving functions
-    bool solveBFS(int maxDepth = 100);
-    bool executeNextSolutionStep();
-    void startAutoSolve();
-    void stopAutoSolve();
-    bool getIsAutoSolving() const { return m_isAutoSolving; }
+    bool TimLoiGiaiBFS(int maxDepth = 100);
+    bool ThucHIenBuocGiai();
+    void BatDauTuDongGiai();
+    void DungTuDongGiai();
+    bool LayTrangThaiTuDongGiai() const { return m_isAutoSolving; }
 
     bool isGameOver;
     void setGameOver(bool value) { isGameOver = value; }

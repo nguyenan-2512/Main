@@ -28,5 +28,5 @@ public:
 
     void setUnpressedTexture(const sf::Texture& texture);
     void setPressedTexture(const sf::Texture& texture);
-    void updateTexture();
+    void CapNhatTexture();
 };

@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include "GameObject.h"
 
-// Thùng sắt - dùng để đè nút kích hoạt, không thể đưa lên goal
 class IronBox : public GameObject {
 private:
     const sf::Texture* texture;

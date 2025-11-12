@@ -15,5 +15,5 @@ public:
     bool getIsOnGoal() const;
     void setNormalTexture(const sf::Texture& texture);
     void setGoalTexture(const sf::Texture& texture);
-    void updateTexture();
+    void CapNhatTexture();
 };

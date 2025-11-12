@@ -13,7 +13,6 @@ private:
         int newCapacity = (capacity == 0) ? 1 : capacity * 2;
         T* newData = new T[newCapacity];
 
-        // Copy dữ liệu từ queue cũ sang queue mới
         for (int i = 0; i < count; ++i) {
             newData[i] = data[(frontIndex + i) % capacity];
         }
@@ -32,7 +31,6 @@ public:
         delete[] data;
     }
 
-    // Copy constructor
     Queue(const Queue& other)
         : capacity(other.capacity), frontIndex(0), rearIndex(other.count), count(other.count) {
         data = new T[capacity];
@@ -41,7 +39,6 @@ public:
         }
     }
 
-    // Assignment operator
     Queue& operator=(const Queue& other) {
         if (this != &other) {
             delete[] data;
@@ -57,7 +54,6 @@ public:
         return *this;
     }
 
-    // Thêm phần tử vào cuối queue
     void push(const T& value) {
         if (count >= capacity) {
             resize();
@@ -67,7 +63,6 @@ public:
         count++;
     }
 
-    // Xóa phần tử ở đầu queue
     void pop() {
         if (!empty()) {
             frontIndex = (frontIndex + 1) % capacity;
@@ -75,7 +70,6 @@ public:
         }
     }
 
-    // Lấy phần tử đầu tiên
     T& front() {
         return data[frontIndex];
     }
@@ -84,17 +78,14 @@ public:
         return data[frontIndex];
     }
 
-    // Kiểm tra queue có rỗng không
     bool empty() const {
         return count == 0;
     }
 
-    // Lấy số lượng phần tử
     int size() const {
         return count;
     }
 
-    // Xóa tất cả phần tử
     void clear() {
         frontIndex = 0;
         rearIndex = 0;

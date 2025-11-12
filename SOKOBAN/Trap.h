@@ -17,5 +17,5 @@ public:
 
     void setActiveTexture(const sf::Texture& texture);
     void setInactiveTexture(const sf::Texture& texture);
-    void updateTexture();
+    void CapNhatTexture();
 }; 

@@ -43,11 +43,11 @@ public:
         bool loop = true);
 
 
-    void update(const int& state, float deltaTime);
+    void CapNhat(const int& state, float deltaTime);
 
 
     void reset();
 
     int getCurrentFrame() const { return currentFrame; }
-    int getCurrentState() const { return currentState; }
+    int LayTrangThaiHienTai() const { return currentState; }
 }; 

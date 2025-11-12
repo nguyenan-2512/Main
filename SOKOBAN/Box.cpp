@@ -19,7 +19,7 @@ void Box::draw(sf::RenderWindow& window) {
 
 void Box::setOnGoal(bool onGoal) {
     isOnGoal = onGoal;
-    updateTexture();
+    CapNhatTexture();
 }
 
 bool Box::getIsOnGoal() const {
@@ -40,7 +40,7 @@ void Box::setGoalTexture(const sf::Texture& texture) {
     }
 }
 
-void Box::updateTexture() {
+void Box::CapNhatTexture() {
     if (isOnGoal && goalTexture) {
         sprite.setTexture(*goalTexture);
     }

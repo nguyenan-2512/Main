@@ -29,8 +29,6 @@ private:
             table[i] = nullptr;
         }
         size = 0;
-
-        // Rehash tất cả các node
         for (int i = 0; i < oldCapacity; i++) {
             Node* current = oldTable[i];
             while (current) {
@@ -50,7 +48,6 @@ public:
             table[i] = nullptr;
         }
     }
-
     ~HashTable() {
         clear();
         delete[] table;
@@ -60,20 +57,15 @@ public:
         if (size >= capacity * 0.75) {
             resize();
         }
-
         int index = getIndex(key);
         Node* current = table[index];
-
-        // Kiểm tra key đã tồn tại chưa
         while (current) {
             if (current->key == key) {
-				current->value = value; //nếu trùng key thì cập nhật giá trị value của key đó
+				current->value = value; 
                 return;
             }
             current = current->next;
         }
-
-        // Thêm mới
         Node* newNode = new Node(key, value);
         newNode->next = table[index];
         table[index] = newNode;
@@ -118,7 +110,6 @@ public:
             current = current->next;
         }
 
-        // Nếu không tìm thấy, tạo mới
         Node* newNode = new Node(key, Value());
         newNode->next = table[index];
         table[index] = newNode;
@@ -142,14 +133,11 @@ public:
     int getSize() const {
         return size;
     }
-
-     //Iterator support (đơn giản)
     class Iterator {
     private:
         HashTable* ht;
         int bucketIndex;
         Node* current;
-
         void advance() {
             if (current && current->next) {
                 current = current->next;
@@ -197,7 +185,7 @@ public:
     Iterator end() {
         return Iterator(this, capacity, nullptr);
     }
-	//const iterator
+
     class ConstIterator {
     private:
         const HashTable* ht;

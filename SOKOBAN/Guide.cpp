@@ -21,7 +21,7 @@ Guide::Guide()
     nextButton.setOutlineThickness(3.f);
 }
 
-bool Guide::loadResources() {
+bool Guide::TaiTaiNguyen() {
     // Dọn sạch cũ
     pageTextures.clear();
     pageSprites.clear();
@@ -67,21 +67,21 @@ void Guide::reset() {
     currentPage = 0;
 }
 
-bool Guide::isMouseOverButton(const sf::CircleShape& button, sf::Vector2i mousePos) {
+bool Guide::ChuoiDeLenNut (const sf::CircleShape& button, sf::Vector2i mousePos) {
     sf::Vector2f pos = button.getPosition();
     float dx = mousePos.x - pos.x;
     float dy = mousePos.y - pos.y;
     return (dx * dx + dy * dy <= button.getRadius() * button.getRadius());
 }
 
-void Guide::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
+void Guide::XuLySuKien(const sf::Event& event, sf::RenderWindow& window) {
     if (event.type == sf::Event::MouseButtonPressed &&
         event.mouseButton.button == sf::Mouse::Left) {
 
         // Sử dụng tọa độ đã được scale từ event
         sf::Vector2i mousePos(event.mouseButton.x, event.mouseButton.y);
 
-        if (isMouseOverButton(prevButton, mousePos)) {
+        if (ChuoiDeLenNut (prevButton, mousePos)) {
             if (currentPage == 0) {
                 backToMenu = true;
                 std::cout << "Guide: Quay lai menu\n";
@@ -91,7 +91,7 @@ void Guide::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
             }
         }
 
-        if (isMouseOverButton(nextButton, mousePos) && currentPage < totalPages - 1) {
+        if (ChuoiDeLenNut (nextButton, mousePos) && currentPage < totalPages - 1) {
             currentPage++;
         }
     }
@@ -100,7 +100,7 @@ void Guide::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
         sf::Vector2i mousePos(event.mouseMove.x, event.mouseMove.y);
 
         // === HOVER NÚT TRÁI ===
-        if (isMouseOverButton(prevButton, mousePos)) {
+        if (ChuoiDeLenNut (prevButton, mousePos)) {
             if (currentPage == 0) {
                 prevButton.setOutlineColor(sf::Color(255, 120, 120, 255));
                 prevButton.setFillColor(sf::Color(255, 0, 0, 160));
@@ -120,7 +120,7 @@ void Guide::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
         }
 
         // Hover nút PHẢI
-        if (isMouseOverButton(nextButton, mousePos)) {
+        if (ChuoiDeLenNut (nextButton, mousePos)) {
             nextButton.setOutlineColor(sf::Color(255, 255, 0, 255));
         }
         else {
@@ -129,7 +129,7 @@ void Guide::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
     }
 }
 
-void Guide::update(float deltaTime) {}
+void Guide::CapNhat(float deltaTime) {}
 
 void Guide::draw(sf::RenderWindow& window) {
     if (totalPages == 0) return;

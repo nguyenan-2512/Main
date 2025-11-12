@@ -12,8 +12,8 @@ void Player::initAnimation(const sf::Texture& spriteSheet,
     animation = Animation(&sprite, spriteSheet, frameWidth, frameHeight, numFrames, true);
 }
 
-void Player::update(float deltaTime) {
-    animation.update(currentState, deltaTime);
+void Player::CapNhat(float deltaTime) {
+    animation.CapNhat(currentState, deltaTime);
 }
 
 void Player::draw(sf::RenderWindow& window) {

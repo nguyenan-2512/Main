@@ -23,7 +23,6 @@ struct PointHash {
         unsigned int ux = (x >= 0) ? (2 * x) : (-2 * x - 1);
         unsigned int uy = (y >= 0) ? (2 * y) : (-2 * y - 1);
 
-        // Szudzik's pairing function
         if (ux >= uy) {
             return ux * ux + ux + uy;
         }

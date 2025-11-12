@@ -2,7 +2,7 @@
 #include "Point.h"
 #include "DynamicArray.h"  // Thay thế <vector>
 
-// Struct luu trang thai mot nuoc di de phuc vu Undo
+// Struct luu trang thai mot nuoc di de phuc vu LuiBuoc
 class MoveState {
 public:
     Point playerPosition;

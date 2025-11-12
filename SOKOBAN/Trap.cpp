@@ -20,7 +20,7 @@ void Trap::draw(sf::RenderWindow& window) {
 
 void Trap::setActive(bool active) {
     isActive = active;
-    updateTexture();
+    CapNhatTexture();
 }
 
 void Trap::setActiveTexture(const sf::Texture& texture) {
@@ -37,7 +37,7 @@ void Trap::setInactiveTexture(const sf::Texture& texture) {
     }
 }
 
-void Trap::updateTexture() {
+void Trap::CapNhatTexture() {
     if (isActive && activeTexture) {
         sprite.setTexture(*activeTexture);
     }

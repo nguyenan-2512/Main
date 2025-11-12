@@ -15,27 +15,27 @@ class Game {
 private:
     sf::RenderWindow window;
     Menu menu;
-    Map* currentMap;
+    Map* BanDoHienTai;
     GameState gameState;
-    sf::Music backgroundMusic;
+    sf::Music NhacNen;
     sf::SoundBuffer moveSoundBuffer;
-    sf::Sound moveSound;
+    sf::Sound AmThanhBuocDi;
     sf::SoundBuffer winSoundBuffer;
-    sf::Sound winSound;
+    sf::Sound AmThanhChienThang;
     sf::SoundBuffer gameOverSoundBuffer;
-    sf::Sound gameOverSound;
+    sf::Sound AmThanhThua;
 
     sf::Texture winTexture;
-    sf::Sprite winSprite;
+    sf::Sprite AnhThang;
     sf::Texture gameOverTexture;
-    sf::Sprite gameOverSprite;
+    sf::Sprite AnhThua;
 
-    bool showWinMessage;
-    bool showGameOverMessage;
+    bool HienThiThang;
+    bool HienThiThua;
 
     sf::Clock deltaClock;
 
-    // THÊM: Fullscreen support
+
     sf::View gameView;              // View cho game (800x800)
     sf::Vector2u originalSize;      // Kích thước gốc (800x800)
     float scaleX;                   // Tỷ lệ scale X
@@ -49,15 +49,15 @@ public:
     void run();
 
 private:
-    void handleEvents();
-    void update();
+    void XuLySuKiens();
+    void CapNhat();
     void render();
-    void initializeGame();
-    void cleanupGame();
-    void playMoveSound();
+    void KhoiTaoGame();
+    void XoaGame();
+    void PhatAmThanhBuocDi();
 
     // THÊM: Fullscreen helper functions
     void setupFullscreen();
-    void updateView();
+    void CapNhatView();
     sf::Vector2i getScaledMousePosition(const sf::Vector2i& mousePos);
 };

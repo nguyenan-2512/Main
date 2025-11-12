@@ -8,7 +8,7 @@ Menu::Menu() : selectedItem(0), currentState(MenuState::MENU) {
 Menu::~Menu() {
 }
 
-bool Menu::loadResources() {
+bool Menu::TaiTaiNguyen() {
     // Load background texture
     if (!backgroundTexture.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\menutext.png")) {
         std::cerr << "Failed to load menu background texture!" << std::endl;
@@ -26,13 +26,12 @@ bool Menu::loadResources() {
         std::cerr << "Failed to load font, using default font" << std::endl;
     }
 
-    setupButtons();
-    setupTexts();
+    ThietLapCacNut();
 
     return true;
 }
 
-void Menu::setupButtons() {
+void Menu::ThietLapCacNut() {
     backButton.setRadius(50.f);
     backButton.setOrigin(50.f, 50.f);
     backButton.setPosition(88.f, 711.f);
@@ -58,33 +57,23 @@ void Menu::setupButtons() {
     exitButton.setOutlineThickness(0);
 }
 
-void Menu::setupTexts() {
-    playText.setFont(font);
-    playText.setString("");
-    playText.setCharacterSize(0);
-
-    exitText.setFont(font);
-    exitText.setString("");
-    exitText.setCharacterSize(0);
-}
-
-void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
+void Menu::XuLySuKien(const sf::Event& event, sf::RenderWindow& window) {
 
     if (currentState == MenuState::MENU) {
         if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
             // Sử dụng trực tiếp từ event (đã được scale)
             sf::Vector2i mousePos(event.mouseButton.x, event.mouseButton.y);
 
-            if (isMouseOverButton(playButton, mousePos)) {
+            if (ChuoiDeLenNut (playButton, mousePos)) {
                 currentState = MenuState::SELECTION_MAP;
-                setupMapItems(window);
+                ThietLapChonMap(window);
             }
-            else if (isMouseOverButton(guideButton, mousePos)) {
+            else if (ChuoiDeLenNut (guideButton, mousePos)) {
                 currentState = MenuState::GUIDE;
                 guide.reset();
-                guide.loadResources();
+                guide.TaiTaiNguyen();
             }
-            else if (isMouseOverButton(exitButton, mousePos)) {
+            else if (ChuoiDeLenNut (exitButton, mousePos)) {
                 currentState = MenuState::EXIT;
             }
         }
@@ -100,12 +89,12 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
             case sf::Keyboard::Enter:
                 if (selectedItem == 0) {
                     currentState = MenuState::SELECTION_MAP;
-                    setupMapItems(window);
+                    ThietLapChonMap(window);
                 }
                 else if (selectedItem == 1) {
                     currentState = MenuState::GUIDE;
                     guide.reset();
-                    guide.loadResources();
+                    guide.TaiTaiNguyen();
                 }
                 else {
                     currentState = MenuState::EXIT;
@@ -120,7 +109,7 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
         if (event.type == sf::Event::MouseMoved) {
             sf::Vector2i mousePos(event.mouseMove.x, event.mouseMove.y);
 
-            if (isMouseOverButton(playButton, mousePos)) {
+            if (ChuoiDeLenNut (playButton, mousePos)) {
                 selectedItem = 0;
                 playButton.setFillColor(sf::Color(255, 255, 255, 50));
             }
@@ -128,7 +117,7 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
                 playButton.setFillColor(sf::Color(0, 0, 0, 0));
             }
 
-            if (isMouseOverButton(guideButton, mousePos)) {
+            if (ChuoiDeLenNut (guideButton, mousePos)) {
                 selectedItem = 1;
                 guideButton.setFillColor(sf::Color(255, 255, 255, 50));
             }
@@ -136,7 +125,7 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
                 guideButton.setFillColor(sf::Color(0, 0, 0, 0));
             }
 
-            if (isMouseOverButton(exitButton, mousePos)) {
+            if (ChuoiDeLenNut (exitButton, mousePos)) {
                 selectedItem = 2;
                 exitButton.setFillColor(sf::Color(255, 255, 255, 50));
             }
@@ -144,7 +133,7 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
                 exitButton.setFillColor(sf::Color(0, 0, 0, 0));
             }
 
-            if (isMouseOverCircle(backButton, mousePos)) {
+            if (ChuoiDeLenNutTron (backButton, mousePos)) {
                 backButton.setFillColor(sf::Color(255, 255, 255, 60));
             }
             else {
@@ -165,7 +154,7 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
             }
 
             for (int i = 0; i < mapButtons.getSize(); ++i) {
-                if (isMouseOverButton(mapButtons[i], mousePos)) {
+                if (ChuoiDeLenNut (mapButtons[i], mousePos)) {
                     selectedMap = i;
                     std::cout << "Selected Map: " << (i + 1) << std::endl;
                     currentState = MenuState::PLAYING;
@@ -226,7 +215,7 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
             sf::Vector2i mousePos(event.mouseMove.x, event.mouseMove.y);
 
             for (int i = 0; i < mapButtons.getSize(); ++i) {
-                if (isMouseOverButton(mapButtons[i], mousePos)) {
+                if (ChuoiDeLenNut (mapButtons[i], mousePos)) {
                     highlightedMapIndex = i;
                     break;
                 }
@@ -236,13 +225,13 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
     else if (currentState == MenuState::GUIDE) {
         if (guide.shouldReturnToMenu()) {
             guide.resetBackFlag();
-            setState(MenuState::MENU);
+            DatTrangThai(MenuState::MENU);
         }
-        guide.handleEvent(event, window);
+        guide.XuLySuKien(event, window);
     }
 }
 
-void Menu::update() {
+void Menu::CapNhat() {
     if (currentState == MenuState::MENU) {
         if (selectedItem == 0) {
             playButton.setFillColor(sf::Color(255, 255, 255, 50));
@@ -270,18 +259,18 @@ void Menu::draw(sf::RenderWindow& window) {
         window.draw(exitButton);
     }
     else if (currentState == MenuState::SELECTION_MAP) {
-        drawSelectionMap(window);
+        VeManHinhChonMap(window);
     }
     else if (currentState == MenuState::GUIDE) {
         guide.draw(window);
     }
 }
 
-MenuState Menu::getState() const {
+MenuState Menu::LayTrangThai() const {
     return currentState;
 }
 
-void Menu::setState(MenuState state) {
+void Menu::DatTrangThai(MenuState state) {
     currentState = state;
 }
 
@@ -290,31 +279,29 @@ void Menu::reset() {
     selectedItem = 0;
 }
 
-int Menu::getSelectedMap() const {
+int Menu::LayMapDaChon() const {
     return selectedMap;
 }
 
-bool Menu::isMouseOverButton(const sf::RectangleShape& button, sf::Vector2i mousePos) {
+bool Menu::ChuoiDeLenNut (const sf::RectangleShape& button, sf::Vector2i mousePos) {
     sf::FloatRect buttonBounds = button.getGlobalBounds();
     return buttonBounds.contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 }
 
-bool Menu::isMouseOverCircle(const sf::CircleShape& button, sf::Vector2i mousePos) {
+bool Menu::ChuoiDeLenNutTron (const sf::CircleShape& button, sf::Vector2i mousePos) {
     sf::Vector2f pos = button.getPosition();
     float dx = mousePos.x - pos.x;
     float dy = mousePos.y - pos.y;
     return (dx * dx + dy * dy <= button.getRadius() * button.getRadius());
 }
 
-void Menu::setupMapItems(sf::RenderWindow& window) {
+void Menu::ThietLapChonMap(sf::RenderWindow& window) {
     mapButtons.clear();
-    mapItems.clear();
     highlightedMapIndex = 0;
 
     const int numMaps = 10;
     const float buttonRadius = 50.f;
 
-    // Tọa độ tâm của từng nút
     DynamicArray<sf::Vector2f> positions;
     positions.push_back(sf::Vector2f(181.f, 302.f));  // Map 1
     positions.push_back(sf::Vector2f(325.f, 302.f));  // Map 2
@@ -324,8 +311,6 @@ void Menu::setupMapItems(sf::RenderWindow& window) {
     positions.push_back(sf::Vector2f(325.f, 481.f));  // Map 6
     positions.push_back(sf::Vector2f(469.f, 481.f));  // Map 7
     positions.push_back(sf::Vector2f(613.f, 481.f));  // Map 8
-    positions.push_back(sf::Vector2f(0.f, 0.f));      // Map 9
-    positions.push_back(sf::Vector2f(0.f, 0.f));      // Map 10
 
     for (int i = 0; i < numMaps && i < 8; ++i) {
         sf::RectangleShape rectBtn;
@@ -335,18 +320,11 @@ void Menu::setupMapItems(sf::RenderWindow& window) {
         rectBtn.setOutlineThickness(0.f);
         rectBtn.setOrigin(buttonRadius, buttonRadius);
         rectBtn.setPosition(positions[i]);
-
-        sf::Text num;
-        num.setFont(font);
-        num.setString("");
-        num.setCharacterSize(0);
-
         mapButtons.push_back(rectBtn);
-        mapItems.push_back(num);
     }
 }
 
-void Menu::drawSelectionMap(sf::RenderWindow& window) {
+void Menu::VeManHinhChonMap(sf::RenderWindow& window) {
     window.draw(selectMapBackgroundSprite);
 
 
@@ -354,8 +332,6 @@ void Menu::drawSelectionMap(sf::RenderWindow& window) {
     if (highlightedMapIndex >= 0 && highlightedMapIndex < mapButtons.getSize()) {
         sf::Vector2f btnPos = mapButtons[highlightedMapIndex].getPosition();
         float radius = 55.f;
-
-        // Vẽ 3 vòng tròn để tạo hiệu ứng glow
         for (int i = 0; i < 3; ++i) {
             sf::CircleShape highlight(radius + i * 8.f);
             highlight.setOrigin(radius + i * 8.f, radius + i * 8.f);
@@ -376,19 +352,6 @@ void Menu::drawSelectionMap(sf::RenderWindow& window) {
         window.draw(mainHighlight);
     }
 
-    // Hiển thị hướng dẫn
-    sf::Text note;
-    note.setFont(font);
-    note.setString("");
-    note.setCharacterSize(16);
-    note.setFillColor(sf::Color::White);
-    note.setStyle(sf::Text::Bold);
-    note.setOutlineColor(sf::Color::Black);
-    note.setOutlineThickness(2.f);
-
-    sf::FloatRect noteBounds = note.getLocalBounds();
-    note.setPosition(400.f - noteBounds.width / 2.f, 550.f);
-    window.draw(note);
     window.draw(backButton);
 
 }

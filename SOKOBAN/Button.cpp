@@ -18,7 +18,7 @@ void Button::draw(sf::RenderWindow& window) {
 
 void Button::setPressed(bool pressed) {
     isPressed = pressed;
-    updateTexture();
+    CapNhatTexture();
 }
 
 void Button::setUnpressedTexture(const sf::Texture& texture) {
@@ -35,7 +35,7 @@ void Button::setPressedTexture(const sf::Texture& texture) {
     }
 }
 
-void Button::updateTexture() {
+void Button::CapNhatTexture() {
     if (isPressed && pressedTexture) {
         sprite.setTexture(*pressedTexture);
     }

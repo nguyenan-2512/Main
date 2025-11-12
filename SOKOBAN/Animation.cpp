@@ -56,7 +56,7 @@ Animation::Animation(sf::Sprite* sprite,
     }
 }
 
-void Animation::update(const int& state, float deltaTime) {
+void Animation::CapNhat(const int& state, float deltaTime) {
     if (!sprite) return;
 
     // Nếu trạng thái thay đổi → Reset animation

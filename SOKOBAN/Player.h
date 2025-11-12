@@ -12,7 +12,7 @@ public:
     Player(int x = 0, int y = 0, int tileSize = 32);
 
     void draw(sf::RenderWindow& window) override;
-    void update(float deltaTime);  
+    void CapNhat(float deltaTime);  
 
     void initAnimation(const sf::Texture& spriteSheet,
         int frameWidth,
