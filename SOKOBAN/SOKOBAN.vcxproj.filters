@@ -15,25 +15,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Point.h">
+    <ClInclude Include="Diem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
+    <ClInclude Include="DoiTuongTroChoi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Wall.h">
+    <ClInclude Include="Tuong.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="NguoiChoi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Floor.h">
+    <ClInclude Include="Nen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Box.h">
+    <ClInclude Include="ThungGo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
@@ -42,34 +42,34 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Goal.h">
+    <ClInclude Include="ViTriDat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MoveState.h">
+    <ClInclude Include="TrangThaiDiChuyen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IronBox.h">
+    <ClInclude Include="ThungSat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="NutBam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
+    <ClInclude Include="HoatHinh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Water.h">
+    <ClInclude Include="Nuoc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sand.h">
+    <ClInclude Include="Cat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Trap.h">
+    <ClInclude Include="Bay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Teleport.h">
+    <ClInclude Include="CongDichChuyen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TeleportNetwork.h">
+    <ClInclude Include="MangDichChuyen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DynamicArray.h">
@@ -78,7 +78,7 @@
     <ClInclude Include="HashTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Guide.h">
+    <ClInclude Include="HuongDan.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pair.h">
@@ -90,30 +90,30 @@
     <ClInclude Include="Queue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BFSState.h">
+    <ClInclude Include="TrangThaiBFS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Point.cpp">
+    <ClCompile Include="Diem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
+    <ClCompile Include="DoiTuongTroChoi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Wall.cpp">
+    <ClCompile Include="Tuong.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="NguoiChoi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Floor.cpp">
+    <ClCompile Include="Nen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Box.cpp">
+    <ClCompile Include="ThungGo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
@@ -125,46 +125,46 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Goal.cpp">
+    <ClCompile Include="ViTriDat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Obstacle.h">
+    <ClCompile Include="VatCan.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="Obstacle.cpp">
+    <ClCompile Include="VatCan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IronBox.cpp">
+    <ClCompile Include="ThungSat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
+    <ClCompile Include="NutBam.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp">
+    <ClCompile Include="HoatHinh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BridgeT.h">
+    <ClCompile Include="Cau.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="BridgeT.cpp">
+    <ClCompile Include="Cau.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Water.cpp">
+    <ClCompile Include="Nuoc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sand.cpp">
+    <ClCompile Include="Cat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Trap.cpp">
+    <ClCompile Include="Bay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Teleport.cpp">
+    <ClCompile Include="CongDichChuyen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TeleportNetwork.cpp">
+    <ClCompile Include="MangDichChuyen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Guide.cpp">
+    <ClCompile Include="HuongDan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
