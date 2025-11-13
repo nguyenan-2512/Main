@@ -27,7 +27,7 @@
     <ClInclude Include="NguoiChoi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
+    <ClInclude Include="BanDo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Nen.h">
@@ -36,10 +36,10 @@
     <ClInclude Include="ThungGo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
+    <ClInclude Include="GiaoDien.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="TroChoi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ViTriDat.h">
@@ -107,7 +107,7 @@
     <ClCompile Include="NguoiChoi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
+    <ClCompile Include="BanDo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Nen.cpp">
@@ -116,10 +116,10 @@
     <ClCompile Include="ThungGo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.cpp">
+    <ClCompile Include="GiaoDien.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
+    <ClCompile Include="TroChoi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">

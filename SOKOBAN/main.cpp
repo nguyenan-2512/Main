@@ -1,14 +1,14 @@
 #include <SFML/Graphics.hpp>
-#include "Game.h"
+#include "TroChoi.h"
 #include <iostream>
 
 int main() {
     try {
-        Game game;
-        game.run();
+        TroChoi troChoi;
+        troChoi.chay();
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        std::cerr << "Loi: " << e.what() << std::endl;
         return -1;
     }
 
