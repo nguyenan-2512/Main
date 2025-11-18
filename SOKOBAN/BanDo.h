@@ -35,15 +35,15 @@ private:
     DynamicArray<Nuoc> cacNuoc;
     DynamicArray<Cat> cacCat;
     DynamicArray<Cau> cacCau;
+
     DynamicArray<Bay> cacBay;
     DynamicArray<NutBam> cacNutBam;
     DynamicArray<CongDichChuyen> cacCongDichChuyen;
-
     MangDichChuyen mangDichChuyen;
 
     sf::Texture ketCauTuong;
     sf::Texture bangAnhNguoiChoi;
-    sf::Texture ketCauNen;
+    sf::Texture bangAnhNen;
     sf::Texture ketCauThungGo;
     sf::Texture ketCauThungSat;
     sf::Texture ketCauThungGoTrenViTriDat;

@@ -30,9 +30,9 @@ struct DiemHash {
         int x = d.layX();
         int y = d.layY();
 
-        unsigned int ux = (x >= 0) ? (2 * x) : (-2 * x - 1);
+        unsigned int ux = (x >= 0) ? (2 * x) : (-2 * x - 1);// 
         unsigned int uy = (y >= 0) ? (2 * y) : (-2 * y - 1);
-
+		//cantor pairing function
         if (ux >= uy) {
             return ux * ux + ux + uy;
         }
@@ -44,11 +44,12 @@ struct DiemHash {
 
 // Struct để hash số nguyên
 struct SoNguyenHash {
+     static const size_t PRIME = 2147483647; // Số nguyên tố lớn 2^31-1
+    
     std::size_t operator()(int x) const {
-        unsigned int ux = (x >= 0) ? static_cast<unsigned int>(x) : static_cast<unsigned int>(-x);
-        ux = ((ux >> 16) ^ ux) * 0x45d9f3b;
-        ux = ((ux >> 16) ^ ux) * 0x45d9f3b;
-        ux = (ux >> 16) ^ ux;
-        return ux;
+        // Chuyển đổi số âm thành dương
+        unsigned int ux = (x >= 0) ? static_cast<unsigned int>(x) 
+                                  : static_cast<unsigned int>(-x);
+        return ux % PRIME;
     }
 };

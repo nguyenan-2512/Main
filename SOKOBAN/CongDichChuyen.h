@@ -14,5 +14,5 @@ public:
 
     int layMaSoDichChuyen() const { return maSoDichChuyen; }
     void datMaSoDichChuyen(int maSo) { maSoDichChuyen = maSo; }
-    void datKetCau(const sf::Texture& ketCau);
+	void datKetCau(const sf::Texture& ketCau); // override lại từ class cha để thêm chức năng
 };

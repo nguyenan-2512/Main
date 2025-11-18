@@ -15,8 +15,8 @@ BanDo::BanDo(const std::string& tenFile, int kichThuocO)
     if (!bangAnhNguoiChoi.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\playersheet2.png")) {
         std::cerr << "Khong the tai texture nguoi choi!" << std::endl;
     }
-    if (!ketCauNen.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\co.png")) {
-        std::cerr << "Khong the tai texture nen!" << std::endl;
+    if (!bangAnhNen.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\co_animation.png")) {
+        std::cerr << "Khong the tai sprite sheet nen animation!" << std::endl;
     }
     if (!ketCauThungGo.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\thunggo.png")) {
         std::cerr << "Khong the tai texture thung go!" << std::endl;
@@ -93,38 +93,38 @@ BanDo::BanDo(const std::string& tenFile, int kichThuocO)
             }
             else if (kyTu == '@') {
                 cacNen.emplace_back(x, y, kichThuocO);
-                cacNen.back().datKetCau(ketCauNen);
+                cacNen.back().khoiTaoHoatHinh(bangAnhNen, 32, 32, 5);
                 nguoiChoi = new NguoiChoi(x, y, kichThuocO);
                 nguoiChoi->khoiTaoHoatHinh(bangAnhNguoiChoi, 32, 32, 4);
             }
             else if (kyTu == '$') {
                 cacNen.emplace_back(x, y, kichThuocO);
-                cacNen.back().datKetCau(ketCauNen);
+                cacNen.back().khoiTaoHoatHinh(bangAnhNen, 32, 32, 5);
                 cacThungGo.emplace_back(x, y, kichThuocO);
                 cacThungGo.back().datKetCauBinhThuong(ketCauThungGo);
                 cacThungGo.back().datKetCauTrenViTriDat(ketCauThungGoTrenViTriDat);
             }
             else if (kyTu == 'I') {
                 cacNen.emplace_back(x, y, kichThuocO);
-                cacNen.back().datKetCau(ketCauNen);
+                cacNen.back().khoiTaoHoatHinh(bangAnhNen, 32, 32, 5);
                 cacThungSat.emplace_back(x, y, kichThuocO);
                 cacThungSat.back().datKetCauThungSat(ketCauThungSat);
             }
             else if (kyTu == 'X' || kyTu == 'x') {
                 cacNen.emplace_back(x, y, kichThuocO);
-                cacNen.back().datKetCau(ketCauNen);
+                cacNen.back().khoiTaoHoatHinh(bangAnhNen, 32, 32, 5);
                 cacViTriDat.emplace_back(x, y, kichThuocO);
                 cacViTriDat.back().datKetCau(ketCauViTriDat);
             }
             else if (kyTu == 'O' || kyTu == 'o') {
                 cacNen.emplace_back(x, y, kichThuocO);
-                cacNen.back().datKetCau(ketCauNen);
+                cacNen.back().khoiTaoHoatHinh(bangAnhNen, 32, 32, 5);
                 cacVatCan.emplace_back(x, y, kichThuocO);
                 cacVatCan.back().datKetCau(ketCauVatCan);
             }
             else if (kyTu == '+') {
                 cacNen.emplace_back(x, y, kichThuocO);
-                cacNen.back().datKetCau(ketCauNen);
+                cacNen.back().khoiTaoHoatHinh(bangAnhNen, 32, 32, 5);
                 cacViTriDat.emplace_back(x, y, kichThuocO);
                 cacViTriDat.back().datKetCau(ketCauViTriDat);
                 nguoiChoi = new NguoiChoi(x, y, kichThuocO);
@@ -132,7 +132,7 @@ BanDo::BanDo(const std::string& tenFile, int kichThuocO)
             }
             else if (kyTu == '*') {
                 cacNen.emplace_back(x, y, kichThuocO);
-                cacNen.back().datKetCau(ketCauNen);
+                cacNen.back().khoiTaoHoatHinh(bangAnhNen, 32, 32, 5);
                 cacViTriDat.emplace_back(x, y, kichThuocO);
                 cacViTriDat.back().datKetCau(ketCauViTriDat);
                 cacThungGo.emplace_back(x, y, kichThuocO);
@@ -142,18 +142,18 @@ BanDo::BanDo(const std::string& tenFile, int kichThuocO)
             }
             else if (kyTu == '.' || kyTu == ' ') {
                 cacNen.emplace_back(x, y, kichThuocO);
-                cacNen.back().datKetCau(ketCauNen);
+                cacNen.back().khoiTaoHoatHinh(bangAnhNen, 32, 32, 5);
             }
             else if (kyTu == 'T') {
                 cacNen.emplace_back(x, y, kichThuocO);
-                cacNen.back().datKetCau(ketCauNen);
+                cacNen.back().khoiTaoHoatHinh(bangAnhNen, 32, 32, 5);
                 cacBay.emplace_back(x, y, kichThuocO);
                 cacBay.back().datKetCauKichHoat(ketCauBayKichHoat);
                 cacBay.back().datKetCauKhongKichHoat(ketCauBayKhongKichHoat);
             }
             else if (kyTu == 'B') {
                 cacNen.emplace_back(x, y, kichThuocO);
-                cacNen.back().datKetCau(ketCauNen);
+                cacNen.back().khoiTaoHoatHinh(bangAnhNen, 32, 32, 5);
                 cacNutBam.emplace_back(x, y, kichThuocO);
                 cacNutBam.back().datKetCauChuaNhan(ketCauNutChuaNhan);
                 cacNutBam.back().datKetCauDaNhan(ketCauNutDaNhan);
@@ -162,7 +162,7 @@ BanDo::BanDo(const std::string& tenFile, int kichThuocO)
                 int maSo = kyTu - '0';
 
                 Nen nen(x, y, kichThuocO);
-                nen.datKetCau(ketCauNen);
+                nen.khoiTaoHoatHinh(bangAnhNen, 32, 32, 5);
                 cacNen.push_back(nen);
 
                 CongDichChuyen congDichChuyen(x, y, kichThuocO, maSo);
@@ -545,7 +545,7 @@ void BanDo::phucHoiTrangThai(const TrangThaiDiChuyen& trangThai) {
 
     for (size_t i = 0; i < cacThungGo.size() && i < trangThai.cacViTriThung.size(); i++) {
         cacThungGo[i].datViTri(trangThai.cacViTriThung[i].layX(),
-            trangThai.cacViTriThung[i].layY());
+            trangThai.cacViTriThung[    i].layY());
     }
 
     capNhatThung();

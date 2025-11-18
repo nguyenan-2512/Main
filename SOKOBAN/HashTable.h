@@ -14,7 +14,7 @@ private:
     int capacity;
     int size;
     Hash hashFunction;
-
+        
     int getIndex(const Key& key) const {
         return hashFunction(key) % capacity;
     }
