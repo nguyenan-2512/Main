@@ -249,6 +249,10 @@ void TroChoi::capNhat() {
         }
     }
     else if (trangThaiTroChoi == TrangThaiTroChoi::DANG_CHOI) {
+        if (banDoHienTai) {
+            banDoHienTai->capNhatNen(thoiGianDelta);
+        }
+
         if (banDoHienTai && banDoHienTai->layNguoiChoi()) {
             banDoHienTai->layNguoiChoi()->capNhat(thoiGianDelta);
         }

@@ -509,6 +509,12 @@ void BanDo::capNhatThung() {
     }
 }
 
+void BanDo::capNhatNen(float thoiGianDelta) {
+    for (int i = 0; i < cacNen.getSize(); i++) {
+        cacNen[i].capNhat(thoiGianDelta);
+    }
+}
+
 bool BanDo::kiemTraThang() const {
     for (const auto& thung : cacThungGo) {
         bool trenViTriDat = false;

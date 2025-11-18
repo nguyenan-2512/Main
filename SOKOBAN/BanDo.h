@@ -66,6 +66,7 @@ private:
 
     void capNhatThung();
     void kiemTraNut();
+	
 
     bool laBuocDiHopLeBFS(const Diem& viTri,
         const DynamicArray<Diem>& cacThung,
@@ -134,6 +135,7 @@ public:
     void luiBuoc();
     int laySoBuoc() const;
 
+    void capNhatNen(float thoiGianDelta);
     // Các hàm giải BFS
     bool timLoiGiaiBFS(int doSauToiDa = 100);
     bool thucHienBuocGiai();
