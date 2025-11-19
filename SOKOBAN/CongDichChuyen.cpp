@@ -1,4 +1,4 @@
-#include "CongDichChuyen.h"
+﻿#include "CongDichChuyen.h"
 
 CongDichChuyen::CongDichChuyen()
     : DoiTuongTroChoi(0, 0, 0),
@@ -19,4 +19,9 @@ void CongDichChuyen::ve(sf::RenderWindow& cuaSo) {
 void CongDichChuyen::datKetCau(const sf::Texture& ketCau) {
     this->ketCau = &ketCau;
     sprite.setTexture(ketCau);
+}
+
+// ✅ THÊM HÀM NÀY
+int CongDichChuyen::layMaSo() const {
+    return maSoDichChuyen;
 }

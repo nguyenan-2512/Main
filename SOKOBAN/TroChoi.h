@@ -3,11 +3,15 @@
 #include <SFML/Audio.hpp> 
 #include "GiaoDien.h"
 #include "BanDo.h"
+#include "NutUI.h"        
+#include "LopPhuPause.h"   
+#include "HuongDan.h"     
+#include "GameController.h"
 
 enum class TrangThaiTroChoi {
     MENU,
     DANG_CHOI,
-    TAM_DUNG,
+    TAM_DUNG,        
     KET_THUC
 };
 
@@ -16,7 +20,10 @@ private:
     sf::RenderWindow cuaSo;
     GiaoDien GiaoDien;
     BanDo* banDoHienTai;
+    GameController* gameController;
     TrangThaiTroChoi trangThaiTroChoi;
+    TrangThaiTroChoi trangThaiTruoc;
+    
     sf::Music nhacNen;
     sf::SoundBuffer boNhoAmThanhBuocDi;
     sf::Sound amThanhBuocDi;
@@ -35,12 +42,19 @@ private:
 
     sf::Clock dongHoDelta;
 
-    sf::View tamNhinTroChoi;        // View cho game (800x800)
-    sf::Vector2u kichThuocGoc;      // Kích thước gốc (800x800)
-    float tyLeX;                    // Tỷ lệ scale X
-    float tyLeY;                    // Tỷ lệ scale Y
-    float cheDoX;                   // Offset X (letterbox)
-    float cheDoY;                   // Offset Y (letterbox)
+    sf::View tamNhinTroChoi;
+    sf::Vector2u kichThuocGoc;
+    float tyLeX;
+    float tyLeY;
+    float cheDoX;
+    float cheDoY;
+
+    NutUI* nutPause;
+    NutUI* nutGoiY;
+    LopPhuPause* lopPhuPause;
+    HuongDan* huongDan;
+    
+    bool dangTuDongGiai;  
 
 public:
     TroChoi();
@@ -55,8 +69,15 @@ private:
     void xoaTroChoi();
     void phatAmThanhBuocDi();
 
-    // Các hàm hỗ trợ fullscreen
     void thieLapManHinhDay();
     void capNhatTamNhin();
     sf::Vector2i layViTriChuotDaTyLe(const sf::Vector2i& viTriChuot);
+    
+    // THÊM: UI Functions
+    void khoiTaoUI();
+    void xoaUI();
+    void xuLyClickNutPause();
+    void xuLyClickNutGoiY();
+    void xuLyHanhDongPause(HanhDongPause hanhDong);
+    void veNutUI();
 };

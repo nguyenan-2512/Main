@@ -45,3 +45,7 @@ void Bay::capNhatKetCau() {
         sprite.setTexture(*ketCauKhongKichHoat);
     }
 }
+
+bool Bay::layTrangThaiKichHoat() const {
+    return dangKichHoat;
+}

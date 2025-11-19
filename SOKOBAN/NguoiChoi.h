@@ -1,23 +1,30 @@
 ﻿#pragma once
 #include "DoiTuongTroChoi.h"
 #include "HoatHinh.h"
+#include <SFML/Graphics.hpp>
 
 class NguoiChoi : public DoiTuongTroChoi {
 private:
-    HoatHinh hoatHinh;  // Animation của nhân vật
-    int trangThaiHienTai;  // Trạng thái hiện tại (hướng di chuyển)
+    HoatHinh hoatHinh;
+    int trangThaiHienTai;
+
+    void diChuyen(int dx, int dy);
 
 public:
-    NguoiChoi(int x = 0, int y = 0, int kichThuocO = 32);
+    NguoiChoi(int x, int y, int kichThuocO);
 
-    void ve(sf::RenderWindow& cuaSo) override;
-    void capNhat(float thoiGianDelta);  // Cập nhật animation
+    // ✅ THÊM MỚI
+    LoaiDoiTuong layLoai() const override {
+        return LoaiDoiTuong::NGUOI_CHOI;
+    }
+
+    // Người chơi KHÔNG chặn đường
 
     void khoiTaoHoatHinh(const sf::Texture& bangAnh,
         int chieuRongKhung,
         int chieuCaoKhung,
         int soKhungHinh);
-
-    void diChuyen(int dx, int dy);
     void datViTri(int x, int y, int dx, int dy);
+    void capNhat(float thoiGianDelta);
+    void ve(sf::RenderWindow& cuaSo) override;
 };

@@ -1,18 +1,23 @@
 ﻿#pragma once
 #include "DoiTuongTroChoi.h"
-#include <string>
+#include <SFML/Graphics.hpp>
 
 class CongDichChuyen : public DoiTuongTroChoi {
 private:
-    int maSoDichChuyen;  // ID để nhóm các cổng với nhau (cùng ID = liên kết)
+    int maSoDichChuyen;
     const sf::Texture* ketCau;
 
 public:
     CongDichChuyen();
     CongDichChuyen(int x, int y, int kichThuocO, int maSo);
-    void ve(sf::RenderWindow& cuaSo) override;
 
-    int layMaSoDichChuyen() const { return maSoDichChuyen; }
-    void datMaSoDichChuyen(int maSo) { maSoDichChuyen = maSo; }
+    // ✅ THÊM MỚI
+    LoaiDoiTuong layLoai() const override {
+        return LoaiDoiTuong::CONG_DICH_CHUYEN;
+    }
+
+    void ve(sf::RenderWindow& cuaSo) override;
     void datKetCau(const sf::Texture& ketCau);
+
+    int layMaSo() const;
 };

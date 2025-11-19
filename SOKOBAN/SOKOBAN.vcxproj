@@ -19,7 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BFSSolver.h" />
+    <ClInclude Include="GameController.h" />
+    <ClInclude Include="HistoryManager.h" />
     <ClInclude Include="HoatHinh.h" />
+    <ClInclude Include="LopPhuPause.h" />
+    <ClInclude Include="NutUI.h" />
     <ClInclude Include="TrangThaiBFS.h" />
     <ClInclude Include="ThungGo.h" />
     <ClInclude Include="NutBam.h" />
@@ -47,10 +52,15 @@
     <ClInclude Include="Nuoc.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BFSSolver.cpp" />
+    <ClCompile Include="GameController.cpp" />
+    <ClCompile Include="HistoryManager.cpp" />
     <ClCompile Include="HoatHinh.cpp" />
+    <ClCompile Include="LopPhuPause.cpp" />
+    <ClCompile Include="NutUI.cpp" />
     <ClCompile Include="ThungGo.cpp" />
     <ClCompile Include="Cau.cpp" />
-    <ClCompile Include="Cau.h" />
+    <ClInclude Include="Cau.h" />
     <ClCompile Include="NutBam.cpp" />
     <ClCompile Include="Nen.cpp" />
     <ClCompile Include="TroChoi.cpp" />
@@ -62,7 +72,7 @@
     <ClCompile Include="BanDo.cpp" />
     <ClCompile Include="GiaoDien.cpp" />
     <ClCompile Include="VatCan.cpp" />
-    <ClCompile Include="VatCan.h" />
+    <ClInclude Include="VatCan.h" />
     <ClCompile Include="NguoiChoi.cpp" />
     <ClCompile Include="Diem.cpp" />
     <ClCompile Include="Cat.cpp" />
@@ -174,7 +184,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>D:\SFML-2.6.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;openal32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

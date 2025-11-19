@@ -18,7 +18,7 @@ public:
     void themCongDichChuyen(const Diem& viTri, int maSoDichChuyen);
 
     // Lấy điểm đến khi đi vào cổng
-    Diem layDiemDen(const Diem& tuViTri);
+    Diem layDiemDen(const Diem& tuViTri) const;
 
     // Kiểm tra xem vị trí có phải cổng dịch chuyển không
     bool laCongDichChuyen(const Diem& viTri) const;

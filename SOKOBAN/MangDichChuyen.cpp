@@ -23,7 +23,7 @@ void MangDichChuyen::themCongDichChuyen(const Diem& viTri, int maSoDichChuyen) {
         << ") voi ma so: " << maSoDichChuyen << std::endl;
 }
 
-Diem MangDichChuyen::layDiemDen(const Diem& tuViTri) {
+Diem MangDichChuyen::layDiemDen(const Diem& tuViTri) const {
     int maSo;
     if (!viTriDenMaSo.find(tuViTri, maSo)) {
         return tuViTri; // Không phải cổng dịch chuyển

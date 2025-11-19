@@ -45,3 +45,15 @@ void NutBam::capNhatKetCau() {
         sprite.setTexture(*ketCauChuaNhan);
     }
 }
+
+bool NutBam::layTrangThaiNhan() const {
+    return dangDuocNhan;
+}
+
+void NutBam::themBayLienKet(int x, int y) {
+    cacBayLienKet.push_back(std::make_pair(x, y));
+}
+
+const DynamicArray<std::pair<int, int>>& NutBam::layCacBayLienKet() const {
+    return cacBayLienKet;
+}
