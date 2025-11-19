@@ -252,9 +252,27 @@ BanDo::~BanDo() {
 }
 
 void BanDo::ve(sf::RenderWindow& cuaSo) {
+    // ✅ VẼ THEO THỨ TỰ: Nền → Các đối tượng tĩnh → Thùng → Người chơi
+
+    // Bước 1: Vẽ tất cả đối tượng KHÔNG phải thùng
     for (int i = 0; i < cacDoiTuong.size(); i++) {
-        cacDoiTuong[i]->ve(cuaSo);  // ✅ Tự động gọi đúng hàm ve() của từng lớp con
+        LoaiDoiTuong loai = cacDoiTuong[i]->layLoai();
+        if (loai != LoaiDoiTuong::THUNG_GO &&
+            loai != LoaiDoiTuong::THUNG_SAT) {
+            cacDoiTuong[i]->ve(cuaSo);
+        }
     }
+
+    // Bước 2: Vẽ các thùng (đảm bảo thùng luôn hiển thị trên cùng)
+    for (int i = 0; i < cacDoiTuong.size(); i++) {
+        LoaiDoiTuong loai = cacDoiTuong[i]->layLoai();
+        if (loai == LoaiDoiTuong::THUNG_GO ||
+            loai == LoaiDoiTuong::THUNG_SAT) {
+            cacDoiTuong[i]->ve(cuaSo);
+        }
+    }
+
+    // Bước 3: Vẽ người chơi cuối cùng
     if (nguoiChoi) nguoiChoi->ve(cuaSo);
 }
 NguoiChoi* BanDo::layNguoiChoi() {
