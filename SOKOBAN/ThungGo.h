@@ -20,7 +20,7 @@ public:
     }
 
     bool laVatCanDiChuyen() const override {
-        return true;
+        return false;
     }
 
     void ve(sf::RenderWindow& cuaSo) override;

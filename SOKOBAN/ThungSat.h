@@ -16,7 +16,7 @@ public:
     }
 
     bool laVatCanDiChuyen() const override {
-        return true;  // Thùng sắt chặn đường
+        return false;  // Thùng sắt chặn đường
     }
 
     void ve(sf::RenderWindow& cuaSo) override;

@@ -24,87 +24,83 @@ bool GameController::diChuyenNguoiChoi(int dx, int dy) {
     NguoiChoi* nguoiChoi = map->layNguoiChoi();
     if (!nguoiChoi || map->layTrangThaiThua()) return false;
 
-    int xMoi = nguoiChoi->layX() + dx;
-    int yMoi = nguoiChoi->layY() + dy;
+    int xNguoiChoiHienTai = nguoiChoi->layX();
+    int yNguoiChoiHienTai = nguoiChoi->layY();
+    int xMoi = xNguoiChoiHienTai + dx;
+    int yMoi = yNguoiChoiHienTai + dy;
 
-    // Kiểm tra vật cản
-    if (map->kiemTraVatCanTai(xMoi, yMoi)) {
+    // ✅ BƯỚC 1: Kiểm tra vật cản TRƯỚC (tường, nước, chướng ngại vật)
+    // Nhưng KHÔNG tính thùng là vật cản
+    if (map->laTuong(xMoi, yMoi) ||
+        map->laNuoc(xMoi, yMoi) ||
+        map->laVatCan(xMoi, yMoi)) {
         return false;
     }
 
-    // Kiểm tra bẫy
+    // ✅ BƯỚC 2: Kiểm tra bẫy
     Bay* bay = map->timBayTai(xMoi, yMoi);
     if (bay && bay->layTrangThaiKichHoat()) {
         map->datTrangThaiThua(true);
         return false;
     }
 
-    // Kiểm tra đẩy thùng gỗ
+    // ✅ BƯỚC 3: Xử lý đẩy thùng gỗ
     ThungGo* thung = map->timThungGoTai(xMoi, yMoi);
     if (thung) {
-        if (!diChuyenThungGo(thung, dx, dy)) {
-            return false;
+        // Tính vị trí mới của thùng (đẩy theo hướng người chơi đang đi)
+        int xThungMoi = xMoi + dx;  // Vị trí thùng hiện tại + hướng đẩy
+        int yThungMoi = yMoi + dy;
+
+        // Kiểm tra vị trí mới của thùng có hợp lệ không
+        if (!kiemTraViTriHopLeChoThung(xThungMoi, yThungMoi)) {
+            return false;  // Không thể đẩy
         }
+
+        // ✅ Lưu trạng thái TRƯỚC KHI đẩy
+        TrangThaiDiChuyen trangThai = layTrangThaiHienTai();
+        historyManager->luuTrangThai(trangThai);
+
+        // Đẩy thùng
+        thung->datViTri(xThungMoi, yThungMoi);
+        capNhatThung();
+        capNhatNutVaBay();
+
+        // Di chuyển người chơi vào vị trí thùng cũ
+        nguoiChoi->datViTri(xMoi, yMoi, dx, dy);
+        return true;
     }
 
-    // Kiểm tra đẩy thùng sắt
+    // ✅ BƯỚC 4: Xử lý đẩy thùng sắt
     ThungSat* thungSat = map->timThungSatTai(xMoi, yMoi);
     if (thungSat) {
-        if (!diChuyenThungSat(thungSat, dx, dy)) {
+        int xThungSatMoi = xMoi + dx;
+        int yThungSatMoi = yMoi + dy;
+
+        if (!kiemTraViTriHopLeChoThung(xThungSatMoi, yThungSatMoi)) {
             return false;
         }
+
+        // ✅ Lưu trạng thái
+        TrangThaiDiChuyen trangThai = layTrangThaiHienTai();
+        historyManager->luuTrangThai(trangThai);
+
+        // Đẩy thùng sắt
+        thungSat->datViTri(xThungSatMoi, yThungSatMoi);
+        capNhatNutVaBay();
+
+        // Di chuyển người chơi
+        nguoiChoi->datViTri(xMoi, yMoi, dx, dy);
+        return true;
     }
 
-    // ✅ Lưu trạng thái trước khi di chuyển
+    // ✅ BƯỚC 5: Di chuyển người chơi bình thường (không có thùng)
     TrangThaiDiChuyen trangThai = layTrangThaiHienTai();
     historyManager->luuTrangThai(trangThai);
-    
-    // Di chuyển
+
     nguoiChoi->datViTri(xMoi, yMoi, dx, dy);
     capNhatNutVaBay();
 
     return true;
-}
-
-bool GameController::diChuyenThungGo(ThungGo* thung, int dx, int dy) {
-    int xMoi = thung->layX() + dx;
-    int yMoi = thung->layY() + dy;
-
-    Bay* bay = map->timBayTai(xMoi, yMoi);
-    if (bay && bay->layTrangThaiKichHoat()) {
-        return false;
-    }
-
-    if (!map->kiemTraVatCanTai(xMoi, yMoi) &&
-        !map->laThungGo(xMoi, yMoi) &&
-        !map->laThungSat(xMoi, yMoi)) {
-        
-        thung->datViTri(xMoi, yMoi);
-        capNhatThung();
-        capNhatNutVaBay();
-        return true;
-    }
-    return false;
-}
-
-bool GameController::diChuyenThungSat(ThungSat* thungSat, int dx, int dy) {
-    int xMoi = thungSat->layX() + dx;
-    int yMoi = thungSat->layY() + dy;
-
-    Bay* bay = map->timBayTai(xMoi, yMoi);
-    if (bay && bay->layTrangThaiKichHoat()) {
-        return false;
-    }
-
-    if (!map->kiemTraVatCanTai(xMoi, yMoi) &&
-        !map->laThungGo(xMoi, yMoi) &&
-        !map->laThungSat(xMoi, yMoi)) {
-        
-        thungSat->datViTri(xMoi, yMoi);
-        capNhatNutVaBay();
-        return true;
-    }
-    return false;
 }
 
 bool GameController::thucHienDichChuyen() {
@@ -151,6 +147,29 @@ bool GameController::thucHienDichChuyen() {
 // ========================
 // ✅ HELPER METHODS
 // ========================
+
+bool GameController::kiemTraViTriHopLeChoThung(int x, int y) const {
+    // 1. Không được là tường, nước, vật cản
+    if (map->laTuong(x, y) ||
+        map->laNuoc(x, y) ||
+        map->laVatCan(x, y)) {
+        return false;
+    }
+
+    // 2. Không được có thùng khác
+    if (map->laThungGo(x, y) || map->laThungSat(x, y)) {
+        return false;
+    }
+
+    // 3. Không được là bẫy đang kích hoạt
+    Bay* bay = map->timBayTai(x, y);
+    if (bay && bay->layTrangThaiKichHoat()) {
+        return false;
+    }
+
+    return true;
+}
+
 void GameController::capNhatThung() {
     for (int i = 0; i < map->cacThungGoPtr.size(); i++) {
         bool trenViTriDat = map->laViTriDat(
