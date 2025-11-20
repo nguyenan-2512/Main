@@ -13,6 +13,7 @@
 #include "CongDichChuyen.h"
 #include "MangDichChuyen.h"
 
+class Nen;
 
 class BanDo {
     friend class BFSSolver;
@@ -55,6 +56,8 @@ private:
     // bool dangTuDongGiai;
 
     bool trangThaiThua;
+
+    
 
 public:
     BanDo(const std::string& tenFile, int kichThuocO);

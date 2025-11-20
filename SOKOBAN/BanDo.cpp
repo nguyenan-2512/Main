@@ -62,9 +62,9 @@ BanDo::BanDo(const std::string& tenFile, int kichThuocO)
     if (!ketCauVatCan.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\bay.png")) {
         std::cerr << "Khong the tai texture vat can!" << std::endl;
     }
-    if (!ketCauDichChuyen.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\teleport_active.jpg")) {
+    /*if (!ketCauDichChuyen.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\teleport_active.jpg")) {
         std::cerr << "Khong the tai texture dich chuyen!" << std::endl;
-    }
+    }*/
 
     // ✅ THAY ĐỔI: Đọc file map với cách tiếp cận mới
     std::ifstream file(tenFile);
@@ -102,18 +102,15 @@ BanDo::BanDo(const std::string& tenFile, int kichThuocO)
             else if (kyTu == '~') {
                 Nuoc* nuocMoi = new Nuoc(x, y, kichThuocO);
 
-                // ✅ CÁCH 1: Dùng texture tĩnh (không animation)
-                // nuocMoi->datKetCau(ketCauNuoc);
-
-                // ✅ CÁCH 2: Dùng animation (giả sử có spritesheet nước)
-                nuocMoi->datHoatHinh(
-                    "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\nuoc_animation.png",
-                    32,      // Chiều rộng 1 frame
-                    32,      // Chiều cao 1 frame
-                    4,       // 4 frame animation
-                    0.5f,    // Chuyển frame mỗi 0.2 giây
-                    true     // Lặp lại
-                );
+                 nuocMoi->datKetCau(ketCauNuoc); 
+                //nuocMoi->datHoatHinh(
+                //    "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\nuoc_animation.png",
+                //    32,      // Chiều rộng 1 frame
+                //    32,      // Chiều cao 1 frame
+                //    9,       // 4 frame animation
+                //    0.9f,    // Chuyển frame mỗi 0.2 giây
+                //    true     // Lặp lại
+                //);
 
                 cacDoiTuong.push_back(nuocMoi);
             }
@@ -230,9 +227,18 @@ BanDo::BanDo(const std::string& tenFile, int kichThuocO)
                 cacDoiTuong.push_back(nenMoi);
 
                 CongDichChuyen* congMoi = new CongDichChuyen(x, y, kichThuocO, maSo);
-                congMoi->datKetCau(ketCauDichChuyen);
-                cacDoiTuong.push_back(congMoi);
 
+				//congMoi->datKetCau(ketCauDichChuyen); ảnh tĩnh
+                congMoi->datHoatHinh(
+                    "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\teleport_animation.png",
+                    32,      // Chiều rộng 1 frame
+                    32,      // Chiều cao 1 frame
+                    6,       // 6 frame animation cho hiệu ứng xoáy
+                    0.15f,   // Chuyển frame nhanh hơn (mỗi 0.12 giây)
+                    true     // Lặp lại
+                );
+                
+                cacDoiTuong.push_back(congMoi);
                 mangDichChuyen.themCongDichChuyen(Diem(x, y), maSo);
             }
         }
@@ -263,6 +269,7 @@ BanDo::~BanDo() {
     }
     delete nguoiChoi;
 }
+
 
 void BanDo::ve(sf::RenderWindow& cuaSo) {
     // ✅ Lấy delta time

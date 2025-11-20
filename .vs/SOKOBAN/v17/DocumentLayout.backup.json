@@ -7,24 +7,56 @@
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\BanDo.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\NutBam.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\NutBam.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Bay.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Bay.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Nuoc.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Nuoc.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\BanDo.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\BanDo.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Nuoc.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Nuoc.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Bay.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Bay.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\map1.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\map1.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\map6.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\map6.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\map7.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\map7.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\DoiTuongTroChoi.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\DoiTuongTroChoi.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Nuoc.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Nuoc.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\CongDichChuyen.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\CongDichChuyen.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\CongDichChuyen.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\CongDichChuyen.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\DoiTuongTroChoi.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\DoiTuongTroChoi.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Nuoc.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Nuoc.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\NutBam.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\NutBam.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Diem.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -37,10 +69,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\HoatHinhDoiTuong.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\HoatHinhDoiTuong.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\BanDo.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\BanDo.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\GameController.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -75,32 +103,8 @@
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\map5.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\map1.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\map1.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\map7.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\map7.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Bay.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Bay.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\Bay.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\Bay.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\HistoryManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\HistoryManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\CongDichChuyen.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\CongDichChuyen.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\CongDichChuyen.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|solutionrelative:SOKOBAN\\CongDichChuyen.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D9B5DEF4-5136-4B87-B2C6-EBC8EEC4B305}|SOKOBAN\\SOKOBAN.vcxproj|D:\\PBL2\\Main\\SOKOBAN\\BFSSolver.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -122,67 +126,19 @@
       "DocumentGroups": [
         {
           "DockedHeight": 293,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NutBam.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\NutBam.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\NutBam.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\NutBam.cpp",
-              "RelativeToolTip": "SOKOBAN\\NutBam.cpp",
+              "DocumentIndex": 5,
+              "Title": "map6.txt",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\map6.txt",
+              "RelativeDocumentMoniker": "SOKOBAN\\map6.txt",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\map6.txt",
+              "RelativeToolTip": "SOKOBAN\\map6.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-19T16:53:49.375Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Nuoc.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Nuoc.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\Nuoc.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Nuoc.cpp",
-              "RelativeToolTip": "SOKOBAN\\Nuoc.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-19T16:53:14.315Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Nuoc.h",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Nuoc.h",
-              "RelativeDocumentMoniker": "SOKOBAN\\Nuoc.h",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Nuoc.h",
-              "RelativeToolTip": "SOKOBAN\\Nuoc.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-19T16:52:53.919Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DoiTuongTroChoi.h",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\DoiTuongTroChoi.h",
-              "RelativeDocumentMoniker": "SOKOBAN\\DoiTuongTroChoi.h",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\DoiTuongTroChoi.h",
-              "RelativeToolTip": "SOKOBAN\\DoiTuongTroChoi.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-19T16:41:29.351Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Diem.h",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Diem.h",
-              "RelativeDocumentMoniker": "SOKOBAN\\Diem.h",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Diem.h",
-              "RelativeToolTip": "SOKOBAN\\Diem.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-19T16:41:26.276Z"
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-11-20T02:12:43.094Z"
             },
             {
               "$type": "Document",
@@ -192,7 +148,7 @@
               "RelativeDocumentMoniker": "SOKOBAN\\BanDo.cpp",
               "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\BanDo.cpp*",
               "RelativeToolTip": "SOKOBAN\\BanDo.cpp*",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAAAG8AAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAG0AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-11-19T13:57:52.406Z",
               "EditorCaption": ""
@@ -200,66 +156,18 @@
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "HoatHinhDoiTuong.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\HoatHinhDoiTuong.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\HoatHinhDoiTuong.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\HoatHinhDoiTuong.cpp",
-              "RelativeToolTip": "SOKOBAN\\HoatHinhDoiTuong.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-19T16:41:00.725Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DoiTuongTroChoi.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\DoiTuongTroChoi.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\DoiTuongTroChoi.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\DoiTuongTroChoi.cpp",
-              "RelativeToolTip": "SOKOBAN\\DoiTuongTroChoi.cpp",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAmwEYAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-19T14:07:11.98Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "HoatHinhDoiTuong.h",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\HoatHinhDoiTuong.h",
-              "RelativeDocumentMoniker": "SOKOBAN\\HoatHinhDoiTuong.h",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\HoatHinhDoiTuong.h",
-              "RelativeToolTip": "SOKOBAN\\HoatHinhDoiTuong.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAACAAAAAAAAAA==",
+              "Title": "DoiTuongTroChoi.h",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\DoiTuongTroChoi.h",
+              "RelativeDocumentMoniker": "SOKOBAN\\DoiTuongTroChoi.h",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\DoiTuongTroChoi.h",
+              "RelativeToolTip": "SOKOBAN\\DoiTuongTroChoi.h",
+              "ViewState": "AgIAACIAAAAAAAAAAAAhwBsAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-19T16:40:26.967Z"
+              "WhenOpened": "2025-11-19T16:41:29.351Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "map4.txt",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\map4.txt",
-              "RelativeDocumentMoniker": "SOKOBAN\\map4.txt",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\map4.txt",
-              "RelativeToolTip": "SOKOBAN\\map4.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-11-19T14:33:03.867Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "map5.txt",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\map5.txt",
-              "RelativeDocumentMoniker": "SOKOBAN\\map5.txt",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\map5.txt",
-              "RelativeToolTip": "SOKOBAN\\map5.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-11-19T14:32:46.909Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 4,
               "Title": "map1.txt",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\map1.txt",
               "RelativeDocumentMoniker": "SOKOBAN\\map1.txt",
@@ -271,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 6,
               "Title": "map7.txt",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\map7.txt",
               "RelativeDocumentMoniker": "SOKOBAN\\map7.txt",
@@ -283,151 +191,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "ThungGo.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\ThungGo.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\ThungGo.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\ThungGo.cpp",
-              "RelativeToolTip": "SOKOBAN\\ThungGo.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-19T14:51:29.817Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 2,
               "Title": "BanDo.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\BanDo.h",
               "RelativeDocumentMoniker": "SOKOBAN\\BanDo.h",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\BanDo.h",
-              "RelativeToolTip": "SOKOBAN\\BanDo.h",
-              "ViewState": "AgIAADYAAAAAAAAAAAAtwEoAAAAZAAAAAAAAAA==",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\BanDo.h*",
+              "RelativeToolTip": "SOKOBAN\\BanDo.h*",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAADsAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-19T14:07:05.108Z"
+              "WhenOpened": "2025-11-19T14:07:05.108Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "GameController.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\GameController.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\GameController.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\GameController.cpp",
-              "RelativeToolTip": "SOKOBAN\\GameController.cpp",
-              "ViewState": "AgIAAL4AAAAAAAAAAAAowMsAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-19T13:52:22.738Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ThungGo.h",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\ThungGo.h",
-              "RelativeDocumentMoniker": "SOKOBAN\\ThungGo.h",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\ThungGo.h",
-              "RelativeToolTip": "SOKOBAN\\ThungGo.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-19T14:51:45.848Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ThungSat.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\ThungSat.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\ThungSat.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\ThungSat.cpp",
-              "RelativeToolTip": "SOKOBAN\\ThungSat.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-19T14:51:49.308Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ThungSat.h",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\ThungSat.h",
-              "RelativeDocumentMoniker": "SOKOBAN\\ThungSat.h",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\ThungSat.h",
-              "RelativeToolTip": "SOKOBAN\\ThungSat.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-19T14:52:11.816Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "GameController.h",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\GameController.h",
-              "RelativeDocumentMoniker": "SOKOBAN\\GameController.h",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\GameController.h",
-              "RelativeToolTip": "SOKOBAN\\GameController.h",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAD8AAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-19T15:03:33.828Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "CongDichChuyen.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\CongDichChuyen.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\CongDichChuyen.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\CongDichChuyen.cpp",
-              "RelativeToolTip": "SOKOBAN\\CongDichChuyen.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-19T14:06:14.279Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "CongDichChuyen.h",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\CongDichChuyen.h",
-              "RelativeDocumentMoniker": "SOKOBAN\\CongDichChuyen.h",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\CongDichChuyen.h",
-              "RelativeToolTip": "SOKOBAN\\CongDichChuyen.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-19T14:07:11.035Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "BFSSolver.h",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\BFSSolver.h",
-              "RelativeDocumentMoniker": "SOKOBAN\\BFSSolver.h",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\BFSSolver.h",
-              "RelativeToolTip": "SOKOBAN\\BFSSolver.h",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-19T14:06:04.135Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "HistoryManager.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\HistoryManager.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\HistoryManager.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\HistoryManager.cpp",
-              "RelativeToolTip": "SOKOBAN\\HistoryManager.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-19T13:53:13.8Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "BFSSolver.cpp",
-              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\BFSSolver.cpp",
-              "RelativeDocumentMoniker": "SOKOBAN\\BFSSolver.cpp",
-              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\BFSSolver.cpp",
-              "RelativeToolTip": "SOKOBAN\\BFSSolver.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-19T14:05:59.346Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 1,
               "Title": "Bay.cpp",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Bay.cpp",
               "RelativeDocumentMoniker": "SOKOBAN\\Bay.cpp",
@@ -435,11 +212,12 @@
               "RelativeToolTip": "SOKOBAN\\Bay.cpp",
               "ViewState": "AgIAABwAAAAAAAAAAAAtwDAAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-19T09:01:25.738Z"
+              "WhenOpened": "2025-11-19T09:01:25.738Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 3,
               "Title": "Bay.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Bay.h",
               "RelativeDocumentMoniker": "SOKOBAN\\Bay.h",
@@ -451,7 +229,247 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Nuoc.h",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Nuoc.h",
+              "RelativeDocumentMoniker": "SOKOBAN\\Nuoc.h",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Nuoc.h",
+              "RelativeToolTip": "SOKOBAN\\Nuoc.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-11-19T16:52:53.919Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CongDichChuyen.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\CongDichChuyen.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\CongDichChuyen.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\CongDichChuyen.cpp",
+              "RelativeToolTip": "SOKOBAN\\CongDichChuyen.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-19T14:06:14.279Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CongDichChuyen.h",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\CongDichChuyen.h",
+              "RelativeDocumentMoniker": "SOKOBAN\\CongDichChuyen.h",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\CongDichChuyen.h",
+              "RelativeToolTip": "SOKOBAN\\CongDichChuyen.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-11-19T14:07:11.035Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DoiTuongTroChoi.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\DoiTuongTroChoi.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\DoiTuongTroChoi.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\DoiTuongTroChoi.cpp",
+              "RelativeToolTip": "SOKOBAN\\DoiTuongTroChoi.cpp",
+              "ViewState": "AgIAACQAAAAAAAAAAAAhwC8AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-19T14:07:11.98Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Nuoc.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Nuoc.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\Nuoc.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Nuoc.cpp",
+              "RelativeToolTip": "SOKOBAN\\Nuoc.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-19T16:53:14.315Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Diem.h",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\Diem.h",
+              "RelativeDocumentMoniker": "SOKOBAN\\Diem.h",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\Diem.h",
+              "RelativeToolTip": "SOKOBAN\\Diem.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-11-19T16:41:26.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "NutBam.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\NutBam.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\NutBam.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\NutBam.cpp",
+              "RelativeToolTip": "SOKOBAN\\NutBam.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-19T16:53:49.375Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "HoatHinhDoiTuong.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\HoatHinhDoiTuong.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\HoatHinhDoiTuong.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\HoatHinhDoiTuong.cpp",
+              "RelativeToolTip": "SOKOBAN\\HoatHinhDoiTuong.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-19T16:41:00.725Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "HoatHinhDoiTuong.h",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\HoatHinhDoiTuong.h",
+              "RelativeDocumentMoniker": "SOKOBAN\\HoatHinhDoiTuong.h",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\HoatHinhDoiTuong.h",
+              "RelativeToolTip": "SOKOBAN\\HoatHinhDoiTuong.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-11-19T16:40:26.967Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "map4.txt",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\map4.txt",
+              "RelativeDocumentMoniker": "SOKOBAN\\map4.txt",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\map4.txt",
+              "RelativeToolTip": "SOKOBAN\\map4.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-11-19T14:33:03.867Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "map5.txt",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\map5.txt",
+              "RelativeDocumentMoniker": "SOKOBAN\\map5.txt",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\map5.txt",
+              "RelativeToolTip": "SOKOBAN\\map5.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-11-19T14:32:46.909Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ThungGo.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\ThungGo.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\ThungGo.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\ThungGo.cpp",
+              "RelativeToolTip": "SOKOBAN\\ThungGo.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-19T14:51:29.817Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "GameController.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\GameController.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\GameController.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\GameController.cpp",
+              "RelativeToolTip": "SOKOBAN\\GameController.cpp",
+              "ViewState": "AgIAAL4AAAAAAAAAAAAowMsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-19T13:52:22.738Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ThungGo.h",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\ThungGo.h",
+              "RelativeDocumentMoniker": "SOKOBAN\\ThungGo.h",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\ThungGo.h",
+              "RelativeToolTip": "SOKOBAN\\ThungGo.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-11-19T14:51:45.848Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ThungSat.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\ThungSat.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\ThungSat.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\ThungSat.cpp",
+              "RelativeToolTip": "SOKOBAN\\ThungSat.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-19T14:51:49.308Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ThungSat.h",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\ThungSat.h",
+              "RelativeDocumentMoniker": "SOKOBAN\\ThungSat.h",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\ThungSat.h",
+              "RelativeToolTip": "SOKOBAN\\ThungSat.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-11-19T14:52:11.816Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "GameController.h",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\GameController.h",
+              "RelativeDocumentMoniker": "SOKOBAN\\GameController.h",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\GameController.h",
+              "RelativeToolTip": "SOKOBAN\\GameController.h",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAD8AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-11-19T15:03:33.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "BFSSolver.h",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\BFSSolver.h",
+              "RelativeDocumentMoniker": "SOKOBAN\\BFSSolver.h",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\BFSSolver.h",
+              "RelativeToolTip": "SOKOBAN\\BFSSolver.h",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-11-19T14:06:04.135Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "HistoryManager.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\HistoryManager.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\HistoryManager.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\HistoryManager.cpp",
+              "RelativeToolTip": "SOKOBAN\\HistoryManager.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-19T13:53:13.8Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 27,
+              "Title": "BFSSolver.cpp",
+              "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\BFSSolver.cpp",
+              "RelativeDocumentMoniker": "SOKOBAN\\BFSSolver.cpp",
+              "ToolTip": "D:\\PBL2\\Main\\SOKOBAN\\BFSSolver.cpp",
+              "RelativeToolTip": "SOKOBAN\\BFSSolver.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-19T14:05:59.346Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
               "Title": "HistoryManager.h",
               "DocumentMoniker": "D:\\PBL2\\Main\\SOKOBAN\\HistoryManager.h",
               "RelativeDocumentMoniker": "SOKOBAN\\HistoryManager.h",
