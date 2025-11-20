@@ -101,7 +101,20 @@ BanDo::BanDo(const std::string& tenFile, int kichThuocO)
             }
             else if (kyTu == '~') {
                 Nuoc* nuocMoi = new Nuoc(x, y, kichThuocO);
-                nuocMoi->datKetCau(ketCauNuoc);
+
+                // ✅ CÁCH 1: Dùng texture tĩnh (không animation)
+                // nuocMoi->datKetCau(ketCauNuoc);
+
+                // ✅ CÁCH 2: Dùng animation (giả sử có spritesheet nước)
+                nuocMoi->datHoatHinh(
+                    "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\nuoc_animation.png",
+                    32,      // Chiều rộng 1 frame
+                    32,      // Chiều cao 1 frame
+                    4,       // 4 frame animation
+                    0.5f,    // Chuyển frame mỗi 0.2 giây
+                    true     // Lặp lại
+                );
+
                 cacDoiTuong.push_back(nuocMoi);
             }
             else if (kyTu == '@') {
@@ -252,18 +265,23 @@ BanDo::~BanDo() {
 }
 
 void BanDo::ve(sf::RenderWindow& cuaSo) {
-    // ✅ VẼ THEO THỨ TỰ: Nền → Các đối tượng tĩnh → Thùng → Người chơi
+    // ✅ Lấy delta time
+    static sf::Clock dongHo;
+    float deltaTime = dongHo.restart().asSeconds();
 
-    // Bước 1: Vẽ tất cả đối tượng KHÔNG phải thùng
+    // Vẽ theo thứ tự layer
     for (int i = 0; i < cacDoiTuong.size(); i++) {
         LoaiDoiTuong loai = cacDoiTuong[i]->layLoai();
         if (loai != LoaiDoiTuong::THUNG_GO &&
             loai != LoaiDoiTuong::THUNG_SAT) {
+
+            // ✅ Cập nhật animation trước khi vẽ
+            cacDoiTuong[i]->capNhatHoatHinh(deltaTime);
             cacDoiTuong[i]->ve(cuaSo);
         }
     }
 
-    // Bước 2: Vẽ các thùng (đảm bảo thùng luôn hiển thị trên cùng)
+    // Vẽ thùng
     for (int i = 0; i < cacDoiTuong.size(); i++) {
         LoaiDoiTuong loai = cacDoiTuong[i]->layLoai();
         if (loai == LoaiDoiTuong::THUNG_GO ||
@@ -272,9 +290,10 @@ void BanDo::ve(sf::RenderWindow& cuaSo) {
         }
     }
 
-    // Bước 3: Vẽ người chơi cuối cùng
+    // Vẽ người chơi
     if (nguoiChoi) nguoiChoi->ve(cuaSo);
 }
+
 NguoiChoi* BanDo::layNguoiChoi() {
     return nguoiChoi;
 }

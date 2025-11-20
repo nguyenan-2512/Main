@@ -3,16 +3,15 @@
 
 class Nuoc : public DoiTuongTroChoi {
 public:
-    Nuoc();  // ✅ THÊM constructor mặc định
+    Nuoc();
     Nuoc(int x, int y, int kichThuocO);
 
-    // ✅ THÊM MỚI
     LoaiDoiTuong layLoai() const override {
         return LoaiDoiTuong::NUOC;
     }
 
     bool laVatCanDiChuyen() const override {
-        return true;  // Nước chặn đường
+        return true;
     }
 
     void ve(sf::RenderWindow& cuaSo) override;

@@ -1,12 +1,21 @@
-﻿// DoiTuongTroChoi.cpp - Triển khai lớp DoiTuongTroChoi
-#include "DoiTuongTroChoi.h"
+﻿#include "DoiTuongTroChoi.h"
 
 DoiTuongTroChoi::DoiTuongTroChoi(int x, int y, int kichThuocO)
-    : viTri(x, y), kichThuocO(kichThuocO) {
+    : viTri(x, y),
+    kichThuocO(kichThuocO),
+    hoatHinh(nullptr),
+    coHoatHinh(false) {
     sprite.setPosition(
         static_cast<float>(x * kichThuocO),
         static_cast<float>(y * kichThuocO)
     );
+}
+
+DoiTuongTroChoi::~DoiTuongTroChoi() {
+    if (hoatHinh) {
+        delete hoatHinh;
+        hoatHinh = nullptr;
+    }
 }
 
 Diem DoiTuongTroChoi::layViTri() const {
@@ -30,5 +39,37 @@ void DoiTuongTroChoi::datViTri(int x, int y) {
 }
 
 void DoiTuongTroChoi::datKetCau(const sf::Texture& ketCau) {
-    sprite.setTexture(ketCau);
+    if (!coHoatHinh) {  // Chỉ set texture nếu không có animation
+        sprite.setTexture(ketCau);
+    }
+}
+
+// ✅ THÊM: Thiết lập animation cho đối tượng
+void DoiTuongTroChoi::datHoatHinh(const std::string& duongDanTexture,
+    int chieuRongKhung,
+    int chieuCaoKhung,
+    int soKhungHinh,
+    float tocDoHoatHinh,
+    bool lapLai) {
+    if (hoatHinh) {
+        delete hoatHinh;
+    }
+
+    hoatHinh = new HoatHinhDoiTuong();
+    if (hoatHinh->khoiTao(&sprite, duongDanTexture,
+        chieuRongKhung, chieuCaoKhung,
+        soKhungHinh, tocDoHoatHinh, lapLai)) {
+        coHoatHinh = true;
+    }
+    else {
+        delete hoatHinh;
+        hoatHinh = nullptr;
+        coHoatHinh = false;
+    }
+}
+
+void DoiTuongTroChoi::capNhatHoatHinh(float thoiGianDelta) {
+    if (hoatHinh && coHoatHinh) {
+        hoatHinh->capNhat(thoiGianDelta);
+    }
 }

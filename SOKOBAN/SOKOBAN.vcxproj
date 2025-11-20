@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="BFSSolver.h" />
     <ClInclude Include="GameController.h" />
+    <ClInclude Include="HoatHinhDoiTuong.h" />
     <ClInclude Include="HistoryManager.h" />
     <ClInclude Include="HoatHinh.h" />
     <ClInclude Include="LopPhuPause.h" />
@@ -56,6 +57,7 @@
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="HistoryManager.cpp" />
     <ClCompile Include="HoatHinh.cpp" />
+    <ClCompile Include="HoatHinhDoiTuong.cpp" />
     <ClCompile Include="LopPhuPause.cpp" />
     <ClCompile Include="NutUI.cpp" />
     <ClCompile Include="ThungGo.cpp" />
