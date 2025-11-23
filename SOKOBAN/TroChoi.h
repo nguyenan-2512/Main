@@ -1,29 +1,33 @@
 ﻿#pragma once
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp> 
-#include "GiaoDien.h"
+#include <SFML/Audio.hpp>
 #include "BanDo.h"
-#include "NutUI.h"        
-#include "LopPhuPause.h"   
-#include "HuongDan.h"     
 #include "GameController.h"
-
-enum class TrangThaiTroChoi {
-    MENU,
-    DANG_CHOI,
-    TAM_DUNG,        
-    KET_THUC
-};
+#include "MapRenderer.h"
+#include "InputHandler.h"
+#include "GameUI.h"
 
 class TroChoi {
 private:
+    // UI & Input
+    GameUI* gameUI;
+    InputHandler inputHandler;
+    MapRenderer mapRenderer;
+
+    // Window & View
     sf::RenderWindow cuaSo;
-    GiaoDien GiaoDien;
+    sf::View tamNhinTroChoi;
+    sf::Vector2u kichThuocGoc;
+    float tyLeX;
+    float tyLeY;
+    float cheDoX;
+    float cheDoY;
+
+    // Game objects
     BanDo* banDoHienTai;
     GameController* gameController;
-    TrangThaiTroChoi trangThaiTroChoi;
-    TrangThaiTroChoi trangThaiTruoc;
-    
+
+    // Audio
     sf::Music nhacNen;
     sf::SoundBuffer boNhoAmThanhBuocDi;
     sf::Sound amThanhBuocDi;
@@ -32,34 +36,22 @@ private:
     sf::SoundBuffer boNhoAmThanhThua;
     sf::Sound amThanhThua;
 
-    sf::Texture ketCauThang;
-    sf::Sprite anhThang;
-    sf::Texture ketCauThua;
-    sf::Sprite anhThua;
-
+    // State
     bool hienThiThang;
     bool hienThiThua;
-
+    bool dangTuDongGiai;
     sf::Clock dongHoDelta;
-
-    sf::View tamNhinTroChoi;
-    sf::Vector2u kichThuocGoc;
-    float tyLeX;
-    float tyLeY;
-    float cheDoX;
-    float cheDoY;
-
-    NutUI* nutPause;
-    NutUI* nutGoiY;
-    LopPhuPause* lopPhuPause;
-    HuongDan* huongDan;
-    
-    bool dangTuDongGiai;  
 
 public:
     TroChoi();
     ~TroChoi();
     void chay();
+
+    // Callbacks cho GameUI
+    void xuLyClickNutPause();
+    void xuLyClickNutGoiY();
+    void xuLyHanhDongPause(HanhDongPause hanhDong);
+    void quayVeMenu();
 
 private:
     void xuLySuKien();
@@ -68,16 +60,8 @@ private:
     void khoiTaoTroChoi();
     void xoaTroChoi();
     void phatAmThanhBuocDi();
-
     void thieLapManHinhDay();
     void capNhatTamNhin();
     sf::Vector2i layViTriChuotDaTyLe(const sf::Vector2i& viTriChuot);
-    
-    // THÊM: UI Functions
-    void khoiTaoUI();
-    void xoaUI();
-    void xuLyClickNutPause();
-    void xuLyClickNutGoiY();
-    void xuLyHanhDongPause(HanhDongPause hanhDong);
-    void veNutUI();
+    void xuLyHanhDongGame(HanhDongGame hanhDong);
 };

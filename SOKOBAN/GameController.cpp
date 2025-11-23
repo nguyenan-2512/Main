@@ -7,19 +7,15 @@ GameController::GameController(BanDo* banDo)
     historyManager = new HistoryManager();
     bfsSolver = new BFSSolver(map);
     
-    // ✅ Cập nhật ban đầu
-    capNhatThung();
-    capNhatNutVaBay();
+
+    boxTriggerUpdater.capNhatThung(map);
+    boxTriggerUpdater.capNhatNutVaBay(map);
 }
 
 GameController::~GameController() {
     delete historyManager;
     delete bfsSolver;
 }
-
-// ========================
-// ✅ DI CHUYỂN NGƯỜI CHƠI
-// ========================
 bool GameController::diChuyenNguoiChoi(int dx, int dy) {
     NguoiChoi* nguoiChoi = map->layNguoiChoi();
     if (!nguoiChoi || map->layTrangThaiThua()) return false;
@@ -27,41 +23,42 @@ bool GameController::diChuyenNguoiChoi(int dx, int dy) {
     int xMoi = nguoiChoi->layX() + dx;
     int yMoi = nguoiChoi->layY() + dy;
 
-    // Kiểm tra vật cản
-    if (map->kiemTraVatCanTai(xMoi, yMoi)) {
-        return false;
-    }
-
-    // Kiểm tra bẫy
-    Bay* bay = map->timBayTai(xMoi, yMoi);
-    if (bay && bay->layTrangThaiKichHoat()) {
-        map->datTrangThaiThua(true);
-        return false;
-    }
-
-    // Kiểm tra đẩy thùng gỗ
     ThungGo* thung = map->timThungGoTai(xMoi, yMoi);
     if (thung) {
         if (!diChuyenThungGo(thung, dx, dy)) {
             return false;
         }
+        TrangThaiDiChuyen trangThai = layTrangThaiHienTai();
+        historyManager->luuTrangThai(trangThai);
+        nguoiChoi->datViTri(xMoi, yMoi, dx, dy);
+        boxTriggerUpdater.capNhatNutVaBay(map);
+        return true;
     }
-
-    // Kiểm tra đẩy thùng sắt
     ThungSat* thungSat = map->timThungSatTai(xMoi, yMoi);
     if (thungSat) {
         if (!diChuyenThungSat(thungSat, dx, dy)) {
             return false;
         }
+        TrangThaiDiChuyen trangThai = layTrangThaiHienTai();
+        historyManager->luuTrangThai(trangThai);
+        nguoiChoi->datViTri(xMoi, yMoi, dx, dy);
+        boxTriggerUpdater.capNhatNutVaBay(map);
+        return true;
     }
 
-    // ✅ Lưu trạng thái trước khi di chuyển
+    if (map->kiemTraVatCanTai(xMoi, yMoi)) {
+        return false;
+    }
+
+    Bay* bay = map->timBayTai(xMoi, yMoi);
+    if (bay && bay->layTrangThaiKichHoat()) {
+        map->datTrangThaiThua(true);
+        return false;
+    }
     TrangThaiDiChuyen trangThai = layTrangThaiHienTai();
     historyManager->luuTrangThai(trangThai);
-    
-    // Di chuyển
     nguoiChoi->datViTri(xMoi, yMoi, dx, dy);
-    capNhatNutVaBay();
+    boxTriggerUpdater.capNhatNutVaBay(map);
 
     return true;
 }
@@ -80,8 +77,8 @@ bool GameController::diChuyenThungGo(ThungGo* thung, int dx, int dy) {
         !map->laThungSat(xMoi, yMoi)) {
         
         thung->datViTri(xMoi, yMoi);
-        capNhatThung();
-        capNhatNutVaBay();
+        boxTriggerUpdater.capNhatThung(map);
+        boxTriggerUpdater.capNhatNutVaBay(map);
         return true;
     }
     return false;
@@ -99,9 +96,10 @@ bool GameController::diChuyenThungSat(ThungSat* thungSat, int dx, int dy) {
     if (!map->kiemTraVatCanTai(xMoi, yMoi) &&
         !map->laThungGo(xMoi, yMoi) &&
         !map->laThungSat(xMoi, yMoi)) {
-        
+
         thungSat->datViTri(xMoi, yMoi);
-        capNhatNutVaBay();
+        boxTriggerUpdater.capNhatThung(map);
+        boxTriggerUpdater.capNhatNutVaBay(map);
         return true;
     }
     return false;
@@ -148,43 +146,6 @@ bool GameController::thucHienDichChuyen() {
     return true;
 }
 
-// ========================
-// ✅ HELPER METHODS
-// ========================
-void GameController::capNhatThung() {
-    for (int i = 0; i < map->cacThungGoPtr.size(); i++) {
-        bool trenViTriDat = map->laViTriDat(
-            map->cacThungGoPtr[i]->layX(), 
-            map->cacThungGoPtr[i]->layY()
-        );
-        map->cacThungGoPtr[i]->datTrangThaiTrenViTriDat(trenViTriDat);
-    }
-}
-
-void GameController::capNhatNutVaBay() {
-    for (int i = 0; i < map->cacNutBamPtr.size(); i++) {
-        int nx = map->cacNutBamPtr[i]->layX();
-        int ny = map->cacNutBamPtr[i]->layY();
-
-        bool coThung = map->laThungGo(nx, ny);
-        bool coThungSat = map->laThungSat(nx, ny);
-        bool duocNhan = coThung || coThungSat;
-
-        map->cacNutBamPtr[i]->datTrangThaiNhan(duocNhan);
-
-        const auto& cacBayLienKet = map->cacNutBamPtr[i]->layCacBayLienKet();
-        for (int j = 0; j < cacBayLienKet.size(); j++) {
-            Bay* bay = map->timBayTai(
-                cacBayLienKet[j].first, 
-                cacBayLienKet[j].second
-            );
-            if (bay) {
-                bay->datKichHoat(!duocNhan);
-            }
-        }
-    }
-}
-
 bool GameController::kiemTraThang() const {
     for (int i = 0; i < map->cacThungGoPtr.size(); i++) {
         bool trenViTriDat = false;
@@ -205,9 +166,6 @@ bool GameController::kiemTraThua() const {
     return map->layTrangThaiThua();
 }
 
-// ========================
-// ✅ UNDO/REDO
-// ========================
 void GameController::undo() {
     if (!historyManager->coTheLui()) {
         std::cout << "Khong the lui!" << std::endl;
@@ -252,13 +210,10 @@ void GameController::phucHoiTrangThai(const TrangThaiDiChuyen& trangThai) {
         );
     }
 
-    capNhatThung();
-    capNhatNutVaBay();
+    boxTriggerUpdater.capNhatThung(map);
+    boxTriggerUpdater.capNhatNutVaBay(map);
 }
 
-// ========================
-// ✅ BFS AUTO-SOLVE
-// ========================
 TrangThaiBFS GameController::taoTrangThaiBFS() const {
     NguoiChoi* nguoiChoi = map->layNguoiChoi();
     Diem viTriNguoiChoi = nguoiChoi->layViTri();

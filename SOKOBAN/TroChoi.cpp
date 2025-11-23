@@ -1,12 +1,14 @@
 ﻿#include "TroChoi.h"
 #include <iostream>
+#include "ResourceManager.h"  
+#include "MapLoader.h"
 using namespace std;
 
 TroChoi::TroChoi() :
     cuaSo(sf::VideoMode::getDesktopMode(), "Sokoban", sf::Style::Fullscreen),
     banDoHienTai(nullptr),
-    trangThaiTroChoi(TrangThaiTroChoi::MENU),
-    trangThaiTruoc(TrangThaiTroChoi::MENU),
+    gameController(nullptr),  // ✅ THÊM dòng này
+    gameUI(nullptr),           // ✅ THÊM dòng này
     hienThiThang(false),
     hienThiThua(false),
     kichThuocGoc(800, 800),
@@ -14,10 +16,6 @@ TroChoi::TroChoi() :
     tyLeY(1.0f),
     cheDoX(0.0f),
     cheDoY(0.0f),
-    nutPause(nullptr),
-    nutGoiY(nullptr),
-    lopPhuPause(nullptr),
-    huongDan(nullptr),
     dangTuDongGiai(false) {
 
     cuaSo.setFramerateLimit(60);
@@ -25,187 +23,131 @@ TroChoi::TroChoi() :
 
     thieLapManHinhDay();
 
-    // Load tài nguyên âm thanh
+    // ===== ✅ THÊM: LOAD ÂM THANH =====
+    std::cout << "[TroChoi] Dang load am thanh..." << std::endl;
+
     if (!nhacNen.openFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\hi.ogg")) {
-        cerr << "Khong the tai nhac nen!" << endl;
+        std::cerr << "[TroChoi] Khong the tai nhac nen!" << std::endl;
+    }
+    else {
+        std::cout << "[TroChoi] + Nhac nen: OK" << std::endl;
     }
 
     if (!boNhoAmThanhBuocDi.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\step.ogg")) {
-        cerr << "Khong the tai am thanh buoc di!" << endl;
+        std::cerr << "[TroChoi] Khong the tai am thanh buoc di!" << std::endl;
     }
-    amThanhBuocDi.setBuffer(boNhoAmThanhBuocDi);
+    else {
+        amThanhBuocDi.setBuffer(boNhoAmThanhBuocDi);
+        std::cout << "[TroChoi] + Am thanh buoc di: OK" << std::endl;
+    }
 
     if (!boNhoAmThanhChienThang.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\win.ogg")) {
-        cerr << "Khong the tai am thanh chien thang!" << endl;
+        std::cerr << "[TroChoi] Khong the tai am thanh chien thang!" << std::endl;
     }
-    amThanhChienThang.setBuffer(boNhoAmThanhChienThang);
+    else {
+        amThanhChienThang.setBuffer(boNhoAmThanhChienThang);
+        std::cout << "[TroChoi] + Am thanh chien thang: OK" << std::endl;
+    }
 
     if (!boNhoAmThanhThua.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\gameover.ogg")) {
-        cerr << "Khong the tai am thanh thua!" << endl;
+        std::cerr << "[TroChoi] Khong the tai am thanh thua!" << std::endl;
     }
-    amThanhThua.setBuffer(boNhoAmThanhThua);
-
-    // Load texture win/gameover
-    if (!ketCauThang.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\win.png")) {
-        cerr << "Khong the tai anh thang!" << endl;
+    else {
+        amThanhThua.setBuffer(boNhoAmThanhThua);
+        std::cout << "[TroChoi] + Am thanh thua: OK" << std::endl;
     }
-    anhThang.setTexture(ketCauThang);
-    anhThang.setPosition(0, 0);
 
-    if (!ketCauThua.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\gameover.png")) {
-        cerr << "Khong the tai anh thua!" << endl;
+    std::cout << "[TroChoi] Load am thanh xong!" << std::endl;
+
+    // ===== KHỞI TẠO GAMEUI =====
+    std::cout << "[TroChoi] Dang khoi tao GameUI..." << std::endl;
+    gameUI = new GameUI();
+    if (!gameUI->khoiTao()) {
+        std::cerr << "[TroChoi] Loi khoi tao GameUI!" << std::endl;
     }
-    anhThua.setTexture(ketCauThua);
-    anhThua.setPosition(0, 0);
-
-    // Load giao diện
-    GiaoDien.taiTaiNguyen();
-
-    // Khởi tạo UI
-    khoiTaoUI();
+    std::cout << "[TroChoi] Khoi tao hoan tat!" << std::endl;
 }
 
 TroChoi::~TroChoi() {
     xoaTroChoi();
-    xoaUI();
-}
-
-void TroChoi::khoiTaoUI() {
-    cout << "\n=== KHOI TAO UI ===" << endl;
-
-
-    // Nút Pause (góc trên phải)
-    nutPause = new NutUI();
-    if (nutPause->taiAnh("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\pause_button.png")) {
-        nutPause->datViTri(730, 10);  // Dịch sang phải và lên cao hơn
-        nutPause->datKichThuoc(50, 50);  // Giảm từ 60x60 xuống 50x50
-        cout << "Da tao nut Pause" << endl;
+    if (gameUI) {
+        delete gameUI;
+        gameUI = nullptr;
     }
 
-    // Nút Gợi ý (bên trái nút pause - CHỈNH LẠI)
-    nutGoiY = new NutUI();
-    if (nutGoiY->taiAnh("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\hint_button.png")) {
-        nutGoiY->datViTri(665, 10);  // Cách nút pause 15px, cùng độ cao
-        nutGoiY->datKichThuoc(50, 50);  // Cùng kích thước với nút pause
-        cout << "Da tao nut Goi Y" << endl;
-    }
-
-    // Lớp phủ Pause
-    lopPhuPause = new LopPhuPause();
-    if (lopPhuPause->khoiTao(
-        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\pause_menu.png",
-        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\resume_button.png",
-        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\restart_button.png",
-        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\options_button.png",
-        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\exit_button.png"
-    )) {
-        cout << "Da tao Lop Phu Pause" << endl;
-    }
-    else {
-        cerr << "Loi khoi tao lop phu pause!" << endl;
-    }
-    cout << "Hoan thanh khoi tao UI!" << endl;
-}
-
-void TroChoi::xoaUI() {
-    if (nutPause) {
-        delete nutPause;
-        nutPause = nullptr;
-    }
-    if (nutGoiY) {
-        delete nutGoiY;
-        nutGoiY = nullptr;
-    }
-    if (lopPhuPause) {
-        delete lopPhuPause;
-        lopPhuPause = nullptr;
-    }
-    if (huongDan) {
-        delete huongDan;
-        huongDan = nullptr;
-    }
+    ResourceManager::destroy();
 }
 
 void TroChoi::xuLyClickNutPause() {
-    if (trangThaiTroChoi == TrangThaiTroChoi::DANG_CHOI) {
-        cout << "\n>>> MO PAUSE MENU <<<" << endl;
-        trangThaiTroChoi = TrangThaiTroChoi::TAM_DUNG;
-        if (lopPhuPause) {
-            lopPhuPause->hienThi();
-        }
-        nhacNen.pause();
+    // Kiểm tra đang ở màn hình chơi game
+    if (gameUI->layTrangThaiUI() != TrangThaiUI::DANG_CHOI) {
+        return;
     }
+
+    std::cout << "\n>>> MO PAUSE MENU <<<" << std::endl;
+
+    // Hiển thị pause menu thông qua GameUI
+    gameUI->hienThiPauseMenu();
+
+    // Tạm dừng nhạc nền
+    nhacNen.pause();
 }
 
 void TroChoi::xuLyClickNutGoiY() {
-    if (!gameController || trangThaiTroChoi != TrangThaiTroChoi::DANG_CHOI) {
+    // Kiểm tra gameController và trạng thái UI
+    if (!gameController) {
         return;
     }
 
+    // Kiểm tra đang ở màn hình chơi game
+    if (gameUI->layTrangThaiUI() != TrangThaiUI::DANG_CHOI) {
+        return;
+    }
+
+    // Kiểm tra đã đang tự động giải chưa
     if (dangTuDongGiai) {
-        cout << "\nDang tu dong giai. Nhan phim J de dung." << endl;
+        std::cout << "\nDang tu dong giai. Nhan phim J de dung." << std::endl;
         return;
     }
 
-    cout << "\n=== BAT DAU TU DONG GIAI ===" << endl;
-    cout << "Tim kiem loi giai voi BFS..." << endl;
+    std::cout << "\n=== BAT DAU TU DONG GIAI ===" << std::endl;
+    std::cout << "Tim kiem loi giai voi BFS..." << std::endl;
 
-    // ✅ THAY ĐỔI: Dùng gameController
+    // Tìm lời giải BFS
     if (gameController->timLoiGiaiBFS(200)) {
         gameController->batDauTuDongGiai();
         dangTuDongGiai = true;
-        cout << ">>> TIM THAY LOI GIAI! Dang tu dong chay..." << endl;
-        cout << "Nhan phim J de dung." << endl;
+        std::cout << ">>> TIM THAY LOI GIAI! Dang tu dong chay..." << std::endl;
+        std::cout << "Nhan phim J de dung." << std::endl;
     }
     else {
-        cout << ">>> KHONG TIM THAY LOI GIAI!" << endl;
+        std::cout << ">>> KHONG TIM THAY LOI GIAI!" << std::endl;
     }
 }
 
 void TroChoi::xuLyHanhDongPause(HanhDongPause hanhDong) {
     switch (hanhDong) {
     case HanhDongPause::TIEP_TUC:
-        cout << ">>> TIEP TUC CHOI <<<" << endl;
-        trangThaiTroChoi = TrangThaiTroChoi::DANG_CHOI;
-        if (lopPhuPause) {
-            lopPhuPause->an();
-        }
+        std::cout << ">>> TIEP TUC CHOI <<<" << std::endl;
+        gameUI->anPauseMenu();
         nhacNen.play();
         break;
 
     case HanhDongPause::CHOI_LAI:
-        cout << ">>> CHOI LAI <<<" << endl;
-        if (lopPhuPause) {
-            lopPhuPause->an();
-        }
-        trangThaiTroChoi = TrangThaiTroChoi::DANG_CHOI;
+        std::cout << ">>> CHOI LAI <<<" << std::endl;
+        gameUI->anPauseMenu();
         khoiTaoTroChoi();
         dangTuDongGiai = false;
         nhacNen.play();
         break;
+
     case HanhDongPause::THOAT:
-        cout << ">>> TRO VE MENU <<<" << endl;
-        if (lopPhuPause) {
-            lopPhuPause->an();
-        }
-        trangThaiTroChoi = TrangThaiTroChoi::MENU;
-        GiaoDien.datTrangThai(TrangThaiGiaoDien::MENU);
-        xoaTroChoi();
-        dangTuDongGiai = false;
-        nhacNen.play();
+        std::cout << ">>> TRO VE MENU <<<" << std::endl;
+        quayVeMenu();
         break;
 
     default:
         break;
-    }
-}
-
-void TroChoi::veNutUI() {
-    if (nutPause) {
-        nutPause->ve(cuaSo);
-    }
-    if (nutGoiY) {
-        nutGoiY->ve(cuaSo);
     }
 }
 
@@ -265,6 +207,7 @@ void TroChoi::chay() {
         veHinh();
     }
 }
+
 void TroChoi::xuLySuKien() {
     sf::Event suKien;
     while (cuaSo.pollEvent(suKien)) {
@@ -272,141 +215,41 @@ void TroChoi::xuLySuKien() {
             cuaSo.close();
         }
 
-        // Xử lý phím ESC
+        // Xử lý ESC
         if (suKien.type == sf::Event::KeyPressed && suKien.key.code == sf::Keyboard::Escape) {
-            if (trangThaiTroChoi == TrangThaiTroChoi::MENU) {
+            TrangThaiUI trangThaiUI = gameUI->layTrangThaiUI();
+
+            if (trangThaiUI == TrangThaiUI::MENU) {
                 cuaSo.close();
             }
-            else if (trangThaiTroChoi == TrangThaiTroChoi::DANG_CHOI) {
+            else if (trangThaiUI == TrangThaiUI::DANG_CHOI) {
                 xuLyClickNutPause();
             }
-            else if (trangThaiTroChoi == TrangThaiTroChoi::TAM_DUNG) {
+            else if (trangThaiUI == TrangThaiUI::TAM_DUNG) {
                 xuLyHanhDongPause(HanhDongPause::TIEP_TUC);
             }
         }
 
-        else if (trangThaiTroChoi == TrangThaiTroChoi::TAM_DUNG) {
-            if (suKien.type == sf::Event::MouseButtonPressed &&
-                suKien.mouseButton.button == sf::Mouse::Left) {
-
-                sf::Vector2i viTriChuot = layViTriChuotDaTyLe(sf::Mouse::getPosition(cuaSo));
-
-                if (lopPhuPause) {
-                    HanhDongPause hanhDong = lopPhuPause->kiemTraClick(viTriChuot);
-                    if (hanhDong != HanhDongPause::KHONG) {
-                        xuLyHanhDongPause(hanhDong);
-                    }
-                }
-            }
+        // Scale tọa độ chuột cho sự kiện
+        sf::Event suKienDaTyLe = suKien;
+        if (suKien.type == sf::Event::MouseButtonPressed) {
+            sf::Vector2i viTriDaTyLe = layViTriChuotDaTyLe(sf::Mouse::getPosition(cuaSo));
+            suKienDaTyLe.mouseButton.x = viTriDaTyLe.x;
+            suKienDaTyLe.mouseButton.y = viTriDaTyLe.y;
         }
-        else if (trangThaiTroChoi == TrangThaiTroChoi::MENU) {
-            if (suKien.type == sf::Event::MouseButtonPressed) {
-                sf::Vector2i viTriDaTyLe = layViTriChuotDaTyLe(sf::Mouse::getPosition(cuaSo));
-                sf::Event suKienDaTyLe = suKien;
-                suKienDaTyLe.mouseButton.x = viTriDaTyLe.x;
-                suKienDaTyLe.mouseButton.y = viTriDaTyLe.y;
-                GiaoDien.xuLySuKien(suKienDaTyLe, cuaSo);
-            }
-            else if (suKien.type == sf::Event::MouseMoved) {
-                sf::Vector2i viTriDaTyLe = layViTriChuotDaTyLe(sf::Mouse::getPosition(cuaSo));
-                sf::Event suKienDaTyLe = suKien;
-                suKienDaTyLe.mouseMove.x = viTriDaTyLe.x;
-                suKienDaTyLe.mouseMove.y = viTriDaTyLe.y;
-                GiaoDien.xuLySuKien(suKienDaTyLe, cuaSo);
-            }
-            else {
-                GiaoDien.xuLySuKien(suKien, cuaSo);
-            }
+        else if (suKien.type == sf::Event::MouseMoved) {
+            sf::Vector2i viTriDaTyLe = layViTriChuotDaTyLe(sf::Mouse::getPosition(cuaSo));
+            suKienDaTyLe.mouseMove.x = viTriDaTyLe.x;
+            suKienDaTyLe.mouseMove.y = viTriDaTyLe.y;
         }
-        else if (trangThaiTroChoi == TrangThaiTroChoi::DANG_CHOI) {
-            // Xử lý click vào UI buttons
-            if (suKien.type == sf::Event::MouseButtonPressed &&
-                suKien.mouseButton.button == sf::Mouse::Left) {
 
-                sf::Vector2i viTriChuot = layViTriChuotDaTyLe(sf::Mouse::getPosition(cuaSo));
+        // GameUI xử lý sự kiện
+        gameUI->xuLySuKien(suKienDaTyLe, cuaSo, this);
 
-                if (nutPause && nutPause->kiemTraClick(viTriChuot)) {
-                    xuLyClickNutPause();
-                    continue;
-                }
-
-                if (nutGoiY && nutGoiY->kiemTraClick(viTriChuot)) {
-                    xuLyClickNutGoiY();
-                    continue;
-                }
-            }
-
-            // Xử lý win/lose screen
-            if (hienThiThang || hienThiThua) {
-                if (suKien.type == sf::Event::KeyPressed) {
-                    trangThaiTroChoi = TrangThaiTroChoi::MENU;
-                    GiaoDien.datTrangThai(TrangThaiGiaoDien::MENU);
-                    xoaTroChoi();
-                    hienThiThang = false;
-                    hienThiThua = false;
-                    dangTuDongGiai = false;
-                    nhacNen.play();
-                }
-            }
-            else {
-                // Xử lý phím điều khiển
-                if (suKien.type == sf::Event::KeyPressed) {
-                    if (suKien.key.code == sf::Keyboard::R) {
-                        khoiTaoTroChoi();
-                        dangTuDongGiai = false;
-                    }
-                    else if (suKien.key.code == sf::Keyboard::U) {
-                        // ✅ THAY ĐỔI: Dùng gameController
-                        if (gameController) {
-                            gameController->undo();
-                        }
-                    }
-                    else if (suKien.key.code == sf::Keyboard::J) {
-                        // ✅ THAY ĐỔI: Dùng gameController
-                        if (gameController && dangTuDongGiai) {
-                            gameController->dungTuDongGiai();
-                            dangTuDongGiai = false;
-                            cout << "Da dung tu dong giai!" << endl;
-                        }
-                    }
-                    else if (suKien.key.code == sf::Keyboard::T) {
-                        // ✅ THAY ĐỔI: Dùng gameController
-                        if (gameController) {
-                            bool daDichChuyen = gameController->thucHienDichChuyen();
-                            if (daDichChuyen) {
-                                phatAmThanhBuocDi();
-                            }
-                        }
-                    }
-                    else if (suKien.key.code == sf::Keyboard::H) {
-                        // ✅ THAY ĐỔI: Dùng gameController
-                        if (gameController && !gameController->layTrangThaiTuDongGiai()) {
-                            xuLyClickNutGoiY();
-                        }
-                    }
-                    else if (gameController && !dangTuDongGiai) {
-                        bool daDiChuyen = false;
-
-                        // ✅ THAY ĐỔI: Dùng gameController->diChuyenNguoiChoi()
-                        if (suKien.key.code == sf::Keyboard::Up || suKien.key.code == sf::Keyboard::W) {
-                            daDiChuyen = gameController->diChuyenNguoiChoi(0, -1);
-                        }
-                        else if (suKien.key.code == sf::Keyboard::Down || suKien.key.code == sf::Keyboard::S) {
-                            daDiChuyen = gameController->diChuyenNguoiChoi(0, 1);
-                        }
-                        else if (suKien.key.code == sf::Keyboard::Left || suKien.key.code == sf::Keyboard::A) {
-                            daDiChuyen = gameController->diChuyenNguoiChoi(-1, 0);
-                        }
-                        else if (suKien.key.code == sf::Keyboard::Right || suKien.key.code == sf::Keyboard::D) {
-                            daDiChuyen = gameController->diChuyenNguoiChoi(1, 0);
-                        }
-
-                        if (daDiChuyen) {
-                            phatAmThanhBuocDi();
-                        }
-                    }
-                }
-            }
+        // Xử lý phím game (di chuyển, undo...)
+        if (gameUI->layTrangThaiUI() == TrangThaiUI::DANG_CHOI) {
+            HanhDongGame hanhDong = inputHandler.xuLyPhimChoiGame(suKien);
+            xuLyHanhDongGame(hanhDong);
         }
     }
 }
@@ -418,43 +261,26 @@ void TroChoi::phatAmThanhBuocDi() {
 void TroChoi::capNhat() {
     float thoiGianDelta = dongHoDelta.restart().asSeconds();
 
-    if (trangThaiTroChoi == TrangThaiTroChoi::MENU) {
-        GiaoDien.capNhat();
+    // Cập nhật hover UI
+    sf::Vector2i viTriChuot = layViTriChuotDaTyLe(sf::Mouse::getPosition(cuaSo));
+    gameUI->capNhat(viTriChuot);
 
-        TrangThaiGiaoDien trangThaiThucDon = GiaoDien.layTrangThai();
-        if (trangThaiThucDon == TrangThaiGiaoDien::DANG_CHOI) {
-            trangThaiTroChoi = TrangThaiTroChoi::DANG_CHOI;
-            khoiTaoTroChoi();
-            if (banDoHienTai && banDoHienTai->layNguoiChoi()) {
-                banDoHienTai->layNguoiChoi()->capNhat(thoiGianDelta);
-            }
-            hienThiThang = false;
-            hienThiThua = false;
-            dangTuDongGiai = false;
-        }
-        else if (trangThaiThucDon == TrangThaiGiaoDien::THOAT) {
-            cuaSo.close();
-        }
-    }
-    else if (trangThaiTroChoi == TrangThaiTroChoi::TAM_DUNG) {
-        sf::Vector2i viTriChuot = layViTriChuotDaTyLe(sf::Mouse::getPosition(cuaSo));
-        if (lopPhuPause) {
-            lopPhuPause->capNhat(viTriChuot);
-        }
-    }
-    else if (trangThaiTroChoi == TrangThaiTroChoi::DANG_CHOI) {
-        sf::Vector2i viTriChuot = layViTriChuotDaTyLe(sf::Mouse::getPosition(cuaSo));
-        if (nutPause) {
-            nutPause->capNhat(viTriChuot);
-        }
-        if (nutGoiY) {
-            nutGoiY->capNhat(viTriChuot);
-        }
+    TrangThaiUI trangThaiUI = gameUI->layTrangThaiUI();
 
+    if (trangThaiUI == TrangThaiUI::CHON_BAN_DO && gameUI->layMapDaChon() >= 0) {
+        gameUI->datTrangThaiUI(TrangThaiUI::DANG_CHOI);
+        khoiTaoTroChoi();
+        hienThiThang = false;
+        hienThiThua = false;
+        dangTuDongGiai = false;
+    }
+
+    if (trangThaiUI == TrangThaiUI::DANG_CHOI) {
         if (banDoHienTai && banDoHienTai->layNguoiChoi()) {
             banDoHienTai->layNguoiChoi()->capNhat(thoiGianDelta);
         }
 
+        // Auto-solve
         if (gameController && dangTuDongGiai) {
             if (gameController->layTrangThaiTuDongGiai()) {
                 static sf::Clock dongHoTuDongGiai;
@@ -462,7 +288,7 @@ void TroChoi::capNhat() {
                     bool thanhCong = gameController->thucHienBuocGiai();
                     if (!thanhCong) {
                         dangTuDongGiai = false;
-                        cout << "Hoan thanh tu dong giai!" << endl;
+                        std::cout << "Hoan thanh tu dong giai!" << std::endl;
                     }
                     dongHoTuDongGiai.restart();
                 }
@@ -472,20 +298,24 @@ void TroChoi::capNhat() {
             }
         }
 
+        // Kiểm tra thua
         if (banDoHienTai && banDoHienTai->layTrangThaiThua() && !hienThiThua) {
             hienThiThua = true;
+            gameUI->datTrangThaiUI(TrangThaiUI::THUA);
             amThanhThua.play();
             nhacNen.stop();
             dangTuDongGiai = false;
-            cout << "Thua cuoc! Nhan phim bat ky de quay lai Menu." << endl;
+            std::cout << "Thua cuoc!" << std::endl;
         }
 
+        // Kiểm tra thắng
         if (gameController && gameController->kiemTraThang() && !hienThiThang && !hienThiThua) {
             hienThiThang = true;
+            gameUI->datTrangThaiUI(TrangThaiUI::THANG);
             amThanhChienThang.play();
             nhacNen.stop();
             dangTuDongGiai = false;
-            cout << "Chuc mung! Ban da chien thang!" << endl;
+            std::cout << "Chuc mung!" << std::endl;
         }
     }
 }
@@ -494,82 +324,48 @@ void TroChoi::veHinh() {
     cuaSo.clear(sf::Color::Black);
     capNhatTamNhin();
 
-    if (trangThaiTroChoi == TrangThaiTroChoi::MENU) {
-        GiaoDien.ve(cuaSo);
-    }
-    else if (trangThaiTroChoi == TrangThaiTroChoi::DANG_CHOI ||
-        trangThaiTroChoi == TrangThaiTroChoi::TAM_DUNG) {
+    TrangThaiUI trangThaiUI = gameUI->layTrangThaiUI();
+
+    // Vẽ map khi đang chơi
+    if (trangThaiUI == TrangThaiUI::DANG_CHOI ||
+        trangThaiUI == TrangThaiUI::TAM_DUNG ||
+        trangThaiUI == TrangThaiUI::THANG ||
+        trangThaiUI == TrangThaiUI::THUA) {
         if (banDoHienTai) {
-            banDoHienTai->ve(cuaSo);
-
-            // Vẽ UI buttons (chỉ khi đang chơi)
-            if (trangThaiTroChoi == TrangThaiTroChoi::DANG_CHOI) {
-                veNutUI();
-            }
-
-            // Vẽ màn hình thua
-            if (hienThiThua) {
-                sf::RectangleShape lop(sf::Vector2f(800, 800));
-                lop.setFillColor(sf::Color(0, 0, 0, 180));
-                cuaSo.draw(lop);
-                cuaSo.draw(anhThua);
-
-                sf::Font chuPhong;
-                if (chuPhong.loadFromFile("C:\\Windows\\Fonts\\arial.ttf")) {
-                    sf::Text huongDanText;
-                    huongDanText.setFont(chuPhong);
-                    huongDanText.setString("Nhan phim bat ky de quay lai Menu");
-                    huongDanText.setCharacterSize(18);
-                    huongDanText.setFillColor(sf::Color::Red);
-                    huongDanText.setPosition(270, 765);
-                    cuaSo.draw(huongDanText);
-                }
-            }
-
-            // Vẽ màn hình thắng
-            if (hienThiThang) {
-                sf::RectangleShape lop(sf::Vector2f(800, 800));
-                lop.setFillColor(sf::Color(0, 0, 0, 150));
-                cuaSo.draw(lop);
-                cuaSo.draw(anhThang);
-
-                sf::Font chuPhong;
-                if (chuPhong.loadFromFile("C:\\Windows\\Fonts\\arial.ttf")) {
-                    sf::Text huongDanText;
-                    huongDanText.setFont(chuPhong);
-                    huongDanText.setString("Nhan phim bat ky de quay lai Menu");
-                    huongDanText.setCharacterSize(18);
-                    huongDanText.setFillColor(sf::Color::Green);
-                    huongDanText.setPosition(280, 765);
-                    cuaSo.draw(huongDanText);
-                }
-            }
-
-            // Vẽ pause overlay
-            if (trangThaiTroChoi == TrangThaiTroChoi::TAM_DUNG && lopPhuPause) {
-                lopPhuPause->ve(cuaSo);
-            }
+            mapRenderer.ve(cuaSo, banDoHienTai);  // Nếu đã làm Bước 1
         }
     }
+
+    // Vẽ UI
+    gameUI->ve(cuaSo);
 
     cuaSo.display();
 }
 
 void TroChoi::khoiTaoTroChoi() {
     xoaTroChoi();
-
-    int banDoChon = GiaoDien.layMapDaChon();
-    if (banDoChon < 0) {
-        banDoChon = 0;
+    static bool resourcesLoaded = false;
+    if (!resourcesLoaded) {
+        ResourceManager::getInstance()->loadAllGameResources();
+        resourcesLoaded = true;
     }
 
-    std::string tenFileBanDo = "map" + std::to_string(banDoChon + 1) + ".txt";
-    std::cout << "Dang tai ban do: " << tenFileBanDo << std::endl;
+    int banDoChon = gameUI->layMapDaChon();
+    if (banDoChon < 0) banDoChon = 0;
 
-    banDoHienTai = new BanDo(tenFileBanDo, 32);
+    std::string tenFileBanDo = "map" + std::to_string(banDoChon + 1) + ".txt";
+    std::cout << "[TroChoi] Dang tai: " << tenFileBanDo << std::endl;
+
+    banDoHienTai = MapLoader::loadFromFile(tenFileBanDo, 32);
+
+    if (!banDoHienTai) {
+        std::cerr << "[TroChoi] LOI LOAD MAP!" << std::endl;
+        return;
+    }
+
     gameController = new GameController(banDoHienTai);
     dangTuDongGiai = false;
-    std::cout << "Tro choi da duoc khoi tao voi " << tenFileBanDo << "!" << std::endl;
+    std::cout << "[TroChoi] Khoi tao thanh cong!" << std::endl;
 }
 
 void TroChoi::xoaTroChoi() {
@@ -581,4 +377,93 @@ void TroChoi::xoaTroChoi() {
         delete banDoHienTai;
         banDoHienTai = nullptr;
     }
+}
+
+void TroChoi::xuLyHanhDongGame(HanhDongGame hanhDong) {
+    // Kiểm tra gameController có tồn tại không
+    if (!gameController) return;
+
+    switch (hanhDong) {
+        // ========== RESTART ==========
+    case HanhDongGame::RESTART:
+        khoiTaoTroChoi();
+        dangTuDongGiai = false;
+        std::cout << "Da khoi tao lai game!" << std::endl;
+        break;
+
+        // ========== UNDO ==========
+    case HanhDongGame::UNDO:
+        gameController->undo();
+        break;
+
+        // ========== DỪNG AUTO-SOLVE ==========
+    case HanhDongGame::DUNG_AUTO_SOLVE:
+        if (dangTuDongGiai) {
+            gameController->dungTuDongGiai();
+            dangTuDongGiai = false;
+            std::cout << "Da dung tu dong giai!" << std::endl;
+        }
+        break;
+
+        // ========== TELEPORT ==========
+    case HanhDongGame::TELEPORT: {
+        bool daDichChuyen = gameController->thucHienDichChuyen();
+        if (daDichChuyen) {
+            phatAmThanhBuocDi();
+        }
+        break;
+    }
+    case HanhDongGame::HINT:
+        if (!gameController->layTrangThaiTuDongGiai()) {
+            xuLyClickNutGoiY();
+        }
+        break;
+
+        // ========== PAUSE ==========
+    case HanhDongGame::PAUSE:
+        xuLyClickNutPause();
+        break;
+
+        // ========== DI CHUYỂN (4 HƯỚNG) ==========
+    case HanhDongGame::DI_LEN:
+    case HanhDongGame::DI_XUONG:
+    case HanhDongGame::DI_TRAI:
+    case HanhDongGame::DI_PHAI: {
+        // Chỉ di chuyển khi KHÔNG đang auto-solve
+        if (!dangTuDongGiai) {
+            bool daDiChuyen = false;
+
+            // Xác định hướng di chuyển
+            if (hanhDong == HanhDongGame::DI_LEN) {
+                daDiChuyen = gameController->diChuyenNguoiChoi(0, -1);
+            }
+            else if (hanhDong == HanhDongGame::DI_XUONG) {
+                daDiChuyen = gameController->diChuyenNguoiChoi(0, 1);
+            }
+            else if (hanhDong == HanhDongGame::DI_TRAI) {
+                daDiChuyen = gameController->diChuyenNguoiChoi(-1, 0);
+            }
+            else if (hanhDong == HanhDongGame::DI_PHAI) {
+                daDiChuyen = gameController->diChuyenNguoiChoi(1, 0);
+            }
+
+            // Phát âm thanh nếu di chuyển thành công
+            if (daDiChuyen) {
+                phatAmThanhBuocDi();
+            }
+        }
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void TroChoi::quayVeMenu() {
+    gameUI->datTrangThaiUI(TrangThaiUI::MENU);
+    xoaTroChoi();
+    hienThiThang = false;
+    hienThiThua = false;
+    dangTuDongGiai = false;
+    nhacNen.play();
 }

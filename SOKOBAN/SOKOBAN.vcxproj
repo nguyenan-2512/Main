@@ -20,11 +20,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BFSSolver.h" />
+    <ClInclude Include="BoxTriggerUpdater.h" />
     <ClInclude Include="GameController.h" />
+    <ClInclude Include="GameUI.h" />
     <ClInclude Include="HistoryManager.h" />
     <ClInclude Include="HoatHinh.h" />
+    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="LopPhuPause.h" />
+    <ClInclude Include="MapLoader.h" />
+    <ClInclude Include="MapRenderer.h" />
+    <ClInclude Include="MapSelectUI.h" />
+    <ClInclude Include="MenuUI.h" />
     <ClInclude Include="NutUI.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="TrangThaiBFS.h" />
     <ClInclude Include="ThungGo.h" />
     <ClInclude Include="NutBam.h" />
@@ -53,10 +61,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BFSSolver.cpp" />
+    <ClCompile Include="BoxTriggerUpdater.cpp" />
     <ClCompile Include="GameController.cpp" />
+    <ClCompile Include="GameUI.cpp" />
     <ClCompile Include="HistoryManager.cpp" />
     <ClCompile Include="HoatHinh.cpp" />
-    <ClCompile Include="LopPhuPause.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="MapRenderer.cpp" />
+    <ClCompile Include="MapSelectUI.cpp" />
+    <ClCompile Include="MenuUI.cpp" />
     <ClCompile Include="NutUI.cpp" />
     <ClCompile Include="ThungGo.cpp" />
     <ClCompile Include="Cau.cpp" />

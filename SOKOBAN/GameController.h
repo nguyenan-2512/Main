@@ -4,6 +4,7 @@
 #include "BFSSolver.h"
 #include "TrangThaiBFS.h"
 #include "TrangThaiDiChuyen.h"
+#include "BoxTriggerUpdater.h"
 
 // ✅ Class quản lý TOÀN BỘ logic game
 class GameController {
@@ -18,11 +19,11 @@ private:
     bool dangTuDongGiai;
     
     // ✅ Helper methods (private)
-    void capNhatThung();
-    void capNhatNutVaBay();
     TrangThaiDiChuyen layTrangThaiHienTai() const;
     void phucHoiTrangThai(const TrangThaiDiChuyen& trangThai);
     TrangThaiBFS taoTrangThaiBFS() const;
+
+    BoxTriggerUpdater boxTriggerUpdater;
     
 public:
     GameController(BanDo* banDo);

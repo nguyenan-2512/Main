@@ -24,19 +24,9 @@ public:
 
     void ve(sf::RenderWindow& cuaSo) override;
     void datTrangThaiNhan(bool duocNhan);
-
-    // ❌ XÓA INLINE: bool layTrangThaiNhan() const { return dangDuocNhan; }
-    // ✅ THAY BẰNG:
     bool layTrangThaiNhan() const;
-
     void datKetCauChuaNhan(const sf::Texture& ketCau);
     void datKetCauDaNhan(const sf::Texture& ketCau);
-
-    // ❌ XÓA INLINE: void themBayLienKet(int x, int y) { ... }
-    // ✅ THAY BẰNG:
     void themBayLienKet(int x, int y);
-
-    // ❌ XÓA INLINE: const DynamicArray<...>& layCacBayLienKet() const { ... }
-    // ✅ THAY BẰNG:
     const DynamicArray<std::pair<int, int>>& layCacBayLienKet() const;
 };

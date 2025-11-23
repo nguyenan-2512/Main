@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿// File: BanDo.h (SỬA LẠI)
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "DynamicArray.h"  
 #include <string>
@@ -13,9 +14,10 @@
 #include "CongDichChuyen.h"
 #include "MangDichChuyen.h"
 
-
 class BanDo {
     friend class BFSSolver;
+    friend class MapLoader; 
+    friend class MapRenderer;// ✅ Cho phép MapLoader truy cập private members
 
 public:
     DynamicArray<ThungGo*> cacThungGoPtr;
@@ -29,38 +31,18 @@ private:
     NguoiChoi* nguoiChoi;
     DynamicArray<DoiTuongTroChoi*> cacDoiTuong;
     MangDichChuyen mangDichChuyen;
-
-    // ✅ Textures (sẽ chuyển sang ResourceManager sau)
-    sf::Texture ketCauTuong;
-    sf::Texture bangAnhNguoiChoi;
-    sf::Texture ketCauNen;
-    sf::Texture ketCauThungGo;
-    sf::Texture ketCauThungSat;
-    sf::Texture ketCauThungGoTrenViTriDat;
-    sf::Texture ketCauViTriDat;
-    sf::Texture ketCauVatCan;
-    sf::Texture ketCauNuoc;
-    sf::Texture ketCauCat;
-    sf::Texture ketCauCau;
-    sf::Texture ketCauBayKichHoat;
-    sf::Texture ketCauBayKhongKichHoat;
-    sf::Texture ketCauNutChuaNhan;
-    sf::Texture ketCauNutDaNhan;
-    sf::Texture ketCauDichChuyen;
-
-    // ❌ XÓA TẤT CẢ:
-    // HistoryManager* historyManager;
-    // DynamicArray<int> loiGiaiHienTai;
-    // int buocGiaiHienTai;
-    // bool dangTuDongGiai;
-
     bool trangThaiThua;
 
-public:
-    BanDo(const std::string& tenFile, int kichThuocO);
-    ~BanDo();
 
-    void ve(sf::RenderWindow& cuaSo);
+
+public:
+  
+    BanDo(int kichThuocO);
+    ~BanDo();
+    void themDoiTuong(DoiTuongTroChoi* obj);
+    void datNguoiChoi(NguoiChoi* player);
+    MangDichChuyen& layMangDichChuyen();
+    void linkButtonsToTraps();  
 
     NguoiChoi* layNguoiChoi();
     int laySoViTriDat() const { return cacViTriDatPtr.size(); }
@@ -82,11 +64,9 @@ public:
     bool laNuoc(int x, int y) const;
     bool laVatCan(int x, int y) const;
 
-    // ✅ Find objects
     Bay* timBayTai(int x, int y);
     NutBam* timNutBamTai(int x, int y);
     ThungGo* timThungGoTai(int x, int y);
     ThungSat* timThungSatTai(int x, int y);
     CongDichChuyen* timCongDichChuyenTai(int x, int y);
-
 };

@@ -2,7 +2,7 @@
 
 Bay::Bay()
     : DoiTuongTroChoi(0, 0, 0),
-    dangKichHoat(true),  // Mặc định bẫy kích hoạt
+    dangKichHoat(true),  
     ketCauKichHoat(nullptr),
     ketCauKhongKichHoat(nullptr) {
 }

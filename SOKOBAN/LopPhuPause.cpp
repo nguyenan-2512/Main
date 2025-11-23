@@ -33,8 +33,8 @@ bool LopPhuPause::khoiTao(
         std::cerr << "Khong the tai anh khung menu pause!" << std::endl;
     }
 
-    anhMenuPause->datViTri(150.0f, 90.0f);
-    anhMenuPause->datKichThuoc(480.0f, 680.0f);
+    anhMenuPause->datViTri(90.0f, 90.0f);
+    anhMenuPause->datKichThuoc(600.0f, 680.0f);
 
     nutTiepTuc = new NutUI();
     if (!nutTiepTuc->taiAnh(duongDanAnhTiepTuc)) {
@@ -50,7 +50,7 @@ bool LopPhuPause::khoiTao(
         return false;
     }
     nutChoiLai->datViTri(260.0f, 280.0f);
-    nutChoiLai->datKichThuoc(240.0f, 176.0f);
+    nutChoiLai->datKichThuoc(245.0f, 176.0f);
 
     nutThoat = new NutUI();
     if (!nutThoat->taiAnh(duongDanAnhThoat)) {
