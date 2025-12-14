@@ -1,7 +1,6 @@
-﻿// File: LopPhuPause.h (SỬA LẠI - GIỮ ẢNH MENU)
+﻿// File: LopPhuPause.h (MENU ĐơN GIẢN - CHỈ 1 ẢNH + TỌA ĐỘ CLICK)
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "NutUI.h"
 #include <iostream>
 
 enum class HanhDongPause {
@@ -15,58 +14,58 @@ class LopPhuPause {
 private:
     sf::RectangleShape lopPhu;  // Nền đen mờ phía sau
 
-    // ✅ GIỮ LẠI: Ảnh khung menu pause
+    // ✅ CHỈ CẦN 1 ẢNH DUY NHẤT (đã có bố cục sẵn: khung + nút)
     sf::Texture ketCauMenuPause;
     sf::Sprite anhMenuPause;
 
-    NutUI nutTiepTuc;
-    NutUI nutChoiLai;
-    NutUI nutThoat;
+    // ✅ Vùng click cho từng nút (tự định nghĩa bằng tay)
+    sf::FloatRect vungClickTiepTuc;
+    sf::FloatRect vungClickChoiLai;
+    sf::FloatRect vungClickThoat;
+
     bool dangHienThi;
 
 public:
     LopPhuPause() : dangHienThi(false) {
         // Nền đen mờ toàn màn hình
-        lopPhu.setSize(sf::Vector2f(800, 800));
-        lopPhu.setFillColor(sf::Color(0, 0, 0, 150)); // Mờ nhẹ để thấy menu
+        lopPhu.setSize(sf::Vector2f(800,800));
+        lopPhu.setFillColor(sf::Color(0, 0, 0, 150));
         lopPhu.setPosition(0, 0);
     }
 
     bool khoiTao(const std::string& duongDanAnhMenuPause) {
-        // ✅ Load ảnh khung menu pause
+        // ✅ Load ảnh menu pause (1 ảnh duy nhất)
         if (!ketCauMenuPause.loadFromFile(duongDanAnhMenuPause)) {
             std::cerr << "Khong the tai anh menu pause: " << duongDanAnhMenuPause << std::endl;
             return false;
         }
 
         anhMenuPause.setTexture(ketCauMenuPause);
-        anhMenuPause.setPosition(90.0f, 90.0f);
-        anhMenuPause.setScale(
-            600.0f / ketCauMenuPause.getSize().x,
-            680.0f / ketCauMenuPause.getSize().y
+        anhMenuPause.setPosition(250.f, 150.0f);
+
+        // Nút RESUME (Tiếp tục)
+        vungClickTiepTuc = sf::FloatRect(
+            200.0f,   // X (trái)
+            250.0f,   // Y (trên)
+            400.0f,   // Chiều rộng
+            80.0f     // Chiều cao
         );
 
-        // Load các nút bấm
-        if (!nutTiepTuc.taiAnh("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\resume_button.png")) {
-            std::cerr << "Khong the tai nut Tiep Tuc!" << std::endl;
-            return false;
-        }
-        nutTiepTuc.datViTri(260.0f, 180.0f);
-        nutTiepTuc.datKichThuoc(240.0f, 176.0f);
+        // Nút RESTART (Chơi lại)
+        vungClickChoiLai = sf::FloatRect(
+            200.0f,   // X
+            370.0f,   // Y
+            400.0f,   // Chiều rộng
+            80.0f     // Chiều cao
+        );
 
-        if (!nutChoiLai.taiAnh("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\restart_button.png")) {
-            std::cerr << "Khong the tai nut Choi Lai!" << std::endl;
-            return false;
-        }
-        nutChoiLai.datViTri(260.0f, 280.0f);
-        nutChoiLai.datKichThuoc(245.0f, 176.0f);
-
-        if (!nutThoat.taiAnh("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\exit_button.png")) {
-            std::cerr << "Khong the tai nut Thoat!" << std::endl;
-            return false;
-        }
-        nutThoat.datViTri(260.0f, 380.0f);
-        nutThoat.datKichThuoc(240.0f, 176.0f);
+        // Nút EXIT (Thoát)
+        vungClickThoat = sf::FloatRect(
+            200.0f,   // X
+            490.0f,   // Y
+            400.0f,   // Chiều rộng
+            80.0f     // Chiều cao
+        );
 
         std::cout << "Da khoi tao Pause Menu thanh cong!" << std::endl;
         return true;
@@ -79,15 +78,23 @@ public:
     HanhDongPause kiemTraClick(const sf::Vector2i& viTriChuot) {
         if (!dangHienThi) return HanhDongPause::KHONG;
 
-        if (nutTiepTuc.kiemTraClick(viTriChuot)) {
+        sf::Vector2f viTriChuotFloat(static_cast<float>(viTriChuot.x),
+            static_cast<float>(viTriChuot.y));
+
+        // Kiểm tra click vào nút RESUME
+        if (vungClickTiepTuc.contains(viTriChuotFloat)) {
             std::cout << "Click nut Tiep Tuc!" << std::endl;
             return HanhDongPause::TIEP_TUC;
         }
-        if (nutChoiLai.kiemTraClick(viTriChuot)) {
+
+        // Kiểm tra click vào nút RESTART
+        if (vungClickChoiLai.contains(viTriChuotFloat)) {
             std::cout << "Click nut Choi Lai!" << std::endl;
             return HanhDongPause::CHOI_LAI;
         }
-        if (nutThoat.kiemTraClick(viTriChuot)) {
+
+        // Kiểm tra click vào nút EXIT
+        if (vungClickThoat.contains(viTriChuotFloat)) {
             std::cout << "Click nut Thoat!" << std::endl;
             return HanhDongPause::THOAT;
         }
@@ -96,19 +103,13 @@ public:
     }
 
     void capNhat(const sf::Vector2i& viTriChuot) {
-        if (!dangHienThi) return;
-        nutTiepTuc.capNhat(viTriChuot);
-        nutChoiLai.capNhat(viTriChuot);
-        nutThoat.capNhat(viTriChuot);
+        // Không cần cập nhật gì (không có hover effect)
     }
 
     void ve(sf::RenderWindow& cuaSo) {
         if (!dangHienThi) return;
 
         cuaSo.draw(lopPhu);          // 1. Vẽ nền đen mờ
-        cuaSo.draw(anhMenuPause);    // 2. Vẽ khung menu pause
-        nutTiepTuc.ve(cuaSo);        // 3. Vẽ nút Tiếp tục
-        nutChoiLai.ve(cuaSo);        // 4. Vẽ nút Chơi lại
-        nutThoat.ve(cuaSo);          // 5. Vẽ nút Thoát
+        cuaSo.draw(anhMenuPause);    // 2. Vẽ ảnh menu pause (đã có sẵn khung + nút)
     }
 };

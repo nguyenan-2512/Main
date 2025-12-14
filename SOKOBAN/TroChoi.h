@@ -40,6 +40,7 @@ private:
     bool hienThiThang;
     bool hienThiThua;
     bool dangTuDongGiai;
+    bool dangTimKiemBFS;  // ✅ THÊM: Đang tìm lời giải
     sf::Clock dongHoDelta;
 
 public:

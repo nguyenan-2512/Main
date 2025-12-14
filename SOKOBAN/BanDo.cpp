@@ -46,19 +46,14 @@ void BanDo::linkButtonsToTraps() {
     int soBay = cacBayPtr.size();
 
     if (soNutBam > 0 && soBay > 0) {
-        int bayMoiNut = soBay / soNutBam;
-        int soDu = soBay % soNutBam;
-        int chiSoBay = 0;
-
         for (int i = 0; i < soNutBam; i++) {
-            int soBayChoNutNay = bayMoiNut + (i < soDu ? 1 : 0);
-            for (int j = 0; j < soBayChoNutNay && chiSoBay < soBay; j++) {
+            for (int j = 0; j < soBay; j++) {
                 cacNutBamPtr[i]->themBayLienKet(
-                    cacBayPtr[chiSoBay]->layX(),
-                    cacBayPtr[chiSoBay]->layY()
+                    cacBayPtr[j]->layX(),
+                    cacBayPtr[j]->layY()
                 );
-                chiSoBay++;
             }
+            std::cout << "Nut bam " << i << " lien ket voi " << soBay << " bay" << std::endl;
         }
     }
 }

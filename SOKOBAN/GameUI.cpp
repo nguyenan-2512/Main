@@ -1,6 +1,9 @@
 ﻿#include "GameUI.h"
 #include "TroChoi.h"
 #include <iostream>
+#include <sstream>   // ✅ THÊM
+#include <iomanip>   // ✅ THÊM
+
 
 GameUI::GameUI()
     : menuUI(nullptr),
@@ -9,6 +12,9 @@ GameUI::GameUI()
     nutPause(nullptr),
     nutGoiY(nullptr),
     lopPhuPause(nullptr),
+    gameStatsUI(nullptr),
+    soBuocWin(0),        // ✅ THÊM
+    thoiGianWin(0.0f),   // ✅ THÊM
     trangThaiHienTai(TrangThaiUI::MENU) {
 }
 
@@ -36,6 +42,10 @@ GameUI::~GameUI() {
     if (lopPhuPause) {
         delete lopPhuPause;
         lopPhuPause = nullptr;
+    }
+    if (gameStatsUI) {
+        delete gameStatsUI;
+        gameStatsUI = nullptr;
     }
 }
 
@@ -74,7 +84,7 @@ bool GameUI::khoiTao() {
         std::cerr << "[GameUI] Loi tai nut Pause!" << std::endl;
         return false;
     }
-    nutPause->datViTri(730, 10);
+    nutPause->datViTri(730, 43);
     nutPause->datKichThuoc(50, 50);
     std::cout << "[GameUI] + Nut Pause: OK" << std::endl;
 
@@ -84,13 +94,13 @@ bool GameUI::khoiTao() {
         std::cerr << "[GameUI] Loi tai nut Goi Y!" << std::endl;
         return false;
     }
-    nutGoiY->datViTri(665, 10);
+    nutGoiY->datViTri(665, 43);
     nutGoiY->datKichThuoc(50, 50);
     std::cout << "[GameUI] + Nut Goi Y: OK" << std::endl;
 
     // ===== 6. KHỞI TẠO PAUSE MENU =====
     lopPhuPause = new LopPhuPause();
-    if (!lopPhuPause->khoiTao("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\pause_menu.png")) {
+    if (!lopPhuPause->khoiTao("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\menupause.png")) {
         std::cerr << "[GameUI] Loi tai Pause Menu!" << std::endl;
         return false;
     }
@@ -122,7 +132,21 @@ bool GameUI::khoiTao() {
     std::cout << "[GameUI] + Font: OK" << std::endl;
 
     std::cout << "[GameUI] ===== KHOI TAO THANH CONG =====" << std::endl;
+
+    // ===== 10. KHỞI TẠO GAME STATS UI =====
+    gameStatsUI = new GameStatsUI();
+    if (!gameStatsUI->khoiTao(
+        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\timer_frame.png",
+        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\steps_frame.png"
+    )) {
+        std::cerr << "[GameUI] Loi tai GameStatsUI!" << std::endl;
+        return false;
+    }
+    std::cout << "[GameUI] + GameStatsUI: OK" << std::endl;
+
     return true;
+
+
 }
 
 // ===== XỬ LÝ SỰ KIỆN =====
@@ -233,6 +257,7 @@ void GameUI::capNhat(const sf::Vector2i& viTriChuot) {
     case TrangThaiUI::DANG_CHOI:
         if (nutPause) nutPause->capNhat(viTriChuot);
         if (nutGoiY) nutGoiY->capNhat(viTriChuot);
+        if (gameStatsUI) gameStatsUI->capNhat();
         break;
 
     case TrangThaiUI::TAM_DUNG:
@@ -262,6 +287,7 @@ void GameUI::ve(sf::RenderWindow& cuaSo) {
     case TrangThaiUI::DANG_CHOI:
         if (nutPause) nutPause->ve(cuaSo);
         if (nutGoiY) nutGoiY->ve(cuaSo);
+        if (gameStatsUI) gameStatsUI->ve(cuaSo);
         break;
 
     case TrangThaiUI::TAM_DUNG:
@@ -337,4 +363,11 @@ int GameUI::layMapDaChon() const {
         return mapSelectUI->layMapDaChon();
     }
     return 0;
+}
+
+
+// ✅ THÊM: Method lưu stats khi win
+void GameUI::luuStatsWin(int soBuoc, float thoiGian) {
+    soBuocWin = soBuoc;
+    thoiGianWin = thoiGian;
 }

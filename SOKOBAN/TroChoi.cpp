@@ -7,8 +7,8 @@ using namespace std;
 TroChoi::TroChoi() :
     cuaSo(sf::VideoMode::getDesktopMode(), "Sokoban", sf::Style::Fullscreen),
     banDoHienTai(nullptr),
-    gameController(nullptr),  // ✅ THÊM dòng này
-    gameUI(nullptr),           // ✅ THÊM dòng này
+    gameController(nullptr),
+    gameUI(nullptr),
     hienThiThang(false),
     hienThiThua(false),
     kichThuocGoc(800, 800),
@@ -16,7 +16,8 @@ TroChoi::TroChoi() :
     tyLeY(1.0f),
     cheDoX(0.0f),
     cheDoY(0.0f),
-    dangTuDongGiai(false) {
+    dangTuDongGiai(false),
+    dangTimKiemBFS(false) {
 
     cuaSo.setFramerateLimit(60);
     HoatHinh::tocDoHoatHinh = 0.1f;
@@ -91,16 +92,22 @@ void TroChoi::xuLyClickNutPause() {
 
     // Tạm dừng nhạc nền
     nhacNen.pause();
+    // Tạm dừng timer trong GameStatsUI
+    if (gameUI && gameUI->layGameStatsUI()) {
+        gameUI->layGameStatsUI()->tamDungTimer();
+    }
 }
 
 void TroChoi::xuLyClickNutGoiY() {
     // Kiểm tra gameController và trạng thái UI
     if (!gameController) {
+        std::cout << "\nKhong co gameController!" << std::endl;
         return;
     }
 
     // Kiểm tra đang ở màn hình chơi game
     if (gameUI->layTrangThaiUI() != TrangThaiUI::DANG_CHOI) {
+        std::cout << "\nKhong o trang thai DANG_CHOI!" << std::endl;
         return;
     }
 
@@ -110,15 +117,22 @@ void TroChoi::xuLyClickNutGoiY() {
         return;
     }
 
-    std::cout << "\n=== BAT DAU TU DONG GIAI ===" << std::endl;
-    std::cout << "Tim kiem loi giai voi BFS..." << std::endl;
+    // Kiểm tra đã đang tìm kiếm chưa
+    if (dangTimKiemBFS) {
+        std::cout << "\nDang tim kiem loi giai..." << std::endl;
+        return;
+    }
 
-    // Tìm lời giải BFS
-    if (gameController->timLoiGiaiBFS(200)) {
+    // ✅ BẮT ĐẦU TÌM KIẾM BFS NGAY LẬP TỨC
+    std::cout << "\n=== BAT DAU TIM LOI GIAI ===" << std::endl;
+
+    // ✅ QUAN TRỌNG: Timer vẫn chạy trong khi tìm kiếm
+    bool timThay = gameController->timLoiGiaiBFS(50);
+
+    if (timThay) {
+        std::cout << ">>> TIM THAY LOI GIAI! Bat dau tu dong chay..." << std::endl;
         gameController->batDauTuDongGiai();
         dangTuDongGiai = true;
-        std::cout << ">>> TIM THAY LOI GIAI! Dang tu dong chay..." << std::endl;
-        std::cout << "Nhan phim J de dung." << std::endl;
     }
     else {
         std::cout << ">>> KHONG TIM THAY LOI GIAI!" << std::endl;
@@ -131,6 +145,9 @@ void TroChoi::xuLyHanhDongPause(HanhDongPause hanhDong) {
         std::cout << ">>> TIEP TUC CHOI <<<" << std::endl;
         gameUI->anPauseMenu();
         nhacNen.play();
+        if (gameUI && gameUI->layGameStatsUI()) {
+            gameUI->layGameStatsUI()->tiepTucTimer();
+        }
         break;
 
     case HanhDongPause::CHOI_LAI:
@@ -280,13 +297,18 @@ void TroChoi::capNhat() {
             banDoHienTai->layNguoiChoi()->capNhat(thoiGianDelta);
         }
 
-        // Auto-solve
+        // ✅ Auto-solve: Thực thi từng bước BFS đã tìm được
         if (gameController && dangTuDongGiai) {
             if (gameController->layTrangThaiTuDongGiai()) {
                 static sf::Clock dongHoTuDongGiai;
                 if (dongHoTuDongGiai.getElapsedTime().asSeconds() >= 0.3f) {
                     bool thanhCong = gameController->thucHienBuocGiai();
-                    if (!thanhCong) {
+                    if (thanhCong) {
+                        if (gameUI && gameUI->layGameStatsUI()) {
+                            gameUI->layGameStatsUI()->tangSoBuoc();
+                        }
+                    }
+                    else {
                         dangTuDongGiai = false;
                         std::cout << "Hoan thanh tu dong giai!" << std::endl;
                     }
@@ -305,12 +327,24 @@ void TroChoi::capNhat() {
             amThanhThua.play();
             nhacNen.stop();
             dangTuDongGiai = false;
+            if (gameUI && gameUI->layGameStatsUI()) {
+                gameUI->layGameStatsUI()->tamDungTimer();
+            }
             std::cout << "Thua cuoc!" << std::endl;
         }
 
         // Kiểm tra thắng
         if (gameController && gameController->kiemTraThang() && !hienThiThang && !hienThiThua) {
             hienThiThang = true;
+
+            // Lưu stats
+            if (gameUI && gameUI->layGameStatsUI()) {
+                int soBuoc = gameUI->layGameStatsUI()->laySoBuoc();
+                float thoiGian = gameUI->layGameStatsUI()->layThoiGian();
+                gameUI->luuStatsWin(soBuoc, thoiGian);
+                gameUI->layGameStatsUI()->tamDungTimer();
+            }
+
             gameUI->datTrangThaiUI(TrangThaiUI::THANG);
             amThanhChienThang.play();
             nhacNen.stop();
@@ -332,7 +366,7 @@ void TroChoi::veHinh() {
         trangThaiUI == TrangThaiUI::THANG ||
         trangThaiUI == TrangThaiUI::THUA) {
         if (banDoHienTai) {
-            mapRenderer.ve(cuaSo, banDoHienTai);  // Nếu đã làm Bước 1
+            mapRenderer.ve(cuaSo, banDoHienTai);
         }
     }
 
@@ -365,6 +399,13 @@ void TroChoi::khoiTaoTroChoi() {
 
     gameController = new GameController(banDoHienTai);
     dangTuDongGiai = false;
+
+    if (gameUI && gameUI->layGameStatsUI()) {
+        gameUI->layGameStatsUI()->datLaiTimer();
+        gameUI->layGameStatsUI()->datLaiSoBuoc();
+        gameUI->layGameStatsUI()->batDauTimer();
+    }
+
     std::cout << "[TroChoi] Khoi tao thanh cong!" << std::endl;
 }
 
@@ -394,6 +435,10 @@ void TroChoi::xuLyHanhDongGame(HanhDongGame hanhDong) {
         // ========== UNDO ==========
     case HanhDongGame::UNDO:
         gameController->undo();
+        if (gameUI && gameUI->layGameStatsUI()) {
+            int soBuocHienTai = gameController->laySoBuoc();
+            gameUI->layGameStatsUI()->datSoBuoc(soBuocHienTai);
+        }
         break;
 
         // ========== DỪNG AUTO-SOLVE ==========
@@ -410,6 +455,9 @@ void TroChoi::xuLyHanhDongGame(HanhDongGame hanhDong) {
         bool daDichChuyen = gameController->thucHienDichChuyen();
         if (daDichChuyen) {
             phatAmThanhBuocDi();
+            if (gameUI && gameUI->layGameStatsUI()) {
+                gameUI->layGameStatsUI()->tangSoBuoc();
+            }
         }
         break;
     }
@@ -450,6 +498,9 @@ void TroChoi::xuLyHanhDongGame(HanhDongGame hanhDong) {
             // Phát âm thanh nếu di chuyển thành công
             if (daDiChuyen) {
                 phatAmThanhBuocDi();
+                if (gameUI && gameUI->layGameStatsUI()) {
+                    gameUI->layGameStatsUI()->tangSoBuoc();
+                }
             }
         }
         break;
