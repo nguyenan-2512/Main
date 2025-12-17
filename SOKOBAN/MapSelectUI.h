@@ -35,5 +35,6 @@ public:
     void ve(sf::RenderWindow& cuaSo);
 
     int layMapDaChon() const { return banDoDaChon; }
+    void datMapDaChon(int map) { banDoDaChon = map; chiSoBanDoNoi = map; }
     void datLai() { chiSoBanDoNoi = 0; banDoDaChon = -1; }
 }; 

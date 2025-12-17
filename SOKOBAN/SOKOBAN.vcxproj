@@ -59,6 +59,7 @@
     <ClInclude Include="Bay.h" />
     <ClInclude Include="Tuong.h" />
     <ClInclude Include="Nuoc.h" />
+    <ClInclude Include="WinUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BFSSolver.cpp" />
@@ -75,6 +76,7 @@
     <ClCompile Include="NutUI.cpp" />
     <ClCompile Include="ThungGo.cpp" />
     <ClCompile Include="Cau.cpp" />
+    <ClCompile Include="WinUI.cpp" />
     <ClInclude Include="Cau.h" />
     <ClCompile Include="NutBam.cpp" />
     <ClCompile Include="Nen.cpp" />

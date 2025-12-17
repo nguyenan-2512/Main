@@ -13,6 +13,7 @@ GameUI::GameUI()
     nutGoiY(nullptr),
     lopPhuPause(nullptr),
     gameStatsUI(nullptr),
+    winUI(nullptr),
     soBuocWin(0),        // ✅ THÊM
     thoiGianWin(0.0f),   // ✅ THÊM
     trangThaiHienTai(TrangThaiUI::MENU) {
@@ -47,9 +48,15 @@ GameUI::~GameUI() {
         delete gameStatsUI;
         gameStatsUI = nullptr;
     }
+    if (winUI) {
+        delete winUI;
+        winUI = nullptr;
+    }
 }
 
 bool GameUI::khoiTao() {
+
+
     std::cout << "\n[GameUI] ===== KHOI TAO TOAN BO UI =====" << std::endl;
 
     // ===== 1. KHỞI TẠO MENU =====
@@ -106,14 +113,17 @@ bool GameUI::khoiTao() {
     }
     std::cout << "[GameUI] + Pause Menu: OK" << std::endl;
 
-    // ===== 7. LOAD TEXTURE WIN =====
-    if (!ketCauThang.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\win.png")) {
-        std::cerr << "[GameUI] Loi tai anh thang!" << std::endl;
+    // ===== KHỞI TẠO WIN UI =====
+    winUI = new WinUI();
+    if (!winUI->khoiTao(
+        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\win3.3.png",  // TODO: ĐƯỜNG DẪN ẢNH 3 SAO
+        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\win2.2.png",  // TODO: ĐƯỜNG DẪN ẢNH 2 SAO
+        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\win1.1.png"    // TODO: ĐƯỜNG DẪN ẢNH 1 SAO
+    )) {
+        std::cerr << "[GameUI] Loi tai WinUI!" << std::endl;
         return false;
     }
-    anhThang.setTexture(ketCauThang);
-    anhThang.setPosition(0, 0);
-    std::cout << "[GameUI] + Win Overlay: OK" << std::endl;
+    std::cout << "[GameUI] + WinUI:  OK" << std::endl;
 
     // ===== 8. LOAD TEXTURE LOSE =====
     if (!ketCauThua.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\gameover.png")) {
@@ -149,7 +159,6 @@ bool GameUI::khoiTao() {
 
 }
 
-// ===== XỬ LÝ SỰ KIỆN =====
 void GameUI::xuLySuKien(const sf::Event& suKien, sf::RenderWindow& cuaSo, TroChoi* troChoi) {
     switch (trangThaiHienTai) {
     case TrangThaiUI::MENU: {
@@ -209,6 +218,21 @@ void GameUI::xuLySuKien(const sf::Event& suKien, sf::RenderWindow& cuaSo, TroCho
         break;
 
     case TrangThaiUI::THANG:
+        if (suKien.type == sf::Event::MouseButtonPressed &&
+            suKien.mouseButton.button == sf::Mouse::Left) {
+
+            sf::Vector2i viTriChuot(suKien.mouseButton.x, suKien.mouseButton.y);
+            WinUI::HanhDongWin hanhDong = winUI->kiemTraClick(viTriChuot);
+
+            if (hanhDong == WinUI::HanhDongWin::HOME) {
+                troChoi->quayVeMenu();
+            }
+            else if (hanhDong == WinUI::HanhDongWin::NEXT) {
+                troChoi->chuyenSangManTiepTheo();  
+            }
+        }
+        break;
+
     case TrangThaiUI::THUA:
         if (xuLyPhimWinLose(suKien)) {
             troChoi->quayVeMenu();
@@ -295,21 +319,10 @@ void GameUI::ve(sf::RenderWindow& cuaSo) {
         break;
 
     case TrangThaiUI::THANG:
-    {
-        sf::RectangleShape lop(sf::Vector2f(800, 800));
-        lop.setFillColor(sf::Color(0, 0, 0, 150));
-        cuaSo.draw(lop);
-        cuaSo.draw(anhThang);
-
-        sf::Text text;
-        text.setFont(chuPhong);
-        text.setString("Nhan phim bat ky de quay lai Menu");
-        text.setCharacterSize(18);
-        text.setFillColor(sf::Color::Green);
-        text.setPosition(280, 765);
-        cuaSo.draw(text);
-    }
-    break;
+        if (winUI) {
+            winUI->ve(cuaSo);
+        }
+        break;
 
     case TrangThaiUI::THUA:
     {

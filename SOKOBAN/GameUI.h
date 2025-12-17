@@ -6,6 +6,7 @@
 #include "NutUI.h"
 #include "LopPhuPause.h"
 #include "GameStatsUI.h"
+#include "WinUI.h"  
 
 // Forward declaration
 class TroChoi;
@@ -31,6 +32,7 @@ private:
 
     LopPhuPause* lopPhuPause;
     GameStatsUI* gameStatsUI;
+    WinUI* winUI;
 
     sf::Texture ketCauThang;
     sf::Sprite anhThang;
@@ -68,7 +70,9 @@ public:
     int layMapDaChon() const;
     
     GameStatsUI* layGameStatsUI() { return gameStatsUI; }
+    WinUI* layWinUI() { return winUI; }
     
     // ✅ THÊM: Method lưu stats
     void luuStatsWin(int soBuoc, float thoiGian);
+    MapSelectUI* layMapSelectUI() { return mapSelectUI; }
 };

@@ -53,6 +53,7 @@ public:
     void xuLyClickNutGoiY();
     void xuLyHanhDongPause(HanhDongPause hanhDong);
     void quayVeMenu();
+    void chuyenSangManTiepTheo();
 
 private:
     void xuLySuKien();

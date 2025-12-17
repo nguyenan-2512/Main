@@ -231,6 +231,14 @@ void TroChoi::xuLySuKien() {
         if (suKien.type == sf::Event::Closed) {
             cuaSo.close();
         }
+        // ===== 🔴 DEBUG: IN TỌA ĐỘ CHUỘT =====
+        if (suKien.type == sf::Event::MouseMoved) {
+            sf::Vector2i viTriChuot = sf::Mouse::getPosition(cuaSo);
+            sf::Vector2i viTriDaTyLe = layViTriChuotDaTyLe(viTriChuot);
+
+            std::cout << "Toa do chuot: X=" << viTriDaTyLe.x
+                << " Y=" << viTriDaTyLe.y << std::endl;
+        }
 
         // Xử lý ESC
         if (suKien.type == sf::Event::KeyPressed && suKien.key.code == sf::Keyboard::Escape) {
@@ -343,6 +351,7 @@ void TroChoi::capNhat() {
                 float thoiGian = gameUI->layGameStatsUI()->layThoiGian();
                 gameUI->luuStatsWin(soBuoc, thoiGian);
                 gameUI->layGameStatsUI()->tamDungTimer();
+                gameUI->layWinUI()->hienThi(thoiGian, soBuoc);
             }
 
             gameUI->datTrangThaiUI(TrangThaiUI::THANG);
@@ -352,6 +361,33 @@ void TroChoi::capNhat() {
             std::cout << "Chuc mung!" << std::endl;
         }
     }
+}
+
+void TroChoi::chuyenSangManTiepTheo() {
+    std::cout << "[TroChoi] Chuyen sang man tiep theo..." << std::endl;
+
+    int manHienTai = gameUI->layMapDaChon();
+    int manTiepTheo = manHienTai + 1;
+
+    const int SO_MAN_TOI_DA = 8;
+
+    if (manTiepTheo >= SO_MAN_TOI_DA) {
+        std::cout << "[TroChoi] Da hoan thanh tat ca cac man!" << std::endl;
+        quayVeMenu();
+        return;
+    }
+
+    gameUI->layMapSelectUI()->datMapDaChon(manTiepTheo);
+
+    gameUI->datTrangThaiUI(TrangThaiUI::DANG_CHOI);
+
+    khoiTaoTroChoi(); 
+    hienThiThang = false;
+    hienThiThua = false;
+    dangTuDongGiai = false;
+    nhacNen.play();
+
+    std::cout << "[TroChoi] Da chuyen sang map " << (manTiepTheo + 1) << std::endl;
 }
 
 void TroChoi::veHinh() {
