@@ -37,12 +37,19 @@ private:
     sf::Texture ketCauThua;
     sf::Sprite anhThua;
     sf::Font chuPhong;
+    sf::Texture ketCauSao;
+    sf::Texture ketCauSaoRong;
 
     TrangThaiUI trangThaiHienTai;
+
     
-    // ✅ THÊM: Lưu stats khi win
     int soBuocWin;
     float thoiGianWin;
+
+    void veStatsWin(sf::RenderWindow& cuaSo);
+    void veStatsLose(sf::RenderWindow& cuaSo);
+    int tinhSoSao(int soBuoc, float thoiGian) const;
+    std::string dinhDangThoiGian(float giay) const;
 
 public:
     GameUI();

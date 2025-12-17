@@ -1,8 +1,8 @@
 ﻿#include "GameUI.h"
 #include "TroChoi.h"
 #include <iostream>
-#include <sstream>   // ✅ THÊM
-#include <iomanip>   // ✅ THÊM
+#include <sstream>   
+#include <iomanip> 
 
 
 GameUI::GameUI()
@@ -13,8 +13,8 @@ GameUI::GameUI()
     nutGoiY(nullptr),
     lopPhuPause(nullptr),
     gameStatsUI(nullptr),
-    soBuocWin(0),        // ✅ THÊM
-    thoiGianWin(0.0f),   // ✅ THÊM
+    soBuocWin(0),       
+    thoiGianWin(0.0f),   
     trangThaiHienTai(TrangThaiUI::MENU) {
 }
 
@@ -124,16 +124,25 @@ bool GameUI::khoiTao() {
     anhThua.setPosition(0, 0);
     std::cout << "[GameUI] + Lose Overlay: OK" << std::endl;
 
-    // ===== 9. LOAD FONT =====
+    // ===== 9. LOAD TEXTURE SAO ⭐ =====
+    if (!ketCauSao.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\star.png")) {
+        std::cerr << "[GameUI] Loi tai anh sao!" << std::endl;
+        return false;
+    }
+    if (!ketCauSaoRong.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\star_empty.png")) {
+        std::cerr << "[GameUI] Loi tai anh sao rong!" << std::endl;
+        return false;
+    }
+    std::cout << "[GameUI] + Star textures: OK" << std::endl;
+
+    // ===== 10. LOAD FONT =====
     if (!chuPhong.loadFromFile("C:\\Windows\\Fonts\\arial.ttf")) {
         std::cerr << "[GameUI] Loi tai font!" << std::endl;
         return false;
     }
     std::cout << "[GameUI] + Font: OK" << std::endl;
 
-    std::cout << "[GameUI] ===== KHOI TAO THANH CONG =====" << std::endl;
-
-    // ===== 10. KHỞI TẠO GAME STATS UI =====
+    // ===== 11. KHỞI TẠO GAME STATS UI =====
     gameStatsUI = new GameStatsUI();
     if (!gameStatsUI->khoiTao(
         "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\timer_frame.png",
@@ -144,8 +153,8 @@ bool GameUI::khoiTao() {
     }
     std::cout << "[GameUI] + GameStatsUI: OK" << std::endl;
 
+    std::cout << "[GameUI] ===== KHOI TAO THANH CONG =====" << std::endl;
     return true;
-
 
 }
 
@@ -301,13 +310,7 @@ void GameUI::ve(sf::RenderWindow& cuaSo) {
         cuaSo.draw(lop);
         cuaSo.draw(anhThang);
 
-        sf::Text text;
-        text.setFont(chuPhong);
-        text.setString("Nhan phim bat ky de quay lai Menu");
-        text.setCharacterSize(18);
-        text.setFillColor(sf::Color::Green);
-        text.setPosition(280, 765);
-        cuaSo.draw(text);
+        veStatsWin(cuaSo);
     }
     break;
 
@@ -318,13 +321,7 @@ void GameUI::ve(sf::RenderWindow& cuaSo) {
         cuaSo.draw(lop);
         cuaSo.draw(anhThua);
 
-        sf::Text text;
-        text.setFont(chuPhong);
-        text.setString("Nhan phim bat ky de quay lai Menu");
-        text.setCharacterSize(18);
-        text.setFillColor(sf::Color::Red);
-        text.setPosition(270, 765);
-        cuaSo.draw(text);
+        veStatsLose(cuaSo);
     }
     break;
 
@@ -370,4 +367,143 @@ int GameUI::layMapDaChon() const {
 void GameUI::luuStatsWin(int soBuoc, float thoiGian) {
     soBuocWin = soBuoc;
     thoiGianWin = thoiGian;
+}
+
+void GameUI::veStatsWin(sf::RenderWindow& cuaSo) {
+    // 1. Tính số sao
+    int soSao = tinhSoSao(soBuocWin, thoiGianWin);
+
+    // 2. Vẽ sao (vị trí: giữa màn hình, phía trên)
+    float xBatDau = 25.0f;  // Bạn tự điều chỉnh
+    float ySao = 570.0f;     // Bạn tự điều chỉnh
+    float khoangCachSao = 80.0f;
+
+    for (int i = 0; i < 3; i++) {
+        sf::Sprite spriteSao;
+        if (i < soSao) {
+            spriteSao.setTexture(ketCauSao);
+        }
+        else {
+            spriteSao.setTexture(ketCauSaoRong);
+        }
+
+        // Scale sao cho phù hợp (giả sử ảnh sao 64x64)
+        spriteSao.setScale(1.0f, 1.0f);
+        spriteSao.setPosition(xBatDau + i * khoangCachSao, ySao);
+        cuaSo.draw(spriteSao);
+    }
+
+    // 3. Vẽ text số bước
+    sf::Text textBuoc;
+    textBuoc.setFont(chuPhong);
+    textBuoc.setCharacterSize(28);
+    textBuoc.setFillColor(sf::Color::Blue);
+    textBuoc.setStyle(sf::Text::Bold);
+    textBuoc.setString("Steps: " + std::to_string(soBuocWin));
+    textBuoc.setPosition(300.0f, 480.0f);  // Tự điều chỉnh vị trí
+    cuaSo.draw(textBuoc);
+
+    // 4. Vẽ text thời gian
+    sf::Text textThoiGian;
+    textThoiGian.setFont(chuPhong);
+    textThoiGian.setCharacterSize(28);
+    textThoiGian.setFillColor(sf::Color::White);
+    textThoiGian.setStyle(sf::Text::Bold);
+    textThoiGian.setString("Time: " + dinhDangThoiGian(thoiGianWin));
+    textThoiGian.setPosition(300.0f, 520.0f);  // Tự điều chỉnh vị trí
+    cuaSo.draw(textThoiGian);
+
+    // 5. Hướng dẫn
+    sf::Text textHuongDan;
+    textHuongDan.setFont(chuPhong);
+    textHuongDan.setString("Press any key to return to Menu");
+    textHuongDan.setCharacterSize(18);
+    textHuongDan.setFillColor(sf::Color::Green);
+    textHuongDan.setPosition(240.0f, 700.0f);
+    cuaSo.draw(textHuongDan);
+}
+
+// ===== VẼ STATS KHI THUA =====
+void GameUI::veStatsLose(sf::RenderWindow& cuaSo) {
+    // Lấy stats hiện tại từ GameStatsUI
+    int soBuoc = 0;
+    float thoiGian = 0.0f;
+
+    if (gameStatsUI) {
+        soBuoc = gameStatsUI->laySoBuoc();
+        thoiGian = gameStatsUI->layThoiGian();
+    }
+
+    // ✅ VẼ 3 SAO RỖNG (☆☆☆) KHI THUA
+    float xBatDau = 250.0f;
+    float ySao = 350.0f;
+    float khoangCachSao = 80.0f;
+
+    for (int i = 0; i < 3; i++) {
+        sf::Sprite spriteSao;
+        // Thua rồi nên tất cả đều là sao rỗng
+        spriteSao.setTexture(ketCauSaoRong);
+        spriteSao.setScale(1.0f, 1.0f);
+        spriteSao.setPosition(xBatDau + i * khoangCachSao, ySao);
+        cuaSo.draw(spriteSao);
+    }
+
+    // Vẽ số bước
+    sf::Text textBuoc;
+    textBuoc.setFont(chuPhong);
+    textBuoc.setCharacterSize(28);
+    textBuoc.setFillColor(sf::Color::White);
+    textBuoc.setStyle(sf::Text::Bold);
+    textBuoc.setString("Steps: " + std::to_string(soBuoc));
+    textBuoc.setPosition(300.0f, 480.0f);
+    cuaSo.draw(textBuoc);
+
+    // Vẽ thời gian
+    sf::Text textThoiGian;
+    textThoiGian.setFont(chuPhong);
+    textThoiGian.setCharacterSize(28);
+    textThoiGian.setFillColor(sf::Color::White);
+    textThoiGian.setStyle(sf::Text::Bold);
+    textThoiGian.setString("Time: " + dinhDangThoiGian(thoiGian));
+    textThoiGian.setPosition(300.0f, 520.0f);
+    cuaSo.draw(textThoiGian);
+
+    // Hướng dẫn
+    sf::Text textHuongDan;
+    textHuongDan.setFont(chuPhong);
+    textHuongDan.setString("Press any key to return to Menu");
+    textHuongDan.setCharacterSize(18);
+    textHuongDan.setFillColor(sf::Color::Red);
+    textHuongDan.setPosition(240.0f, 700.0f);
+    cuaSo.draw(textHuongDan);
+}
+
+// ===== TÍNH SỐ SAO (3 SAO, 2 SAO, 1 SAO) =====
+int GameUI::tinhSoSao(int soBuoc, float thoiGian) const {
+    // TODO: Bạn tự định nghĩa tiêu chí
+    // Ví dụ: 
+    // - 3 sao: <= 50 bước và <= 60 giây
+    // - 2 sao: <= 80 bước và <= 120 giây
+    // - 1 sao: hoàn thành
+
+    if (soBuoc <= 50 && thoiGian <= 60.0f) {
+        return 3;
+    }
+    else if (soBuoc <= 80 && thoiGian <= 120.0f) {
+        return 2;
+    }
+    else {
+        return 1;
+    }
+}
+
+// ===== ĐỊNH DẠNG THỜI GIAN =====
+std::string GameUI::dinhDangThoiGian(float giay) const {
+    int phut = static_cast<int>(giay) / 60;
+    int giayConLai = static_cast<int>(giay) % 60;
+
+    std::ostringstream oss;
+    oss << std::setfill('0') << std::setw(2) << phut << ":"
+        << std::setfill('0') << std::setw(2) << giayConLai;
+    return oss.str();
 }
