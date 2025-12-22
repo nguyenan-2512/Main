@@ -4,27 +4,24 @@
 
 class HuongDan {
 private:
-    DynamicArray<sf::Texture*> cacKetCauTrang;  // Mảng texture các trang
-    DynamicArray<sf::Sprite> cacAnhTrang;       // Mảng sprite hiển thị 
+    DynamicArray<sf::Texture*> cacKetCauTrang; 
+    DynamicArray<sf::Sprite> cacAnhTrang;       
 
-    bool quayLaiThucDon;  // Cờ đánh dấu cần quay lại menu
-    int trangHienTai;     // Trang đang hiển thị
-    int tongSoTrang;      // Tổng số trang hướng dẫn
+    bool quayLaiThucDon;  
+    int trangHienTai;    
+    int tongSoTrang;      
 
-    sf::CircleShape nutTruoc;  // Nút quay lại trang trước
-    sf::CircleShape nutSau;    // Nút đi tới trang sau
+    sf::CircleShape nutTruoc;  
+    sf::CircleShape nutSau;    
 
 public:
     HuongDan();
-
-    bool taiTaiNguyen();  // Load các ảnh hướng dẫn
+    bool taiTaiNguyen();  
     void xuLySuKien(const sf::Event& suKien, sf::RenderWindow& cuaSo);
     void capNhat(float thoiGianDelta);
     void ve(sf::RenderWindow& cuaSo);
     void datLai();
-
     bool nenQuayLaiThucDon() const { return quayLaiThucDon; }
     void datLaiCoQuayLai() { quayLaiThucDon = false; }
-
     bool chuotDeLenNut(const sf::CircleShape& nut, sf::Vector2i viTriChuot);
 };

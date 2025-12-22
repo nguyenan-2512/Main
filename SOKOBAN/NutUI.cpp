@@ -9,14 +9,10 @@ NutUI::~NutUI() {
 
 bool NutUI::taiAnh(const std::string& duongDanAnh) {
     if (!ketCau.loadFromFile(duongDanAnh)) {
-        std::cerr << "Khong the tai anh nut: " << duongDanAnh << std::endl;
         return false;
     }
-    
     anhSprite.setTexture(ketCau);
     vungClick = anhSprite.getGlobalBounds();
-    
-    std::cout << "Da tai anh nut: " << duongDanAnh << std::endl;
     return true;
 }
 
@@ -59,11 +55,10 @@ void NutUI::capNhat(const sf::Vector2i& viTriChuot) {
     
     dangHover = kiemTraHover(viTriChuot);
     
-    // Hiệu ứng sáng lên khi hover
     if (dangHover) {
-        anhSprite.setColor(sf::Color(255, 255, 255, 255)); // Sáng 100%
+        anhSprite.setColor(sf::Color(255, 255, 255, 255));
     } else {
-        anhSprite.setColor(sf::Color(255, 255, 255, 220)); // Mờ nhẹ
+        anhSprite.setColor(sf::Color(255, 255, 255, 220)); 
     }
 }
 

@@ -1,7 +1,6 @@
 ﻿#include "HistoryManager.h"
 
 HistoryManager::HistoryManager() {
-    // Constructor rỗng
 }
 
 HistoryManager::~HistoryManager() {
@@ -14,7 +13,6 @@ void HistoryManager::luuTrangThai(const TrangThaiDiChuyen& trangThai) {
 
 TrangThaiDiChuyen HistoryManager::layTrangThaiTruoc() {
     if (lichSuDiChuyen.empty()) {
-        // ✅ Trả về trạng thái rỗng nếu không có lịch sử
         return TrangThaiDiChuyen(Diem(0, 0), DynamicArray<Diem>());
     }
     

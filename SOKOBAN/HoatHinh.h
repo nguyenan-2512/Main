@@ -5,26 +5,24 @@
 class HoatHinh {
 private:
     sf::Sprite* sprite;
-    sf::Texture bangAnh;  // Sprite sheet
+    sf::Texture bangAnh; 
+    sf::Clock dongHoKhung;
 
     int chieuRongKhung;
     int chieuCaoKhung;
     int khungHienTai;
     int trangThaiHienTai;
-    bool lapLai;  // Có lặp lại animation không
+    bool lapLai;  
 
-    sf::Clock dongHoKhung;  // Đếm thời gian giữa các frame
-
-    // Các frame cho mỗi hướng di chuyển
     DynamicArray<sf::IntRect> cacKhungDiLen;
     DynamicArray<sf::IntRect> cacKhungDiXuong;
     DynamicArray<sf::IntRect> cacKhungDiTrai;
     DynamicArray<sf::IntRect> cacKhungDiPhai;
 
 public:
-    static float tocDoHoatHinh;  // Tốc độ chuyển frame (giây)
+    static float tocDoHoatHinh;  
 
-    // Các trạng thái di chuyển
+
     enum TrangThai {
         DI_LEN = 0,
         DI_XUONG = 1,
@@ -43,7 +41,6 @@ public:
 
     void capNhat(const int& trangThai, float thoiGianDelta);
     void datLai();
-
     int layKhungHienTai() const { return khungHienTai; }
     int layTrangThaiHienTai() const { return trangThaiHienTai; }
 };

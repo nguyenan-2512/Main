@@ -5,7 +5,6 @@
 #include <iostream>
 #include "HashTable.h"
 
-// Hash function cho std::string
 struct StringHash {
     std::size_t operator()(const std::string& str) const {
         std::size_t hash = 0;
@@ -16,24 +15,17 @@ struct StringHash {
     }
 };
 
-// ✅ SRP: Class chỉ chịu trách nhiệm quản lý tài nguyên (textures, sounds)
 class ResourceManager {
 private:
     static ResourceManager* instance;
 
-    // Lưu trữ textures và sounds
     HashTable<std::string, sf::Texture*, StringHash> textures;
     HashTable<std::string, sf::SoundBuffer*, StringHash> soundBuffers;
-
-    // Private constructor (Singleton pattern)
     ResourceManager() : textures(100), soundBuffers(50) {}
-
-    // Prevent copy
     ResourceManager(const ResourceManager&) = delete;
     ResourceManager& operator=(const ResourceManager&) = delete;
 
 public:
-    // Singleton instance
     static ResourceManager* getInstance() {
         if (!instance) {
             instance = new ResourceManager();
@@ -41,7 +33,6 @@ public:
         return instance;
     }
 
-    // Cleanup
     static void destroy() {
         if (instance) {
             delete instance;
@@ -50,56 +41,42 @@ public:
     }
 
     ~ResourceManager() {
-        // Cleanup textures
         for (auto it = textures.begin(); it != textures.end(); ++it) {
             delete it->value;
         }
         textures.clear();
 
-        // Cleanup sound buffers
         for (auto it = soundBuffers.begin(); it != soundBuffers.end(); ++it) {
             delete it->value;
         }
         soundBuffers.clear();
     }
 
-    // ===========================
-    // TEXTURE MANAGEMENT
-    // ===========================
-
-    // Load texture từ file (cache nếu đã load)
     sf::Texture* loadTexture(const std::string& key, const std::string& filePath) {
-        // Kiểm tra đã load chưa
         sf::Texture* existingTex;
         if (textures.find(key, existingTex)) {
             return existingTex;
         }
 
-        // Load texture mới
         sf::Texture* tex = new sf::Texture();
         if (!tex->loadFromFile(filePath)) {
-            std::cerr << "[ResourceManager] Khong the tai texture: " << filePath << std::endl;
             delete tex;
             return nullptr;
         }
 
         tex->setSmooth(true);
         textures.insert(key, tex);
-        std::cout << "[ResourceManager] Da load texture: " << key << " (" << filePath << ")" << std::endl;
         return tex;
     }
 
-    // Lấy texture đã load
     sf::Texture* getTexture(const std::string& key) {
         sf::Texture* tex;
         if (textures.find(key, tex)) {
             return tex;
         }
-        std::cerr << "[ResourceManager] Texture khong ton tai: " << key << std::endl;
         return nullptr;
     }
 
-    // Load sound buffer
     sf::SoundBuffer* loadSound(const std::string& key, const std::string& filePath) {
         sf::SoundBuffer* existingBuf;
         if (soundBuffers.find(key, existingBuf)) {
@@ -108,13 +85,11 @@ public:
 
         sf::SoundBuffer* buf = new sf::SoundBuffer();
         if (!buf->loadFromFile(filePath)) {
-            std::cerr << "[ResourceManager] Khong the tai sound: " << filePath << std::endl;
             delete buf;
             return nullptr;
         }
 
         soundBuffers.insert(key, buf);
-        std::cout << "[ResourceManager] Da load sound: " << key << std::endl;
         return buf;
     }
 
@@ -123,12 +98,10 @@ public:
         if (soundBuffers.find(key, buf)) {
             return buf;
         }
-        std::cerr << "[ResourceManager] Sound khong ton tai: " << key << std::endl;
         return nullptr;
     }
 
     void loadAllGameResources() {
-        std::cout << "\n=== LOADING GAME RESOURCES ===" << std::endl;
         loadTexture("wall", "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\da1.png");
         loadTexture("floor", "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\co.png");
         loadTexture("player", "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\playersheet2.png");
@@ -150,9 +123,7 @@ public:
         loadSound("win", "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\win.ogg");
         loadSound("gameover", "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\gameover.ogg");
 
-        std::cout << "=== RESOURCES LOADED ===\n" << std::endl;
     }
 };
 
-// Static member initialization
 ResourceManager* ResourceManager::instance = nullptr;

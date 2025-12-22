@@ -8,7 +8,6 @@
 #include "GameStatsUI.h"
 #include "WinUI.h"  
 
-// Forward declaration
 class TroChoi;
 
 enum class TrangThaiUI {
@@ -41,8 +40,7 @@ private:
     sf::Font chuPhong;
 
     TrangThaiUI trangThaiHienTai;
-    
-    // ✅ THÊM: Lưu stats khi win
+
     int soBuocWin;
     float thoiGianWin;
 
@@ -71,8 +69,7 @@ public:
     
     GameStatsUI* layGameStatsUI() { return gameStatsUI; }
     WinUI* layWinUI() { return winUI; }
-    
-    // ✅ THÊM: Method lưu stats
+
     void luuStatsWin(int soBuoc, float thoiGian);
     MapSelectUI* layMapSelectUI() { return mapSelectUI; }
 };

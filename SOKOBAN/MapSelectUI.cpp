@@ -5,14 +5,10 @@ MapSelectUI::MapSelectUI() : chiSoBanDoNoi(0), banDoDaChon(-1) {
 }
 
 bool MapSelectUI::taiTaiNguyen() {
-    // Load background
     if (!ketCauNen.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\selectmaptext.png")) {
-        std::cerr << "[MapSelectUI] Khong the tai nen chon ban do!" << std::endl;
         return false;
     }
     anhNen.setTexture(ketCauNen);
-
-    // Thiết lập nút quay lại
     nutQuayLai.setRadius(50.f);
     nutQuayLai.setOrigin(50.f, 50.f);
     nutQuayLai.setPosition(88.f, 711.f);
@@ -21,7 +17,6 @@ bool MapSelectUI::taiTaiNguyen() {
 
     thieLapCacNutBanDo();
 
-    std::cout << "[MapSelectUI] Load thanh cong!" << std::endl;
     return true;
 }
 
@@ -31,16 +26,15 @@ void MapSelectUI::thieLapCacNutBanDo() {
     const int soBanDo = 10;
     const float banKinhNut = 50.f;
 
-    // Vị trí các nút map
     DynamicArray<sf::Vector2f> cacViTri;
-    cacViTri.push_back(sf::Vector2f(181.f, 302.f));  // Map 1
-    cacViTri.push_back(sf::Vector2f(325.f, 302.f));  // Map 2
-    cacViTri.push_back(sf::Vector2f(469.f, 302.f));  // Map 3
-    cacViTri.push_back(sf::Vector2f(613.f, 302.f));  // Map 4
-    cacViTri.push_back(sf::Vector2f(181.f, 481.f));  // Map 5
-    cacViTri.push_back(sf::Vector2f(325.f, 481.f));  // Map 6
-    cacViTri.push_back(sf::Vector2f(469.f, 481.f));  // Map 7
-    cacViTri.push_back(sf::Vector2f(613.f, 481.f));  // Map 8
+    cacViTri.push_back(sf::Vector2f(181.f, 302.f)); 
+    cacViTri.push_back(sf::Vector2f(325.f, 302.f)); 
+    cacViTri.push_back(sf::Vector2f(469.f, 302.f));  
+    cacViTri.push_back(sf::Vector2f(613.f, 302.f));  
+    cacViTri.push_back(sf::Vector2f(181.f, 481.f));  
+    cacViTri.push_back(sf::Vector2f(325.f, 481.f)); 
+    cacViTri.push_back(sf::Vector2f(469.f, 481.f));  
+    cacViTri.push_back(sf::Vector2f(613.f, 481.f));  
 
     for (int i = 0; i < soBanDo && i < 8; ++i) {
         sf::RectangleShape nutHinhChuNhat;
@@ -68,29 +62,22 @@ bool MapSelectUI::chuotDeLenNutTron(const sf::CircleShape& nut, sf::Vector2i viT
 }
 
 int MapSelectUI::xuLySuKien(const sf::Event& suKien) {
-    // Xử lý click chuột
     if (suKien.type == sf::Event::MouseButtonPressed &&
         suKien.mouseButton.button == sf::Mouse::Left) {
 
         sf::Vector2i viTriChuot(suKien.mouseButton.x, suKien.mouseButton.y);
 
-        // Click nút quay lại
         if (chuotDeLenNutTron(nutQuayLai, viTriChuot)) {
-            std::cout << "[MapSelectUI] Quay lai menu chinh" << std::endl;
             return -1;
         }
 
-        // Click chọn map
         for (int i = 0; i < cacNutBanDo.size(); ++i) {
             if (chuotDeLenNut(cacNutBanDo[i], viTriChuot)) {
                 banDoDaChon = i;
-                std::cout << "[MapSelectUI] Da chon Ban do: " << (i + 1) << std::endl;
                 return i;
             }
         }
     }
-
-    // Xử lý phím
     if (suKien.type == sf::Event::KeyPressed) {
         const int soBanDo = 10;
 
@@ -126,15 +113,12 @@ int MapSelectUI::xuLySuKien(const sf::Event& suKien) {
         case sf::Keyboard::Enter:
         case sf::Keyboard::Space:
             banDoDaChon = chiSoBanDoNoi;
-            std::cout << "[MapSelectUI] Da chon Ban do: " << (banDoDaChon + 1) << std::endl;
             return chiSoBanDoNoi;
 
         case sf::Keyboard::Escape:
             return -1;
         }
     }
-
-    // Xử lý hover chuột
     if (suKien.type == sf::Event::MouseMoved) {
         sf::Vector2i viTriChuot(suKien.mouseMove.x, suKien.mouseMove.y);
 
@@ -146,11 +130,10 @@ int MapSelectUI::xuLySuKien(const sf::Event& suKien) {
         }
     }
 
-    return -2; // Không có action
+    return -2; 
 }
 
 void MapSelectUI::capNhat(const sf::Vector2i& viTriChuot) {
-    // Cập nhật hover cho nút quay lại
     if (chuotDeLenNutTron(nutQuayLai, viTriChuot)) {
         nutQuayLai.setFillColor(sf::Color(255, 255, 255, 60));
     }
@@ -161,8 +144,6 @@ void MapSelectUI::capNhat(const sf::Vector2i& viTriChuot) {
 
 void MapSelectUI::ve(sf::RenderWindow& cuaSo) {
     cuaSo.draw(anhNen);
-
-    // Vẽ highlight cho map đang chọn
     if (chiSoBanDoNoi >= 0 && chiSoBanDoNoi < cacNutBanDo.size()) {
         sf::Vector2f viTriNut = cacNutBanDo[chiSoBanDoNoi].getPosition();
         float banKinh = 55.f;

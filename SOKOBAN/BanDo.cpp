@@ -53,7 +53,6 @@ void BanDo::linkButtonsToTraps() {
                     cacBayPtr[j]->layY()
                 );
             }
-            std::cout << "Nut bam " << i << " lien ket voi " << soBay << " bay" << std::endl;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿// File: BanDo.h (SỬA LẠI)
-#pragma once
+﻿#pragma once
 #include <SFML/Graphics.hpp>
 #include "DynamicArray.h"  
 #include <string>
@@ -17,7 +16,7 @@
 class BanDo {
     friend class BFSSolver;
     friend class MapLoader; 
-    friend class MapRenderer;// ✅ Cho phép MapLoader truy cập private members
+    friend class MapRenderer;
 
 public:
     DynamicArray<ThungGo*> cacThungGoPtr;

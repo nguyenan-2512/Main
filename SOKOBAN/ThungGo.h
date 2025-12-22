@@ -13,8 +13,6 @@ private:
 public:
     ThungGo();
     ThungGo(int x, int y, int kichThuocO);
-
-    // ✅ THÊM MỚI
     LoaiDoiTuong layLoai() const override {
         return LoaiDoiTuong::THUNG_GO;
     }
@@ -27,8 +25,5 @@ public:
     void datKetCauBinhThuong(const sf::Texture& ketCau);
     void datKetCauTrenViTriDat(const sf::Texture& ketCau);
     void datTrangThaiTrenViTriDat(bool trangThai);
-
-    // ❌ XÓA INLINE: bool layTrangThaiTrenViTriDat() const { return dangTrenViTriDat; }
-    // ✅ THAY BẰNG: Chỉ khai báo
     bool layTrangThaiTrenViTriDat() const;
 };

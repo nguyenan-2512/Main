@@ -138,7 +138,6 @@ bool GameController::thucHienDichChuyen() {
         return false;
     }
 
-    // Lưu trạng thái
     TrangThaiDiChuyen trangThai = layTrangThaiHienTai();
     historyManager->luuTrangThai(trangThai);
     
@@ -168,14 +167,11 @@ bool GameController::kiemTraThua() const {
 
 void GameController::undo() {
     if (!historyManager->coTheLui()) {
-        std::cout << "Khong the lui!" << std::endl;
         return;
     }
 
     TrangThaiDiChuyen trangThaiTruoc = historyManager->layTrangThaiTruoc();
     phucHoiTrangThai(trangThaiTruoc);
-    
-    std::cout << "Da lui buoc! Con lai " << historyManager->laySoBuoc() << " buoc." << std::endl;
 }
 
 int GameController::laySoBuoc() const {
@@ -236,16 +232,7 @@ bool GameController::timLoiGiaiBFS(int doSauToiDa) {
     buocGiaiHienTai = 0;
 
     TrangThaiBFS trangThaiBanDau = taoTrangThaiBFS();
-    
-    std::cout << "Dang tim loi giai bang BFS..." << std::endl;
     bool timThay = bfsSolver->timLoiGiai(trangThaiBanDau, loiGiaiHienTai, doSauToiDa);
-    
-    if (timThay) {
-        std::cout << "Tim thay! So buoc: " << loiGiaiHienTai.size() << std::endl;
-    } else {
-        std::cout << "Khong tim thay loi giai!" << std::endl;
-    }
-    
     return timThay;
 }
 
@@ -267,7 +254,6 @@ bool GameController::thucHienBuocGiai() {
     int hanhDong = loiGiaiHienTai[buocGiaiHienTai];
     
     if (hanhDong == 4) {
-        // Teleport
         bool daDichChuyen = thucHienDichChuyen();
         if (daDichChuyen) {
             buocGiaiHienTai++;
@@ -276,7 +262,6 @@ bool GameController::thucHienBuocGiai() {
         return false;
     }
     else {
-        // Di chuyển thường
         int dx[] = { 0, 0, -1, 1 };
         int dy[] = { -1, 1, 0, 0 };
 

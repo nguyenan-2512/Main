@@ -6,7 +6,7 @@ HanhDongGame InputHandler::xuLyPhimChoiGame(const sf::Event& suKien) {
     }
 
     switch (suKien.key.code) {
-        // Di chuyển
+
     case sf::Keyboard::Up:
     case sf::Keyboard::W:
         return HanhDongGame::DI_LEN;
@@ -23,7 +23,6 @@ HanhDongGame InputHandler::xuLyPhimChoiGame(const sf::Event& suKien) {
     case sf::Keyboard::D:
         return HanhDongGame::DI_PHAI;
 
-        // Chức năng
     case sf::Keyboard::U:
         return HanhDongGame::UNDO;
 
@@ -48,6 +47,5 @@ HanhDongGame InputHandler::xuLyPhimChoiGame(const sf::Event& suKien) {
 }
 
 bool InputHandler::xuLyPhimWinLose(const sf::Event& suKien) {
-    // Bất kỳ phím nào cũng quay về menu
     return (suKien.type == sf::Event::KeyPressed);
 }

@@ -18,13 +18,10 @@ void BoxTriggerUpdater::capNhatNutVaBay(BanDo* map) {
     for (int i = 0; i < map->cacNutBamPtr.size(); i++) {
         int nx = map->cacNutBamPtr[i]->layX();
         int ny = map->cacNutBamPtr[i]->layY();
-
         bool coThung = map->laThungGo(nx, ny);
         bool coThungSat = map->laThungSat(nx, ny);
         bool duocNhan = coThung || coThungSat;
-
         map->cacNutBamPtr[i]->datTrangThaiNhan(duocNhan);
-
         const auto& cacBayLienKet = map->cacNutBamPtr[i]->layCacBayLienKet();
         for (int j = 0; j < cacBayLienKet.size(); j++) {
             Bay* bay = map->timBayTai(

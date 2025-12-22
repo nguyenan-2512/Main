@@ -21,7 +21,6 @@ void NguoiChoi::ve(sf::RenderWindow& cuaSo) {
 }
 
 void NguoiChoi::diChuyen(int dx, int dy) {
-    // Xác định hướng di chuyển
     if (dy < 0) {
         trangThaiHienTai = HoatHinh::DI_LEN;
     }

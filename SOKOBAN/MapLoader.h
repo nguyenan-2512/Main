@@ -1,5 +1,4 @@
-﻿
-#pragma once
+﻿#pragma once
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -19,10 +18,8 @@
 #include "CongDichChuyen.h"
 #include "NguoiChoi.h"
 
-// ✅ SRP: Class chỉ chịu trách nhiệm đọc file map và tạo đối tượng
 class MapLoader {
 public:
-    // Load map từ file
     static BanDo* loadFromFile(const std::string& filePath, int kichThuocO) {
         std::cout << "[MapLoader] Dang doc file: " << filePath << std::endl;
 
@@ -32,7 +29,6 @@ public:
             return nullptr;
         }
 
-        // Tạo map mới (constructor trống)
         BanDo* map = new BanDo(kichThuocO);
         ResourceManager* rm = ResourceManager::getInstance();
 
@@ -42,17 +38,13 @@ public:
         while (std::getline(file, line)) {
             for (int x = 0; x < (int)line.size(); x++) {
                 char c = line[x];
-
-                // Load các đối tượng dựa trên ký tự
                 if (c == '#') {
-                    // Tường
                     Tuong* tuong = new Tuong(x, y, kichThuocO);
                     sf::Texture* tex = rm->getTexture("wall");
                     if (tex) tuong->datKetCau(*tex);
                     map->themDoiTuong(tuong);
                 }
                 else if (c == '=') {
-                    // Cầu (nền + cầu)
                     Nen* nen = new Nen(x, y, kichThuocO);
                     sf::Texture* texNen = rm->getTexture("floor");
                     if (texNen) nen->datKetCau(*texNen);
@@ -64,7 +56,6 @@ public:
                     map->themDoiTuong(cau);
                 }
                 else if (c == '?') {
-                    // Cát (nền + cát)
                     Nen* nen = new Nen(x, y, kichThuocO);
                     sf::Texture* texNen = rm->getTexture("floor");
                     if (texNen) nen->datKetCau(*texNen);
@@ -76,14 +67,12 @@ public:
                     map->themDoiTuong(cat);
                 }
                 else if (c == '~') {
-                    // Nước
                     Nuoc* nuoc = new Nuoc(x, y, kichThuocO);
                     sf::Texture* texNuoc = rm->getTexture("water");
                     if (texNuoc) nuoc->datKetCau(*texNuoc);
                     map->themDoiTuong(nuoc);
                 }
                 else if (c == '@') {
-                    // Người chơi (nền + player)
                     Nen* nen = new Nen(x, y, kichThuocO);
                     sf::Texture* texNen = rm->getTexture("floor");
                     if (texNen) nen->datKetCau(*texNen);
@@ -97,7 +86,6 @@ public:
                     map->datNguoiChoi(player);
                 }
                 else if (c == '$') {
-                    // Thùng gỗ (nền + box)
                     Nen* nen = new Nen(x, y, kichThuocO);
                     sf::Texture* texNen = rm->getTexture("floor");
                     if (texNen) nen->datKetCau(*texNen);
@@ -111,7 +99,6 @@ public:
                     map->themDoiTuong(box);
                 }
                 else if (c == 'I') {
-                    // Thùng sắt (nền + steel box)
                     Nen* nen = new Nen(x, y, kichThuocO);
                     sf::Texture* texNen = rm->getTexture("floor");
                     if (texNen) nen->datKetCau(*texNen);
@@ -123,7 +110,6 @@ public:
                     map->themDoiTuong(steelBox);
                 }
                 else if (c == 'X' || c == 'x') {
-                    // Vị trí đặt (nền + goal)
                     Nen* nen = new Nen(x, y, kichThuocO);
                     sf::Texture* texNen = rm->getTexture("floor");
                     if (texNen) nen->datKetCau(*texNen);
@@ -135,7 +121,6 @@ public:
                     map->themDoiTuong(goal);
                 }
                 else if (c == 'O' || c == 'o') {
-                    // Vật cản (nền + obstacle)
                     Nen* nen = new Nen(x, y, kichThuocO);
                     sf::Texture* texNen = rm->getTexture("floor");
                     if (texNen) nen->datKetCau(*texNen);
@@ -147,7 +132,6 @@ public:
                     map->themDoiTuong(obstacle);
                 }
                 else if (c == '+') {
-                    // Player trên goal (nền + goal + player)
                     Nen* nen = new Nen(x, y, kichThuocO);
                     sf::Texture* texNen = rm->getTexture("floor");
                     if (texNen) nen->datKetCau(*texNen);
@@ -166,7 +150,6 @@ public:
                     map->datNguoiChoi(player);
                 }
                 else if (c == '*') {
-                    // Box trên goal (nền + goal + box)
                     Nen* nen = new Nen(x, y, kichThuocO);
                     sf::Texture* texNen = rm->getTexture("floor");
                     if (texNen) nen->datKetCau(*texNen);
@@ -186,14 +169,12 @@ public:
                     map->themDoiTuong(box);
                 }
                 else if (c == '.' || c == ' ') {
-                    // Nền trống
                     Nen* nen = new Nen(x, y, kichThuocO);
                     sf::Texture* texNen = rm->getTexture("floor");
                     if (texNen) nen->datKetCau(*texNen);
                     map->themDoiTuong(nen);
                 }
                 else if (c == 'T') {
-                    // Bẫy (nền + trap)
                     Nen* nen = new Nen(x, y, kichThuocO);
                     sf::Texture* texNen = rm->getTexture("floor");
                     if (texNen) nen->datKetCau(*texNen);
@@ -207,7 +188,6 @@ public:
                     map->themDoiTuong(trap);
                 }
                 else if (c == 'B') {
-                    // Nút bấm (nền + button)
                     Nen* nen = new Nen(x, y, kichThuocO);
                     sf::Texture* texNen = rm->getTexture("floor");
                     if (texNen) nen->datKetCau(*texNen);
@@ -221,7 +201,6 @@ public:
                     map->themDoiTuong(button);
                 }
                 else if (isdigit(c)) {
-                    // Teleport (nền + cổng)
                     int maSo = c - '0';
 
                     Nen* nen = new Nen(x, y, kichThuocO);
@@ -241,10 +220,7 @@ public:
         }
 
         file.close();
-
-        // Link buttons to traps
         map->linkButtonsToTraps();
-
         std::cout << "[MapLoader] Load thanh cong!" << std::endl;
         return map;
     }

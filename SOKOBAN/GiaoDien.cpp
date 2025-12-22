@@ -9,21 +9,16 @@ GiaoDien::~GiaoDien() {
 }
 
 bool GiaoDien::taiTaiNguyen() {
-    // Load background texture
     if (!ketCauNen.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\menutext.png")) {
-        std::cerr << "Khong the tai texture nen menu!" << std::endl;
     }
     anhNen.setTexture(ketCauNen);
     ketCauNen.setSmooth(true);
 
-    // Load select map background
     if (!ketCauNenChonBanDo.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\selectmaptext.png")) {
-        std::cerr << "Khong the tai nen chon ban do!" << std::endl;
     }
     anhNenChonBanDo.setTexture(ketCauNenChonBanDo);
 
     if (!chuPhong.loadFromFile("C:\\Windows\\Fonts\\arial.ttf")) {
-        std::cerr << "Khong the tai font chu" << std::endl;
     }
 
     thieLapCacNut();
@@ -39,19 +34,16 @@ void GiaoDien::thieLapCacNut() {
     nutQuayLai.setOutlineThickness(0.f);
     daNhanQuayLai = false;
 
-    // Thiết lập nút Chơi
     nutChoi.setSize(sf::Vector2f(270, 90));
     nutChoi.setPosition(275, 300);
     nutChoi.setFillColor(sf::Color(0, 0, 0, 0));
     nutChoi.setOutlineThickness(0);
 
-    // Thiết lập nút Hướng dẫn
     nutHuongDan.setSize(sf::Vector2f(270, 90));
     nutHuongDan.setPosition(275, 454);
     nutHuongDan.setFillColor(sf::Color(0, 0, 0, 0));
     nutHuongDan.setOutlineThickness(0);
 
-    // Thiết lập nút Thoát
     nutThoat.setSize(sf::Vector2f(270, 90));
     nutThoat.setPosition(275, 610);
     nutThoat.setFillColor(sf::Color(0, 0, 0, 0));
@@ -148,7 +140,6 @@ void GiaoDien::xuLySuKien(const sf::Event& suKien, sf::RenderWindow& cuaSo) {
             float dx = viTriChuot.x - nutQuayLai.getPosition().x;
             float dy = viTriChuot.y - nutQuayLai.getPosition().y;
             if (dx * dx + dy * dy <= nutQuayLai.getRadius() * nutQuayLai.getRadius()) {
-                std::cout << "Quay lai menu chinh" << std::endl;
                 trangThaiHienTai = TrangThaiGiaoDien::MENU;
                 return;
             }
@@ -156,7 +147,6 @@ void GiaoDien::xuLySuKien(const sf::Event& suKien, sf::RenderWindow& cuaSo) {
             for (int i = 0; i < cacNutBanDo.getSize(); ++i) {
                 if (chuotDeLenNut(cacNutBanDo[i], viTriChuot)) {
                     banDoDaChon = i;
-                    std::cout << "Da chon Ban do: " << (i + 1) << std::endl;
                     trangThaiHienTai = TrangThaiGiaoDien::DANG_CHOI;
                     break;
                 }
@@ -201,7 +191,6 @@ void GiaoDien::xuLySuKien(const sf::Event& suKien, sf::RenderWindow& cuaSo) {
             case sf::Keyboard::Enter:
             case sf::Keyboard::Space:
                 banDoDaChon = chiSoBanDoNoi;
-                std::cout << "Da chon Ban do: " << (banDoDaChon + 1) << std::endl;
                 trangThaiHienTai = TrangThaiGiaoDien::DANG_CHOI;
                 break;
 
@@ -303,14 +292,14 @@ void GiaoDien::thieLapChonBanDo(sf::RenderWindow& cuaSo) {
     const float banKinhNut = 50.f;
 
     DynamicArray<sf::Vector2f> cacViTri;
-    cacViTri.push_back(sf::Vector2f(181.f, 302.f));  // Bản đồ 1
-    cacViTri.push_back(sf::Vector2f(325.f, 302.f));  // Bản đồ 2
-    cacViTri.push_back(sf::Vector2f(469.f, 302.f));  // Bản đồ 3
-    cacViTri.push_back(sf::Vector2f(613.f, 302.f));  // Bản đồ 4
-    cacViTri.push_back(sf::Vector2f(181.f, 481.f));  // Bản đồ 5
-    cacViTri.push_back(sf::Vector2f(325.f, 481.f));  // Bản đồ 6
-    cacViTri.push_back(sf::Vector2f(469.f, 481.f));  // Bản đồ 7
-    cacViTri.push_back(sf::Vector2f(613.f, 481.f));  // Bản đồ 8
+    cacViTri.push_back(sf::Vector2f(181.f, 302.f)); 
+    cacViTri.push_back(sf::Vector2f(325.f, 302.f));  
+    cacViTri.push_back(sf::Vector2f(469.f, 302.f)); 
+    cacViTri.push_back(sf::Vector2f(613.f, 302.f));  
+    cacViTri.push_back(sf::Vector2f(181.f, 481.f));  
+    cacViTri.push_back(sf::Vector2f(325.f, 481.f));  
+    cacViTri.push_back(sf::Vector2f(469.f, 481.f));  
+    cacViTri.push_back(sf::Vector2f(613.f, 481.f));  
 
     for (int i = 0; i < soBanDo && i < 8; ++i) {
         sf::RectangleShape nutHinhChuNhat;

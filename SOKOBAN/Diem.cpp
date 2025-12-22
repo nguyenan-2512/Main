@@ -1,4 +1,3 @@
-// Diem.cpp - Tri?n khai l?p ?i?m
 #include "Diem.h"
 #include <iostream>
 using namespace std;

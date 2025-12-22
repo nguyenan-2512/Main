@@ -25,7 +25,6 @@ bool BFSSolver::timLoiGiai(TrangThaiBFS trangThaiBanDau,
         hangDoi.pop();
         soTrangThaiDaKhamPha++;
 
-        // ✅ Kiểm tra điều kiện thắng
         int soThungTrenViTriDat = 0;
         for (int i = 0; i < trangThaiHienTai.cacViTriThung.size(); i++) {
             if (banDo->laViTriDat(trangThaiHienTai.cacViTriThung[i].layX(),
@@ -34,7 +33,6 @@ bool BFSSolver::timLoiGiai(TrangThaiBFS trangThaiBanDau,
             }
         }
 
-        // ✅ Lấy số vị trí đặt từ BanDo
         int soViTriDat = banDo->laySoViTriDat();
 
         if (soThungTrenViTriDat == trangThaiHienTai.cacViTriThung.size() &&
@@ -47,7 +45,6 @@ bool BFSSolver::timLoiGiai(TrangThaiBFS trangThaiBanDau,
             continue;
         }
 
-        // ✅ Thử dịch chuyển qua cổng teleport
         if (banDo->laCongDichChuyen(trangThaiHienTai.viTriNguoiChoi.layX(),
             trangThaiHienTai.viTriNguoiChoi.layY())) {
             Diem viTriNguoiChoiMoi = trangThaiHienTai.viTriNguoiChoi;
@@ -60,7 +57,7 @@ bool BFSSolver::timLoiGiai(TrangThaiBFS trangThaiBanDau,
                         trangThaiHienTai.cacViTriThungSat,
                         trangThaiHienTai.doSau + 1);
                     trangThaiMoi.duongDi = trangThaiHienTai.duongDi;
-                    trangThaiMoi.duongDi.push_back(4);  // Mã hành động teleport
+                    trangThaiMoi.duongDi.push_back(4);  
 
                     if (!daThamQua.contains(trangThaiMoi)) {
                         daThamQua.insert(trangThaiMoi, true);
@@ -70,7 +67,6 @@ bool BFSSolver::timLoiGiai(TrangThaiBFS trangThaiBanDau,
             }
         }
 
-        // ✅ Thử 4 hướng di chuyển
         for (int huong = 0; huong < 4; huong++) {
             int xNguoiChoiMoi = trangThaiHienTai.viTriNguoiChoi.layX() + dx[huong];
             int yNguoiChoiMoi = trangThaiHienTai.viTriNguoiChoi.layY() + dy[huong];
@@ -79,7 +75,6 @@ bool BFSSolver::timLoiGiai(TrangThaiBFS trangThaiBanDau,
             DynamicArray<Diem> cacThungMoi = trangThaiHienTai.cacViTriThung;
             DynamicArray<Diem> cacThungSatMoi = trangThaiHienTai.cacViTriThungSat;
 
-            // ✅ Kiểm tra đẩy thùng gỗ
             int chiSoThung = -1;
             for (int i = 0; i < cacThungMoi.size(); i++) {
                 if (cacThungMoi[i] == viTriNguoiChoiMoi) {
@@ -88,7 +83,6 @@ bool BFSSolver::timLoiGiai(TrangThaiBFS trangThaiBanDau,
                 }
             }
 
-            // ✅ Kiểm tra đẩy thùng sắt
             int chiSoThungSat = -1;
             for (int i = 0; i < cacThungSatMoi.size(); i++) {
                 if (cacThungSatMoi[i] == viTriNguoiChoiMoi) {
@@ -98,7 +92,6 @@ bool BFSSolver::timLoiGiai(TrangThaiBFS trangThaiBanDau,
             }
 
             if (chiSoThung != -1) {
-                // Đẩy thùng gỗ
                 int xThungMoi = viTriNguoiChoiMoi.layX() + dx[huong];
                 int yThungMoi = viTriNguoiChoiMoi.layY() + dy[huong];
                 Diem viTriThungMoi(xThungMoi, yThungMoi);
@@ -112,7 +105,6 @@ bool BFSSolver::timLoiGiai(TrangThaiBFS trangThaiBanDau,
                 }
             }
             else if (chiSoThungSat != -1) {
-                // Đẩy thùng sắt
                 int xThungSatMoi = viTriNguoiChoiMoi.layX() + dx[huong];
                 int yThungSatMoi = viTriNguoiChoiMoi.layY() + dy[huong];
                 Diem viTriThungSatMoi(xThungSatMoi, yThungSatMoi);
@@ -126,7 +118,6 @@ bool BFSSolver::timLoiGiai(TrangThaiBFS trangThaiBanDau,
                 cacThungSatMoi[chiSoThungSat] = viTriThungSatMoi;
             }
             else {
-                // Di chuyển người chơi không đẩy thùng
                 if (!laBuocDiHopLeBFS(viTriNguoiChoiMoi, cacThungMoi, cacThungSatMoi)) {
                     continue;
                 }
@@ -187,7 +178,6 @@ bool BFSSolver::laViTriChet(const Diem& viTriThung,
         return true;
     }
 
-    // ✅ Kiểm tra deadlock 2x2
     if (cacThung.size() >= 4) {
         Diem keCanh[3] = {
             Diem(x + 1, y),
@@ -298,7 +288,6 @@ bool BFSSolver::thuDichChuyenTrongBFS(Diem& viTriNguoiChoi) const {
 }
 
 Diem BFSSolver::layDiemDenDichChuyen(const Diem& viTri) const {
-    // ✅ Truy cập trực tiếp qua friend class
     return banDo->mangDichChuyen.layDiemDen(viTri);
 }
 
@@ -308,16 +297,13 @@ bool BFSSolver::kiemTraBayKichHoat(const Diem& viTriBay,
     int x = viTriBay.layX();
     int y = viTriBay.layY();
 
-    // ✅ Truy cập trực tiếp qua friend class
     const auto& cacNutBam = banDo->cacNutBamPtr;
 
     for (int i = 0; i < cacNutBam.size(); i++) {
         const auto& cacBayLienKet = cacNutBam[i]->layCacBayLienKet();
-
         for (int j = 0; j < cacBayLienKet.size(); j++) {
             if (cacBayLienKet[j].first == x && cacBayLienKet[j].second == y) {
                 Diem viTriNut(cacNutBam[i]->layX(), cacNutBam[i]->layY());
-
                 bool nutDuocNhan = false;
                 for (int k = 0; k < cacThung.size(); k++) {
                     if (cacThung[k] == viTriNut) {

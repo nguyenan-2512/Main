@@ -9,25 +9,13 @@
 
 class TroChoi {
 private:
-    // UI & Input
     GameUI* gameUI;
     InputHandler inputHandler;
     MapRenderer mapRenderer;
 
-    // Window & View
     sf::RenderWindow cuaSo;
     sf::View tamNhinTroChoi;
     sf::Vector2u kichThuocGoc;
-    float tyLeX;
-    float tyLeY;
-    float cheDoX;
-    float cheDoY;
-
-    // Game objects
-    BanDo* banDoHienTai;
-    GameController* gameController;
-
-    // Audio
     sf::Music nhacNen;
     sf::SoundBuffer boNhoAmThanhBuocDi;
     sf::Sound amThanhBuocDi;
@@ -35,20 +23,24 @@ private:
     sf::Sound amThanhChienThang;
     sf::SoundBuffer boNhoAmThanhThua;
     sf::Sound amThanhThua;
+    float tyLeX;
+    float tyLeY;
+    float cheDoX;
+    float cheDoY;
 
-    // State
+    BanDo* banDoHienTai;
+    GameController* gameController;
+
     bool hienThiThang;
     bool hienThiThua;
     bool dangTuDongGiai;
-    bool dangTimKiemBFS;  // ✅ THÊM: Đang tìm lời giải
+    bool dangTimKiemBFS;  
     sf::Clock dongHoDelta;
 
 public:
     TroChoi();
     ~TroChoi();
     void chay();
-
-    // Callbacks cho GameUI
     void xuLyClickNutPause();
     void xuLyClickNutGoiY();
     void xuLyHanhDongPause(HanhDongPause hanhDong);

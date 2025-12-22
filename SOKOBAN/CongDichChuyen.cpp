@@ -21,7 +21,6 @@ void CongDichChuyen::datKetCau(const sf::Texture& ketCau) {
     sprite.setTexture(ketCau);
 }
 
-// ✅ THÊM HÀM NÀY
 int CongDichChuyen::layMaSo() const {
     return maSoDichChuyen;
 }

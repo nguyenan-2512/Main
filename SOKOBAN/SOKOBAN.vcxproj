@@ -107,6 +107,7 @@
     <Text Include="map5.txt" />
     <Text Include="map6.txt" />
     <Text Include="map7.txt" />
+    <Text Include="map8.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />

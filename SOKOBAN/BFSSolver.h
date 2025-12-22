@@ -5,14 +5,12 @@
 #include "TrangThaiBFS.h"
 #include "Diem.h"
 
-// Forward declaration để tránh circular dependency
 class BanDo;
 
 class BFSSolver {
 private:
-    const BanDo* banDo;  // ✅ Con trỏ const để truy cập map (chỉ đọc)
+    const BanDo* banDo;  
 
-    // ✅ Helper methods cho BFS
     bool laBuocDiHopLeBFS(const Diem& viTri,
         const DynamicArray<Diem>& cacThung,
         const DynamicArray<Diem>& cacThungSat) const;
@@ -46,10 +44,7 @@ private:
     bool thuDichChuyenTrongBFS(Diem& viTriNguoiChoi) const;
 
 public:
-    // ✅ Constructor nhận con trỏ BanDo
     BFSSolver(const BanDo* map);
-
-    // ✅ Hàm chính: Tìm lời giải BFS
     bool timLoiGiai(TrangThaiBFS trangThaiBanDau,
         DynamicArray<int>& loiGiai,
         int doSauToiDa = 100);

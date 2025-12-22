@@ -1,5 +1,4 @@
-﻿// DoiTuongTroChoi.cpp - Triển khai lớp DoiTuongTroChoi
-#include "DoiTuongTroChoi.h"
+﻿#include "DoiTuongTroChoi.h"
 
 DoiTuongTroChoi::DoiTuongTroChoi(int x, int y, int kichThuocO)
     : viTri(x, y), kichThuocO(kichThuocO) {

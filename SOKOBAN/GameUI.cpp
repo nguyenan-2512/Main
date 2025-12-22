@@ -1,8 +1,8 @@
 ﻿#include "GameUI.h"
 #include "TroChoi.h"
 #include <iostream>
-#include <sstream>   // ✅ THÊM
-#include <iomanip>   // ✅ THÊM
+#include <sstream>  
+#include <iomanip>   
 
 
 GameUI::GameUI()
@@ -14,8 +14,8 @@ GameUI::GameUI()
     lopPhuPause(nullptr),
     gameStatsUI(nullptr),
     winUI(nullptr),
-    soBuocWin(0),        // ✅ THÊM
-    thoiGianWin(0.0f),   // ✅ THÊM
+    soBuocWin(0),      
+    thoiGianWin(0.0f),   
     trangThaiHienTai(TrangThaiUI::MENU) {
 }
 
@@ -56,104 +56,66 @@ GameUI::~GameUI() {
 
 bool GameUI::khoiTao() {
 
-
-    std::cout << "\n[GameUI] ===== KHOI TAO TOAN BO UI =====" << std::endl;
-
-    // ===== 1. KHỞI TẠO MENU =====
     menuUI = new MenuUI();
     if (!menuUI->taiTaiNguyen()) {
-        std::cerr << "[GameUI] Loi tai Menu!" << std::endl;
         return false;
     }
-    std::cout << "[GameUI] + Menu: OK" << std::endl;
 
-    // ===== 2. KHỞI TẠO MAP SELECT =====
     mapSelectUI = new MapSelectUI();
     if (!mapSelectUI->taiTaiNguyen()) {
-        std::cerr << "[GameUI] Loi tai Map Select!" << std::endl;
         return false;
     }
-    std::cout << "[GameUI] + Map Select: OK" << std::endl;
 
-    // ===== 3. KHỞI TẠO HƯỚNG DẪN =====
     huongDanUI = new HuongDan();
     if (!huongDanUI->taiTaiNguyen()) {
-        std::cerr << "[GameUI] Loi tai Huong Dan!" << std::endl;
         return false;
     }
-    std::cout << "[GameUI] + Huong Dan: OK" << std::endl;
 
-    // ❌ XÓA: Code cũ dùng giaoDien
-
-    // ===== 4. KHỞI TẠO NÚT PAUSE =====
     nutPause = new NutUI();
     if (!nutPause->taiAnh("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\pause_button.png")) {
-        std::cerr << "[GameUI] Loi tai nut Pause!" << std::endl;
         return false;
     }
     nutPause->datViTri(730, 43);
     nutPause->datKichThuoc(50, 50);
-    std::cout << "[GameUI] + Nut Pause: OK" << std::endl;
 
-    // ===== 5. KHỞI TẠO NÚT GỢI Ý =====
     nutGoiY = new NutUI();
     if (!nutGoiY->taiAnh("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\hint_button.png")) {
-        std::cerr << "[GameUI] Loi tai nut Goi Y!" << std::endl;
         return false;
     }
     nutGoiY->datViTri(665, 43);
     nutGoiY->datKichThuoc(50, 50);
-    std::cout << "[GameUI] + Nut Goi Y: OK" << std::endl;
 
-    // ===== 6. KHỞI TẠO PAUSE MENU =====
     lopPhuPause = new LopPhuPause();
     if (!lopPhuPause->khoiTao("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\menupause.png")) {
-        std::cerr << "[GameUI] Loi tai Pause Menu!" << std::endl;
         return false;
     }
-    std::cout << "[GameUI] + Pause Menu: OK" << std::endl;
 
-    // ===== KHỞI TẠO WIN UI =====
     winUI = new WinUI();
     if (!winUI->khoiTao(
-        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\win3.3.png",  // TODO: ĐƯỜNG DẪN ẢNH 3 SAO
-        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\win2.2.png",  // TODO: ĐƯỜNG DẪN ẢNH 2 SAO
-        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\win1.1.png"    // TODO: ĐƯỜNG DẪN ẢNH 1 SAO
+        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\win3.3.png",  
+        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\win2.2.png",  
+        "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\win1.1.png"    
     )) {
-        std::cerr << "[GameUI] Loi tai WinUI!" << std::endl;
         return false;
     }
-    std::cout << "[GameUI] + WinUI:  OK" << std::endl;
 
-    // ===== 8. LOAD TEXTURE LOSE =====
     if (!ketCauThua.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\gameover.png")) {
-        std::cerr << "[GameUI] Loi tai anh thua!" << std::endl;
         return false;
     }
     anhThua.setTexture(ketCauThua);
     anhThua.setPosition(0, 0);
-    std::cout << "[GameUI] + Lose Overlay: OK" << std::endl;
 
-    // ===== 9. LOAD FONT =====
     if (!chuPhong.loadFromFile("C:\\Windows\\Fonts\\arial.ttf")) {
-        std::cerr << "[GameUI] Loi tai font!" << std::endl;
         return false;
     }
-    std::cout << "[GameUI] + Font: OK" << std::endl;
 
-    std::cout << "[GameUI] ===== KHOI TAO THANH CONG =====" << std::endl;
-
-    // ===== 10. KHỞI TẠO GAME STATS UI =====
     gameStatsUI = new GameStatsUI();
     if (!gameStatsUI->khoiTao(
         "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\timer_frame.png",
         "D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\steps_frame.png"
     )) {
-        std::cerr << "[GameUI] Loi tai GameStatsUI!" << std::endl;
         return false;
     }
-    std::cout << "[GameUI] + GameStatsUI: OK" << std::endl;
-
     return true;
 
 
@@ -180,12 +142,9 @@ void GameUI::xuLySuKien(const sf::Event& suKien, sf::RenderWindow& cuaSo, TroCho
     case TrangThaiUI::CHON_BAN_DO: {
         int result = mapSelectUI->xuLySuKien(suKien);
         if (result == -1) {
-            // Quay lại menu
             trangThaiHienTai = TrangThaiUI::MENU;
         }
         else if (result >= 0) {
-            // Chọn map thành công
-            // (TroChoi sẽ xử lý khi kiểm tra trạng thái)
         }
         break;
     }
@@ -246,13 +205,11 @@ void GameUI::xuLySuKien(const sf::Event& suKien, sf::RenderWindow& cuaSo, TroCho
 
 
 bool GameUI::xuLyClickChuotTrongGame(const sf::Vector2i& viTriChuot, TroChoi* troChoi) {
-    // Kiểm tra click vào nút Pause
     if (nutPause && nutPause->kiemTraClick(viTriChuot)) {
         troChoi->xuLyClickNutPause();
         return true;
     }
 
-    // Kiểm tra click vào nút Gợi Ý
     if (nutGoiY && nutGoiY->kiemTraClick(viTriChuot)) {
         troChoi->xuLyClickNutGoiY();
         return true;
@@ -293,7 +250,6 @@ void GameUI::capNhat(const sf::Vector2i& viTriChuot) {
     }
 }
 
-// ===== VẼ =====
 void GameUI::ve(sf::RenderWindow& cuaSo) {
     switch (trangThaiHienTai) {
     case TrangThaiUI::MENU:
@@ -345,7 +301,7 @@ void GameUI::ve(sf::RenderWindow& cuaSo) {
         break;
     }
 }
-// ===== PAUSE MENU =====
+
 void GameUI::hienThiPauseMenu() {
     if (lopPhuPause) {
         lopPhuPause->hienThi();
@@ -378,8 +334,6 @@ int GameUI::layMapDaChon() const {
     return 0;
 }
 
-
-// ✅ THÊM: Method lưu stats khi win
 void GameUI::luuStatsWin(int soBuoc, float thoiGian) {
     soBuocWin = soBuoc;
     thoiGianWin = thoiGian;

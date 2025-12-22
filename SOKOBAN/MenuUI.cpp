@@ -5,9 +5,7 @@ MenuUI::MenuUI() : mucDaChon(0) {
 }
 
 bool MenuUI::taiTaiNguyen() {
-    // Load background
     if (!ketCauNen.loadFromFile("D:\\PBL2\\SOKOBAN2\\SOKOBAN1\\SOKOBAN\\SOKOBAN\\images\\menutext.png")) {
-        std::cerr << "[MenuUI] Khong the tai texture nen menu!" << std::endl;
         return false;
     }
     anhNen.setTexture(ketCauNen);
@@ -15,24 +13,20 @@ bool MenuUI::taiTaiNguyen() {
 
     thieLapCacNut();
 
-    std::cout << "[MenuUI] Load thanh cong!" << std::endl;
     return true;
 }
 
 void MenuUI::thieLapCacNut() {
-    // Nút Chơi
     nutChoi.setSize(sf::Vector2f(270, 90));
     nutChoi.setPosition(275, 300);
     nutChoi.setFillColor(sf::Color(0, 0, 0, 0));
     nutChoi.setOutlineThickness(0);
 
-    // Nút Hướng dẫn
     nutHuongDan.setSize(sf::Vector2f(270, 90));
     nutHuongDan.setPosition(275, 454);
     nutHuongDan.setFillColor(sf::Color(0, 0, 0, 0));
     nutHuongDan.setOutlineThickness(0);
 
-    // Nút Thoát
     nutThoat.setSize(sf::Vector2f(270, 90));
     nutThoat.setPosition(275, 610);
     nutThoat.setFillColor(sf::Color(0, 0, 0, 0));
@@ -46,7 +40,6 @@ bool MenuUI::chuotDeLenNut(const sf::RectangleShape& nut, sf::Vector2i viTriChuo
 }
 
 MenuAction MenuUI::xuLySuKien(const sf::Event& suKien) {
-    // Xử lý click chuột
     if (suKien.type == sf::Event::MouseButtonPressed &&
         suKien.mouseButton.button == sf::Mouse::Left) {
 
@@ -63,7 +56,6 @@ MenuAction MenuUI::xuLySuKien(const sf::Event& suKien) {
         }
     }
 
-    // Xử lý phím
     if (suKien.type == sf::Event::KeyPressed) {
         switch (suKien.key.code) {
         case sf::Keyboard::Up:
@@ -81,7 +73,6 @@ MenuAction MenuUI::xuLySuKien(const sf::Event& suKien) {
         }
     }
 
-    // Xử lý hover chuột
     if (suKien.type == sf::Event::MouseMoved) {
         sf::Vector2i viTriChuot(suKien.mouseMove.x, suKien.mouseMove.y);
 
@@ -100,12 +91,10 @@ MenuAction MenuUI::xuLySuKien(const sf::Event& suKien) {
 }
 
 void MenuUI::capNhat() {
-    // Reset màu các nút
     nutChoi.setFillColor(sf::Color(0, 0, 0, 0));
     nutHuongDan.setFillColor(sf::Color(0, 0, 0, 0));
     nutThoat.setFillColor(sf::Color(0, 0, 0, 0));
 
-    // Highlight nút được chọn
     if (mucDaChon == 0) {
         nutChoi.setFillColor(sf::Color(255, 255, 255, 50));
     }

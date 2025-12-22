@@ -12,14 +12,9 @@ private:
 
 public:
     NguoiChoi(int x, int y, int kichThuocO);
-
-    // ✅ THÊM MỚI
     LoaiDoiTuong layLoai() const override {
         return LoaiDoiTuong::NGUOI_CHOI;
     }
-
-    // Người chơi KHÔNG chặn đường
-
     void khoiTaoHoatHinh(const sf::Texture& bangAnh,
         int chieuRongKhung,
         int chieuCaoKhung,

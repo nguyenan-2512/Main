@@ -1,5 +1,4 @@
-﻿// Tuong.cpp - Triển khai lớp Tường
-#include "Tuong.h"
+﻿#include "Tuong.h"
 
 Tuong::Tuong() : DoiTuongTroChoi(0, 0, 0) {
 }

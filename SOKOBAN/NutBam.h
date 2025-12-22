@@ -16,8 +16,6 @@ private:
 public:
     NutBam();
     NutBam(int x, int y, int kichThuocO);
-
-    // ✅ THÊM MỚI
     LoaiDoiTuong layLoai() const override {
         return LoaiDoiTuong::NUT_BAM;
     }

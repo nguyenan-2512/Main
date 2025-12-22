@@ -11,13 +11,11 @@ public:
     CongDichChuyen();
     CongDichChuyen(int x, int y, int kichThuocO, int maSo);
 
-    // ✅ THÊM MỚI
     LoaiDoiTuong layLoai() const override {
         return LoaiDoiTuong::CONG_DICH_CHUYEN;
     }
 
     void ve(sf::RenderWindow& cuaSo) override;
     void datKetCau(const sf::Texture& ketCau);
-
     int layMaSo() const;
 };

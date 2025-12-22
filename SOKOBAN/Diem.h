@@ -1,5 +1,4 @@
-﻿// Diem.h - Lớp đại diện cho điểm tọa độ (x, y)
-#pragma once	
+﻿#pragma once	
 #include <cstddef> 
 
 class Diem {
@@ -10,21 +9,17 @@ public:
     Diem(int = 0, int = 0);
     ~Diem();
 
-    // Getter - Lấy giá trị
     int layX() const;
     int layY() const;
 
-    // Setter - Đặt giá trị
     void datX(int);
     void datY(int);
     void datXY(int, int);
 
-    // Toán tử so sánh
     bool operator==(const Diem& khac) const;
     bool operator!=(const Diem& khac) const;
 };
 
-// Struct để hash Điểm (dùng trong HashTable)
 struct DiemHash {
     std::size_t operator()(const Diem& d) const {
         int x = d.layX();
@@ -42,7 +37,6 @@ struct DiemHash {
     }
 };
 
-// Struct để hash số nguyên
 struct SoNguyenHash {
     std::size_t operator()(int x) const {
         unsigned int ux = (x >= 0) ? static_cast<unsigned int>(x) : static_cast<unsigned int>(-x);
