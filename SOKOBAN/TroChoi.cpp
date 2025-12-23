@@ -87,7 +87,7 @@ void TroChoi::xuLyClickNutGoiY() {
         return;
     }
 
-    bool timThay = gameController->timLoiGiaiBFS(50);
+    bool timThay = gameController->timLoiGiaiBFS(150);
 
     if (timThay) {
         gameController->batDauTuDongGiai();
@@ -181,9 +181,6 @@ void TroChoi::chay() {
 void TroChoi::xuLySuKien() {
     sf::Event suKien;
     while (cuaSo.pollEvent(suKien)) {
-        if (suKien.type == sf::Event::Closed) {
-            cuaSo.close();
-        }
         if (suKien.type == sf::Event::MouseMoved) {
             sf::Vector2i viTriChuot = sf::Mouse::getPosition(cuaSo);
             sf::Vector2i viTriDaTyLe = layViTriChuotDaTyLe(viTriChuot);
@@ -191,21 +188,6 @@ void TroChoi::xuLySuKien() {
             std::cout << "Toa do chuot: X=" << viTriDaTyLe.x
                 << " Y=" << viTriDaTyLe.y << std::endl;
         }
-
-        if (suKien.type == sf::Event::KeyPressed && suKien.key.code == sf::Keyboard::Escape) {
-            TrangThaiUI trangThaiUI = gameUI->layTrangThaiUI();
-
-            if (trangThaiUI == TrangThaiUI::MENU) {
-                cuaSo.close();
-            }
-            else if (trangThaiUI == TrangThaiUI::DANG_CHOI) {
-                xuLyClickNutPause();
-            }
-            else if (trangThaiUI == TrangThaiUI::TAM_DUNG) {
-                xuLyHanhDongPause(HanhDongPause::TIEP_TUC);
-            }
-        }
-
         sf::Event suKienDaTyLe = suKien;
         if (suKien.type == sf::Event::MouseButtonPressed) {
             sf::Vector2i viTriDaTyLe = layViTriChuotDaTyLe(sf::Mouse::getPosition(cuaSo));

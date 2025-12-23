@@ -182,6 +182,42 @@ bool GameController::coTheLui() const {
     return historyManager->coTheLui();
 }
 
+void GameController::phucHoiTrangThai(const TrangThaiDiChuyen& trangThai) {
+    NguoiChoi* nguoiChoi = map->layNguoiChoi();
+    if (!nguoiChoi) return;
+
+    int oldX = nguoiChoi->layX();
+    int oldY = nguoiChoi->layY();
+    int newX = trangThai.viTriNguoiChoi.layX();
+    int newY = trangThai.viTriNguoiChoi.layY();
+    int dx = newX - oldX;
+    int dy = newY - oldY;
+
+    nguoiChoi->datViTri(newX, newY, dx, dy);
+
+    int idx = 0;
+    int soThungGo = map->cacThungGoPtr.size();
+    int soThungSat = map->cacThungSatPtr.size();
+    int totalSaved = trangThai.cacViTriThung.size();
+
+    for (int i = 0; i < soThungGo && idx < totalSaved; ++i, ++idx) {
+        map->cacThungGoPtr[i]->datViTri(
+            trangThai.cacViTriThung[idx].layX(),
+            trangThai.cacViTriThung[idx].layY()
+        );
+    }
+
+    for (int j = 0; j < soThungSat && idx < totalSaved; ++j, ++idx) {
+        map->cacThungSatPtr[j]->datViTri(
+            trangThai.cacViTriThung[idx].layX(),
+            trangThai.cacViTriThung[idx].layY()
+        );
+    }
+
+    boxTriggerUpdater.capNhatThung(map);
+    boxTriggerUpdater.capNhatNutVaBay(map);
+}
+
 TrangThaiDiChuyen GameController::layTrangThaiHienTai() const {
     NguoiChoi* nguoiChoi = map->layNguoiChoi();
     Diem viTriNguoiChoi = nguoiChoi->layViTri();
@@ -191,23 +227,11 @@ TrangThaiDiChuyen GameController::layTrangThaiHienTai() const {
         cacViTriThung.push_back(map->cacThungGoPtr[i]->layViTri());
     }
 
-    return TrangThaiDiChuyen(viTriNguoiChoi, cacViTriThung);
-}
-
-void GameController::phucHoiTrangThai(const TrangThaiDiChuyen& trangThai) {
-    NguoiChoi* nguoiChoi = map->layNguoiChoi();
-    nguoiChoi->datViTri(trangThai.viTriNguoiChoi.layX(),
-                        trangThai.viTriNguoiChoi.layY(), 0, 0);
-
-    for (int i = 0; i < map->cacThungGoPtr.size() && i < trangThai.cacViTriThung.size(); i++) {
-        map->cacThungGoPtr[i]->datViTri(
-            trangThai.cacViTriThung[i].layX(),
-            trangThai.cacViTriThung[i].layY()
-        );
+    for (int i = 0; i < map->cacThungSatPtr.size(); i++) {
+        cacViTriThung.push_back(map->cacThungSatPtr[i]->layViTri());
     }
 
-    boxTriggerUpdater.capNhatThung(map);
-    boxTriggerUpdater.capNhatNutVaBay(map);
+    return TrangThaiDiChuyen(viTriNguoiChoi, cacViTriThung);
 }
 
 TrangThaiBFS GameController::taoTrangThaiBFS() const {

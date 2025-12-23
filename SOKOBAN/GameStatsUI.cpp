@@ -37,12 +37,12 @@ bool GameStatsUI::khoiTao(const std::string& duongDanKhungTimer,
     textThoiGian.setPosition(54, 50);  
     
     textSoBuoc.setFont(chuPhong);
-    textSoBuoc.setCharacterSize(18);  
+    textSoBuoc.setCharacterSize(15);  
     textSoBuoc.setFillColor(sf::Color::Black); 
     textSoBuoc.setStyle(sf::Text::Bold);
     textSoBuoc.setString("0");
     
-    textSoBuoc.setPosition(180, 50);  
+    textSoBuoc.setPosition(175, 52);  
     return true;
 }
 

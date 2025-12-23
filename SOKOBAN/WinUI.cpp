@@ -33,24 +33,24 @@ bool WinUI::khoiTao(
     textThoiGian.setCharacterSize(24); 
     textThoiGian.setFillColor(sf::Color::Black); 
     textThoiGian.setStyle(sf::Text::Bold);
-    textThoiGian.setPosition(337.0f, 405.0f);
+    textThoiGian.setPosition(321.0f, 436.0f);
 
     textSoBuoc.setFont(chuPhong);
     textSoBuoc.setCharacterSize(24);  
     textSoBuoc.setFillColor(sf::Color::Black);
     textSoBuoc.setStyle(sf::Text::Bold);
-    textSoBuoc.setPosition(456.0f, 405.0f);
+    textSoBuoc.setPosition(445.0f, 436.0f);
 
     vungClickHome = sf::FloatRect(
-        271.0f,   
-        497.0f,   
+        252.0f,   
+        522.0f,   
         117.0f,   
         26.0f     
     );
 
     vungClickNext = sf::FloatRect(
-        401.0f,   
-        497.0f,   
+        398.0f,   
+        522.0f,   
         117.0f, 
         26.0f     
     );
@@ -63,7 +63,7 @@ int WinUI::tinhSoSao(float thoiGian, int soBuoc) {
         return 3;
     }
 
-    if (thoiGian <= 120.0f && soBuoc <= 200) {
+    if (thoiGian <= 120.0f && soBuoc <= 150) {
         return 2;
     }
 

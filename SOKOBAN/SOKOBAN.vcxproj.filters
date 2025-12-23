@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="TroChoi.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="BanDo.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="BFSSolver.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxTriggerUpdater.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="GameController.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="HistoryManager.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Diem.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Bay.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="Cat.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="Cau.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="CongDichChuyen.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="DoiTuongTroChoi.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="Nen.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="NguoiChoi.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="Nuoc.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="NutBam.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="VatCan.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="ThungGo.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="ThungSat.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="Tuong.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="ViTriDat.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="MangDichChuyen.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStatsUI.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUI.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="GiaoDien.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="HoatHinh.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="HuongDan.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="MapSelectUI.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuUI.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="NutUI.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="WinUI.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="MapRenderer.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TroChoi.h" />
+    <ClInclude Include="BanDo.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="BFSSolver.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxTriggerUpdater.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameController.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="HistoryManager.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Diem.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Bay.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="Cat.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="Cau.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="CongDichChuyen.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="DoiTuongTroChoi.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="Nen.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="NguoiChoi.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="Nuoc.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="NutBam.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="ThungGo.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="ThungSat.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="Tuong.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="ViTriDat.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicArray.h">
+      <Filter>ctdl</Filter>
+    </ClInclude>
+    <ClInclude Include="HashTable.h">
+      <Filter>ctdl</Filter>
+    </ClInclude>
+    <ClInclude Include="Pair.h">
+      <Filter>ctdl</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>ctdl</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>ctdl</Filter>
+    </ClInclude>
+    <ClInclude Include="VatCan.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="MangDichChuyen.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStatsUI.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="GiaoDien.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="HoatHinh.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="HuongDan.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="LopPhuPause.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="MapSelectUI.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuUI.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="NutUI.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="WinUI.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="MapLoader.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="MapRenderer.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="TrangThaiBFS.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="TrangThaiDiChuyen.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="map1.txt" />
+    <Text Include="map2.txt" />
+    <Text Include="map3.txt" />
+    <Text Include="map4.txt" />
+    <Text Include="map5.txt" />
+    <Text Include="map6.txt" />
+    <Text Include="map7.txt" />
+    <Text Include="map8.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ui">
+      <UniqueIdentifier>{31ca6fce-84ae-4e53-9b4c-33431fe0dac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ctdl">
+      <UniqueIdentifier>{28285c07-fc75-4e08-9bb1-ba4d47c24e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{4a37ed0c-284c-4891-8c6a-5b776cbe8205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object">
+      <UniqueIdentifier>{c6eb184b-25c2-48b0-8e44-476d6d6635ad}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
